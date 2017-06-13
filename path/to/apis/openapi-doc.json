@@ -1,0 +1,7 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "!petstore",
+        "description": "A store (not for pets)"
+    }
+}
