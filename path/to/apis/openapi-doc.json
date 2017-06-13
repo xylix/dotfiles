@@ -3,5 +3,19 @@
     "info": {
         "title": "!petstore",
         "description": "A store (not for pets)"
+    },
+    "paths": {
+        "/nonpettos": {},
+        "/nonpettos/{nonpettoid}": {
+            "parameters": [
+                {
+                    "name": "nonpettoid",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer",
+                    "format": "int64"
+                }
+            ]
+        }
     }
 }
