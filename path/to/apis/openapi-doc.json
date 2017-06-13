@@ -5,7 +5,17 @@
         "description": "A store (not for pets)"
     },
     "paths": {
-        "/nonpettos": {},
+        "/nonpettos": {
+            "parameters": [
+                {
+                    "name": "a query parameter",
+                    "in": "query",
+                    "description": "Number as double as a query parameter",
+                    "type": "number",
+                    "format": "double"
+                }
+            ]
+        },
         "/nonpettos/{nonpettoid}": {
             "parameters": [
                 {
