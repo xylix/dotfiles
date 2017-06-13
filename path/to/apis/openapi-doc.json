@@ -3,6 +3,15 @@
     "info": {
         "title": "!petstore",
         "description": "A store (not for pets)",
+        "contact": {
+            "name": "Kerkko Pelttari",
+            "url": "http://kpelttari.users.paivola.fi",
+            "email": "kerk.pelt@gmail.com"
+        },
+        "license": {
+            "name": "MIT License",
+            "url": "https://opensource.org/licenses/MIT"
+        },
         "version": "v0,2"
     },
     "paths": {
@@ -94,6 +103,16 @@
             ]
         }
     },
+    "tags": [
+        {
+            "name": "tag1",
+            "description": ""
+        },
+        {
+            "name": "tag2",
+            "description": ""
+        }
+    ],
     "definitions": {
         "reusable type": {
             "properties": {
@@ -102,6 +121,13 @@
                     "description": "A property which name is a property name and type reusable type"
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "Secsheme, basic": {
+            "type": "basic",
+            "description": "A basic seccheme",
+            "scopes": {}
         }
     }
 }
