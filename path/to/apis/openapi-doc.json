@@ -48,6 +48,50 @@
                     "format": "int64"
                 }
             ]
+        },
+        "/{id}/{2ndid}": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "A desc",
+                        "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "responses": {
+                    "200": {
+                        "description": "typeless",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "array",
+                    "items": {
+                        "type": "boolean"
+                    }
+                },
+                {
+                    "name": "2ndid",
+                    "in": "path",
+                    "required": true,
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "password"
+                    }
+                }
+            ]
         }
     },
     "definitions": {
