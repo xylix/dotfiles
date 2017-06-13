@@ -6,6 +6,27 @@
     },
     "paths": {
         "/nonpettos": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "200 OK"
+                    }
+                }
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "A POST request using a number as double as a query parameter completed succesfully."
+                    }
+                }
+            },
             "parameters": [
                 {
                     "name": "a query parameter",
@@ -26,6 +47,16 @@
                     "format": "int64"
                 }
             ]
+        }
+    },
+    "definitions": {
+        "reusable type": {
+            "properties": {
+                "a Property name": {
+                    "$ref": "#/definitions/reusable type",
+                    "description": "A property which name is a property name and type reusable type"
+                }
+            }
         }
     }
 }
