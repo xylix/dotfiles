@@ -12,22 +12,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-Plugin 'ascenator/L9', {'name': 'newL9'}
-"Plugin 'racer-rust/vim-racer'
-"Plugin 'rust-lang/rust.vim'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -49,14 +33,11 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
-Bundle 'altercation/vim-colors-solarized'
 set number
 syntax on
 set background=dark
 colorscheme monokai
 set hidden
-"let g:racer_cmd="Users/xylix/.cargo/bin/racer"
-"let $RUST_SRC_PATH="Users/xylix/src/rustc-1.10.0/src/"
 set omnifunc=syntaxcomplete#Complete
 set softtabstop=2
 set shiftwidth=2
@@ -68,4 +49,4 @@ set foldmethod=indent   "fold based on indent
 set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
-set path=$PWD/**
+set path=$PWD/**        "bubble gum for browsing project files
