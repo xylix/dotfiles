@@ -9,8 +9,6 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $TERMINAL terminology
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -36,11 +34,9 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-#bindsym $mod+d exec gnome-do
 
-bindsym $mod+d exec rofi -show run -width 100 -fg "#B0E670" -bg "#14161F" -hlfg "#14161F" -hlbg "#B0E670" -bc "#14161F" -location 0 -lines 19 -bw 0 -font "System San Franscisco 16" -padding 200 -separator-style none -opacity 80
 #rofi on kivan nakoinen app launcher
+bindsym $mod+d exec rofi -show run -width 100 -fg "#B0E670" -bg "#14161F" -hlfg "#14161F" -hlbg "#B0E670" -bc "#14161F" -location 0 -lines 19 -bw 0 -font "System San Franscisco 16" -padding 200 -separator-style none -opacity 80
 
 # change focus
 bindsym $mod+j focus left
@@ -189,10 +185,7 @@ bar {
         position top
 }
 
-exec /usr/bin/synclient TapButton1=1 TapButton2=3 TapButton3=2
-exec --no-startup-id mate-power-manager #virranhallintamanageri
 exec --no-startup-id nm-applet #network manager taskbar applet
-exec --no-startup-id kmix #kde audio taskbar applet
 
 #visual shit
 
@@ -208,6 +201,5 @@ exec --no-startup-id compton #-f "-f":lla voi enabloida workspacevaihto fade ani
 hide_edge_borders both
 
 #set wallpaper with feh
-exec_always --no-startup-id feh --bg-scale /home/xylix/Desktop/vergewallpaper.jpg #asettaa feh:illa taustakuvan
-
-exec --no-startup-id conky -c ~/.config/conkyrc #sysmonitor työpöydälle
+exec_always --no-startup-id feh --bg-scale /home/xylix/Pictures/wallpaper.jpg #asettaa feh:illa taustakuvan
+new_window 1pixel
