@@ -16,10 +16,18 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'vim-airline/vim-airline'
 "Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-syntastic/syntastic'
+"custom python brace etc. indents
 Plugin 'vim-scripts/indentpython.vim'
+"keyrepeat preventator
 Plugin 'takac/vim-hardtime'
-Bundle 'Valloric/YouCompleteMe'
-
+"autocompletion integration
+Plugin 'Valloric/YouCompleteMe'
+"swiss knife for searching
+Plugin 'kien/ctrlp.vim'
+"1.3mb worth of color schemes, found in .vim/bundle/vim-colorschemes/colors
+Plugin 'flazz/vim-colorschemes'
+"faster movement within lines
+Plugin 'unblevable/quick-scope'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -58,6 +66,8 @@ au BufNewFile,BufRead *.js, *.html, *.css
     \ set softtabstop=2 shiftwidth=2
 au BufNewFile,BufRead *.py
     \ set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix 
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:hardtime_default_on = 1
 "python with virtualenv support
 py << EOF
 import os
