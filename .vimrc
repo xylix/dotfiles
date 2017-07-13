@@ -13,8 +13,13 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'takac/vim-hardtime'
+Bundle 'Valloric/YouCompleteMe'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -39,8 +44,6 @@ set background=dark
 colorscheme monokai
 set hidden
 set omnifunc=syntaxcomplete#Complete
-set softtabstop=2
-set shiftwidth=2
 set expandtab
 set relativenumber
 set laststatus=2
@@ -50,3 +53,17 @@ set foldnestmax=10      "deepest fold is 10 levels
 set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 set path=$PWD/**        "bubble gum for browsing project files
+set tabstop=4 softtabstop=4 shiftwidth=4
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set softtabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix 
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
