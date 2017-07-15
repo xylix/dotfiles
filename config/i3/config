@@ -158,13 +158,6 @@ bar {
 
 exec --no-startup-id nm-applet #network manager taskbar applet
 
-#visual shit
-
-#window colours
-  client.focused          $base01 $base01    $base07 $base0F
-  client.focused_inactive $base02 $base02    $base03 $base0F
-  client.unfocused        $base02 $base02    $base03 $base0F
-  client.urgent           $base02 $base08    $base00 $base0F
 
 font pango:System San Francisco Display 10 # Applen system fontti
 
