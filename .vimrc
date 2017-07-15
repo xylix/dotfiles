@@ -16,8 +16,6 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'vim-airline/vim-airline'
 "Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-syntastic/syntastic'
-"custom python brace etc. indents
-Plugin 'vim-scripts/indentpython.vim'
 "keyrepeat preventator
 Plugin 'takac/vim-hardtime'
 "autocompletion integration
