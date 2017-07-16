@@ -44,10 +44,15 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
+" Store an undo buffer in a file in $HOME/.vimundo
+set undofile
+set undodir=$HOME/.vimundo
+set undolevels=1000
+
 set number
 syntax on
 set background=dark
-colorscheme monokai
+colorscheme gotham
 set hidden
 set omnifunc=syntaxcomplete#Complete
 set expandtab
@@ -74,4 +79,4 @@ if 'VIRTUAL_ENV' in os.environ:
   project_base_dir = os.environ['VIRTUAL_ENV']
   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
   execfile(activate_this, dict(__file__=activate_this))
-EOF
+
