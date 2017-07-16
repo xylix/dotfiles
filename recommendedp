@@ -1,0 +1,22 @@
+#my recommended packages for a comprehensive 
+#environment for doing stuff
+
+#terminal
+htop
+vim
+powertop
+fstrim
+
+
+#window manager and utilities
+i3
+rofi
+nm-applet
+gnome-keyring
+#if bluetooth
+blueberry
+
+#graphical
+terminology
+mpv
+firefox-nightly
