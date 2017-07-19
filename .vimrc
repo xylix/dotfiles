@@ -52,7 +52,7 @@ set undolevels=1000
 set number
 syntax on
 set background=dark
-colorscheme gotham
+colorscheme monokai
 set hidden
 set omnifunc=syntaxcomplete#Complete
 set expandtab
