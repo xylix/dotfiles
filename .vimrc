@@ -26,6 +26,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'flazz/vim-colorschemes'
 "faster movement within lines
 Plugin 'unblevable/quick-scope'
+
+Plugin 'ajmwagar/vim-deus'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -51,12 +53,10 @@ set undolevels=1000
 
 set number
 syntax on
-set background=dark
-colorscheme monokai
+colorscheme deus
 set hidden
 set omnifunc=syntaxcomplete#Complete
 set expandtab
-set relativenumber
 set laststatus=2
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -71,3 +71,4 @@ au BufNewFile,BufRead *.py
     \ set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:hardtime_default_on = 1
+hi normal ctermbg=none
