@@ -1,0 +1,81 @@
+! ROFI
+rofi.font:            System San Fransisco 16
+rofi.location:        0
+rofi.color-enabled:   true
+rofi.separator-style: solid
+rofi.padding:         300
+rofi.hide-scrollbar:  true
+rofi.line-margin:     5
+rofi.yoffset:         0
+rofi.xoffset:         0
+rofi.lines:           10
+rofi.opacity:         80
+!rofi.fake-transparency: true
+
+
+!URXVT
+URxvt.cursorBlink:     false
+URxvt.urgentOnBell:    true
+URxvt.termName:        rxvt-256color
+URxvt.letterSpace:     0
+URxvt.intensityStyles: false
+URxvt.internalBorder:  0
+URxvt.borderless:      true
+URxvt.scrollBar_right: false
+URxvt.scrollBar:       false
+URxvt.inputMethod:     fcitx
+URxvt.preeditType:     OverTheSpot
+URxvt.imLocale:        en_US.UTF-8
+urxvt*perl-lib:        /usr/lib/urxvt/perl/
+urxvt*perl-ext-common: default,matcher,selection-to-clipboard
+!URxvt.keysym.M-u:      perl:url-select:select_next
+!URxvt.keysym.M-Escape:perl:keyboard-select:activate
+URxvt.url-launcher:    /usr/bin/xdg-open
+URxvt.matcher.button:  1
+
+URxvt.bell-command:    notify-send "urxvt"
+
+! disable the ctrl+shift mode
+!URxvt.iso14755:    false
+!URxvt.iso14755_52: false
+
+URxvt.keysym.Control-Shift-V:     perl:clipboard:paste
+URxvt.keysym.Control-Shift-C:     perl:clipboard:copy
+
+! special
+*.foreground:   #6d727e
+*.background:   #fef9ec
+*.cursorColor:  #6d727e
+
+! black
+*.color0:       #c5c1b4
+*.color8:       #a1a6b2
+
+! red
+*.color1:       #e75c58
+*.color9:       #b22b31
+
+! green
+*.color2:       #00a250
+*.color10:      #007427
+
+! yellow
+*.color3:       #a08a00
+*.color11:      #715f00
+
+! blue
+*.color4:       #208ffb
+*.color12:      #0065ca
+
+! magenta
+*.color5:       #d160c4
+*.color13:      #a03196
+
+! cyan
+*.color6:       #00a4c1
+*.color14:      #007693
+
+! white
+*.color7:       #3e424d
+*.color15:      #282c36
+
