@@ -53,7 +53,7 @@ set undolevels=1000
 
 set number
 syntax on
-colorscheme deus
+colorscheme monokai
 set hidden
 set omnifunc=syntaxcomplete#Complete
 set expandtab
