@@ -1,7 +1,5 @@
-# This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
-	name = xylix
+	name = "Kerkko Pelttari"
 	email = kerk.pelt@gmail.com
 [pull]
 	rebase = true
