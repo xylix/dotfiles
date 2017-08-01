@@ -65,10 +65,11 @@ set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 set path=$PWD/**        "bubble gum for browsing project files
 set tabstop=4 softtabstop=4 shiftwidth=4
+
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set softtabstop=2 shiftwidth=2
 au BufNewFile,BufRead *.py
     \ set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:hardtime_default_on = 1
-hi normal ctermbg=none
+"hi normal ctermbg=none
