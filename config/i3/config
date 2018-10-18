@@ -36,7 +36,7 @@ bindsym $mod+Shift+q kill
 # installed.
 
 #rofi on kivan nakoinen app launcher
-bindsym $mod+d exec rofi -show run -width 100 -fg "#B0E670" -bg "#14161F" -hlfg "#14161F" -hlbg "#B0E670" -bc "#14161F" -location 0 -lines 19 -bw 0 -font "System San Franscisco 16" -padding 200 -separator-style none -opacity 80
+bindsym $mod+d exec rofi -show run -width 100 -lines 19 -font "System San Franscisco 16" -padding 200 -separator-style none -opacity 80
 
 # change focus
 bindsym $mod+j focus left
@@ -148,7 +148,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        font pango: Roboto
+        font pango: System San Fransisco 12
         status_command i3status
 	colors {
 		separator #757575
@@ -157,11 +157,12 @@ bar {
 }
 
 exec --no-startup-id nm-applet #network manager taskbar applet
-
+exec --no-startup-id blueman-applet #bluetooth applet
+exec --no-startup-id volctl #Pulseaudio volume control applet
 
 font pango: Roboto
 
-exec --no-startup-id compton #-f "-f":lla voi enabloida workspacevaihto fade animaation, compton hoitaa transparencyn jne. 
+exec --no-startup-id compton --no-fading-openclose #-f "-f":lla voi enabloida workspacevaihto fade animaation, compton hoitaa transparencyn jne. 
 hide_edge_borders both
 
 #set wallpaper with feh
