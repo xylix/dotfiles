@@ -36,7 +36,7 @@ bindsym $mod+Shift+q kill
 # installed.
 
 #rofi on kivan nakoinen app launcher
-bindsym $mod+d exec rofi -show run -width 100 -lines 19 -font "System San Franscisco 16" -padding 200 -separator-style none -opacity 80
+bindsym $mod+d exec rofi -show 
 
 # change focus
 bindsym $mod+j focus left
