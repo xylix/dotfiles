@@ -13,9 +13,12 @@ borg
 i3
 rofi
 nm-applet
+dunst #notification manager
+volctl
 gnome-keyring
+
 #if bluetooth
-blueberry
+blueman-applet
 
 #graphical
 terminology
