@@ -2,7 +2,7 @@
 ;   go to https://github.com/jaagr/polybar
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+background = #00000000
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
