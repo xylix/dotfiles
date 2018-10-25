@@ -154,6 +154,7 @@ bar {
 		separator #757575
 	}
         position top
+	tray_output primary
 }
 
 exec --no-startup-id nm-applet #network manager taskbar applet

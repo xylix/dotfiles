@@ -1,7 +1,7 @@
 rofi.theme: /usr/share/rofi/themes/solarized_alternate.rasi
 rofi.combi-modi:    window,drun,ssh
 rofi.modi:          combi
-rofi.width: 100
+rofi.width: 80
 rofi.lines: 19
 rofi.font: "System San Fransisco" 14
 rofi.padding: 200
