@@ -12,6 +12,7 @@ borg
 #window manager and utilities
 i3
 rofi
+polybar
 nm-applet
 dunst #notification manager
 volctl
