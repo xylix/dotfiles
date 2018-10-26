@@ -160,7 +160,7 @@ bindsym $mod+r mode "resize"
 exec_always --no-startup-id ~/.config/i3/polybar.sh &
 exec --no-startup-id nm-applet #network manager taskbar applet
 exec --no-startup-id blueman-applet #bluetooth applet
-exec --no-startup-id volctl #Pulseaudio volume control applet
+#exec --no-startup-id volctl #Pulseaudio volume control applet
 
 font pango: Roboto
 
@@ -168,20 +168,26 @@ exec --no-startup-id compton --no-fading-openclose #-f "-f":lla voi enabloida wo
 hide_edge_borders both
 
 #set wallpaper with feh
-exec_always --no-startup-id feh --bg-scale /home/xylix/Pictures/wallpaper.jpg #asettaa feh:illa taustakuvan
+#exec_always --no-startup-id feh --bg-scale /home/xylix/Pictures/neverstopdreaming.jpg #asettaa feh:illa taustakuvan
+#exec_always --no-startup-id feh --bg-max --image-bg white /home/xylix/Pictures/dont_stop_believing.jpg
+exec_always --no-startup-id feh --bg-fill /home/xylix/Pictures/planets-minimalistic.jpg
+
+
 #disable window titles
 new_window 1pixel
 
 # Audio (mediakeys)
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10%
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Sreen brightness controls (media)
-bindsym Shift+XF86MonBrightnessUp exec --no-startup-id light -A 1 # increase screen brightness
-bindsym Shift+XF86MonBrightnessDown exec --no-startup-id light -U 1 # decrease screen brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10 # decrease screen brightness
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id light -A 1
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id light -U 1
 
 # Media player controls (media)
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
