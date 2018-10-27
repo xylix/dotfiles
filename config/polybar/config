@@ -14,7 +14,7 @@ alert = #bd2c40
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 30%
-height = 27
+height = 24
 offset-x = 35%
 
 ;Change bar to bottom
@@ -33,7 +33,7 @@ fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 1
 line-color = #f00
 
 border-size = 4
@@ -53,6 +53,8 @@ font-2 =WunconSiji:pixelsize=10;1
 modules-left = i3
 modules-center = pulseaudio battery date powermenu
 modules-right = 
+
+wm-name = i3
 
 tray-position = right
 tray-padding = 2
