@@ -9,6 +9,7 @@ fi
 # Obtain bar's window id
 id=$(xdo id -N "Polybar")
 # Toggle bar visibility
+# I really had no better idea to store the state than using /tmp/
 if [ "1" = "$(cat /tmp/polyvar)" ]
 then
     xdo hide -N "Polybar"
