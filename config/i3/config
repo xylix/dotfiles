@@ -196,3 +196,5 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 bindsym $mod+p exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+# Configurable filesystem search
+bindsym $mod+Shift+f exec --no-startup-id xdg-open "$(locate --ignore-case home media | rofi -threads 0 -width 100 -dmenu -i -p "locate:")"
