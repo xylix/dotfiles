@@ -60,6 +60,8 @@ set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 set path=$PWD/**        "bubble gum for browsing project files
 set tabstop=4 softtabstop=4 shiftwidth=4
+set directory=$HOME/.vim/swapfiles//
+
 
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set softtabstop=2 shiftwidth=2
