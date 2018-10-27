@@ -161,6 +161,7 @@ exec_always --no-startup-id ~/.config/i3/polybar.sh &
 exec --no-startup-id nm-applet #network manager taskbar applet
 exec --no-startup-id blueman-applet #bluetooth applet
 #exec --no-startup-id volctl #Pulseaudio volume control applet
+exec --no-startup-id greenclip daemon #Clipboard history manager
 
 font pango: Roboto
 
@@ -193,3 +194,5 @@ bindsym Shift+XF86MonBrightnessDown exec --no-startup-id light -U 1
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
+
+bindsym $mod+p exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
