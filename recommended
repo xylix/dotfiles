@@ -13,6 +13,8 @@ borg
 i3
 rofi
 polybar
+#For hiding polybar
+xdo
 nm-applet
 dunst #notification manager
 volctl
