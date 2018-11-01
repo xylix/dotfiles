@@ -162,6 +162,9 @@ exec --no-startup-id nm-applet #network manager taskbar applet
 exec --no-startup-id blueman-applet #bluetooth applet
 #exec --no-startup-id volctl #Pulseaudio volume control applet
 exec --no-startup-id greenclip daemon #Clipboard history manager
+exec --no-startup-id /home/xylix/dotfiles/battery-watcher.sh
+exec --no-startup-id aw-qt
+
 
 font pango: Roboto
 
@@ -171,7 +174,7 @@ hide_edge_borders both
 #set wallpaper with feh
 #exec_always --no-startup-id feh --bg-scale /home/xylix/Pictures/neverstopdreaming.jpg #asettaa feh:illa taustakuvan
 #exec_always --no-startup-id feh --bg-max --image-bg white /home/xylix/Pictures/dont_stop_believing.jpg
-exec_always --no-startup-id feh --bg-fill /home/xylix/Pictures/planets-minimalistic.jpg
+exec_always --no-startup-id feh --bg-fill /home/xylix/Pictures/okabe_re-awake.jpg
 
 
 #disable window titles
