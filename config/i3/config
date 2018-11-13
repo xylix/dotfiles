@@ -174,8 +174,8 @@ hide_edge_borders both
 #set wallpaper with feh
 #exec_always --no-startup-id feh --bg-scale /home/xylix/Pictures/neverstopdreaming.jpg #asettaa feh:illa taustakuvan
 #exec_always --no-startup-id feh --bg-max --image-bg white /home/xylix/Pictures/dont_stop_believing.jpg
-exec_always --no-startup-id feh --bg-fill /home/xylix/Pictures/okabe_re-awake.jpg
-
+#exec_always --no-startup-id feh --bg-fill /home/xylix/Pictures/okabe_re-awake.jpg
+exec_always --no-startup-id feh --bg-fill /home/xylix/Pictures/pitchblack.png
 
 #disable window titles
 new_window 1pixel

@@ -44,8 +44,7 @@ battery 0 {
 #}
 
 tztime local {
-        format = "%H:%M:%S"
-        #format = "%d-%m-%Y %H:%M:%S"
+        format = "%d-%m-%Y %H:%M:%S"
 }
 #
 #load {
