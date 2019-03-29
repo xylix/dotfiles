@@ -11,8 +11,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-syntastic/syntastic'
-"keyrepeat preventator
-Plugin 'takac/vim-hardtime'
 "autocompletion integration
 Plugin 'Valloric/YouCompleteMe'
 "swiss knife for searching
@@ -70,7 +68,6 @@ au BufNewFile,BufRead *.js, *.html, *.css
 au BufNewFile,BufRead *.py
     \ set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:hardtime_default_on = 1
 "hi normal ctermbg=none
 " If the current buffer has never been saved, it will have no name,
 " call the file browser to save it, otherwise just save it.
