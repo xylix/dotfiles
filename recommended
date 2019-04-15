@@ -12,9 +12,7 @@ borg
 #window manager and utilities
 i3
 rofi
-polybar
-#For hiding polybar
-xdo
+feh
 nm-applet
 dunst #notification manager
 volctl
