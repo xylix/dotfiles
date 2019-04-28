@@ -16,6 +16,7 @@ nm-applet
 dunst #notification manager
 volctl
 gnome-keyring
+aw-qt
 
 #if bluetooth
 blueman-applet
