@@ -1,4 +1,4 @@
-rofi.theme: /usr/share/rofi/themes/solarized_alternate.rasi
+rofi.theme: /usr/share/rofi/themes/Monokai.rasi
 rofi.combi-modi:    window,drun,ssh
 rofi.modi:          combi
 rofi.width: 80

@@ -1,11 +1,11 @@
 #/bin/bash
-cp --symbolic-link config/home/* $HOME/. 
+cp -r --symbolic-link $DOTFILES/config/home/* $HOME/.
 
 mkdir -p $HOME/.config/i3
 mkdir -p $HOME/.config/i3status
 mkdir -p $HOME/.config/rofi/config
 
-cp --symbolic-link config/dotconfig/* $HOME/.config/.
+cp -r --symbolic-link $DOTFILES/config/dotconfig/* $HOME/.config/.
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
