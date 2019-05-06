@@ -45,6 +45,6 @@ jacocoTestReport {
     }
 }
 
-mainClassName = 'projectname.Mainclass'
+mainClassName = 'fi.xylix.projectname.Mainclass'
 
 

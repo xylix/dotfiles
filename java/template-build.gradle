@@ -23,6 +23,6 @@ test {
     }
 }
 
-mainClassName = 'project.Mainclass'
+mainClassName = 'fi.xylix.project.Mainclass'
 
 
