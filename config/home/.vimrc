@@ -13,12 +13,12 @@ Plugin 'kien/ctrlp.vim'
 "faster movement within lines
 Plugin 'unblevable/quick-scope'
 
-"1.3mb worth of color schemes, found in .vim/bundle/vim-colorschemes/colors
-Plugin 'flazz/vim-colorschemes'
 Plugin 'ajmwagar/vim-deus'
 
 "Plugin for Goyo mode, which hides unnecessary visual clutter temporarily
 Plugin 'junegunn/goyo.vim'
+
+Plugin 'vimwiki/vimwiki'
 
 "Programming language (IDE) stuff
 Plugin 'Valloric/YouCompleteMe'
@@ -79,7 +79,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"0 idea what the thing at lines 74-81 does
 " If the current buffer has never been saved, it will have no name,
 " call the file browser to save it, otherwise just save it.
 " Remember to set `stty stop undef` in shell
