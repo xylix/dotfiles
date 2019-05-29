@@ -155,6 +155,7 @@ exec --no-startup-id volctl #Pulseaudio volume control applet
 exec --no-startup-id greenclip daemon #Clipboard history manager
 exec --no-startup-id /home/xylix/dotfiles/battery-watcher.sh
 exec --no-startup-id aw-qt
+exec firefox-nightly
 
 exec --no-startup-id compton --no-fading-openclose #-f "-f":lla voi enabloida workspacevaihto fade animaation, compton hoitaa transparencyn jne. 
 
@@ -162,8 +163,7 @@ exec --no-startup-id compton --no-fading-openclose #-f "-f":lla voi enabloida wo
 new_window 1pixel
 hide_edge_borders both
 
-#exec_always --no-startup-id feh --bg-scale /home/xylix/Pictures/neverstopdreaming.jpg #asettaa feh:illa taustakuvan
-exec_always --no-startup-id feh --bg-fill /home/xylix/Pictures/pitchblack.png
+exec_always --no-startup-id feh --bg-fill /home/xylix/Pictures/space/planets-minimalistic.jpg
 
 
 # Audio (mediakeys)
