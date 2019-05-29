@@ -1,9 +1,6 @@
 #/bin/bash
+export DOTFILES=/home/xylix/dotfiles
 cp -r --symbolic-link $DOTFILES/config/home/* $HOME/.
-
-mkdir -p $HOME/.config/i3
-mkdir -p $HOME/.config/i3status
-mkdir -p $HOME/.config/rofi/config
 
 cp -r --symbolic-link $DOTFILES/config/dotconfig/* $HOME/.config/.
 
