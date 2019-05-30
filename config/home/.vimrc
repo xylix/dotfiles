@@ -28,6 +28,7 @@ Plugin 'vim-syntastic/syntastic'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+syntax on
 
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
@@ -41,7 +42,7 @@ let mapleader = ","
 
 " Store an undo buffer in a file in $HOME/.vimundo
 set undofile undodir=$HOME/.vimundo undolevels=1000
-set directory=$HOME/.vim/swapfiles// number syntax=on
+set directory=$HOME/.vim/swapfiles// 
 
 "Hide buffer something
 set hidden
@@ -97,3 +98,7 @@ let python_highlight_all=1
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 au BufNewFile,BufRead *.py
     \ set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix 
+
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
