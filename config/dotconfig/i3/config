@@ -8,7 +8,7 @@
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below. ISO 10646 = Unicode
+# is used in the BAr {} block below. ISO 10646 = Unicode
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
@@ -140,8 +140,9 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        font pango: System San Fransisco 12
-        status_command i3status
+    mode hide
+    font pango: System San Fransisco 12
+    status_command i3status
 	colors {
 		separator #757575
 	}

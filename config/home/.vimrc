@@ -19,6 +19,8 @@ Plugin 'ajmwagar/vim-deus'
 Plugin 'junegunn/goyo.vim'
 
 Plugin 'vimwiki/vimwiki'
+Plugin 'michal-h21/vimwiki-sync'
+Plugin 'michal-h21/vim-zettel'
 
 "Programming language (IDE) stuff
 Plugin 'Valloric/YouCompleteMe'
