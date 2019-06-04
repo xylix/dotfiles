@@ -9,26 +9,6 @@ dynamic theme https://addons.mozilla.org/en-US/firefox/addon/weatherlicious/
   --toolbox-border-bottom-color: transparent !important;             /* 1px line under background tabs */
   --chrome-nav-bar-controls-border-color: transparent !important;    /* border around url bar */
 }
-browser {
-    margin-right: -17px !important;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
- /* Move Tab-bar beside Nav-bar */
-/*#TabsToolbar {      
-  margin-bottom: 0px !important;
-  margin-top: 0px !important; 
-  margin-left: 35vw !important;
-  margin-right: -34px !important;
-  max-height: 32px !important;
-}
-
-#nav-bar {      
-  margin-bottom: -1px !important; 
-  margin-top: -32px !important;
-  margin-right: 65vw !important;
-  border-top: none !important;
-}   
 
 /* Remove padding above tabbar in compact mode */
 #main-window[sizemode="normal"] > #titlebar {
