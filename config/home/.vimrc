@@ -13,7 +13,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'unblevable/quick-scope'
 Plugin 'ajmwagar/vim-deus'
 
-"Plugin for Goyo mode, which hides unnecessary visual clutter temporarily
+    "Plugin for Goyo mode, which hides unnecessary visual clutter temporarily
 Plugin 'junegunn/goyo.vim'
 
 Plugin 'vimwiki/vimwiki'
@@ -39,6 +39,7 @@ endif
 
 set encoding=utf-8
 let mapleader = ","
+set linebreak
 
 "Store an undo buffer in a file in $HOME/.vimundo
 set undofile undodir=$HOME/.vimundo undolevels=1000
@@ -91,7 +92,6 @@ command -nargs=0 -bar Update if &modified
                            \|endif
 nnoremap <silent> <C-S> :<C-u>Update<CR>
 
-set encoding=utf-8
 "Python specific things & stuff
 let python_highlight_all=1
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
