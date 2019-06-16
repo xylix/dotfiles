@@ -5,14 +5,12 @@ set nocompatible              " be iMproved, required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" let Vundle manage Vundle, required
+"Let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-"swiss knife for searching
+"Swiss knife for searching
 Plugin 'kien/ctrlp.vim'
-"faster movement within lines
-Plugin 'unblevable/quick-scope'
 
+Plugin 'unblevable/quick-scope'
 Plugin 'ajmwagar/vim-deus'
 
 "Plugin for Goyo mode, which hides unnecessary visual clutter temporarily
@@ -27,13 +25,13 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 
 
-" All of your Plugins must be added before the following line
+"All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
 
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+"See :h vundle for more details or wiki for FAQ
+"Put your non-Plugin stuff after this line
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
@@ -42,15 +40,14 @@ endif
 set encoding=utf-8
 let mapleader = ","
 
-" Store an undo buffer in a file in $HOME/.vimundo
+"Store an undo buffer in a file in $HOME/.vimundo
 set undofile undodir=$HOME/.vimundo undolevels=1000
-set directory=$HOME/.vim/swapfiles// 
+set directory=$HOME/.vim/swapfiles/ 
 
 "Hide buffer something
 set hidden
 
 set omnifunc=syntaxcomplete#Complete
-set laststatus=2
 
 set foldmethod=indent foldnestmax=1 nofoldenable   
 
@@ -100,7 +97,6 @@ let python_highlight_all=1
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 au BufNewFile,BufRead *.py
     \ set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix 
-
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
