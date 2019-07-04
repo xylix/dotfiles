@@ -94,9 +94,9 @@ nnoremap <silent> <C-S> :<C-u>Update<CR>
 
 "Python specific things & stuff
 let python_highlight_all=1
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 au BufNewFile,BufRead *.py
     \ set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix 
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+set backspace=2 " make backspace work like most other programs
