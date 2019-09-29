@@ -1,6 +1,5 @@
 
-# [WIP]my recommended packages for a comprehensive 
-# environment for doing stuff
+# [WIP]my recommended packages for a comprehensive environment for doing stuff
 
 # terminal
 htop
