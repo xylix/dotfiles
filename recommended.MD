@@ -1,14 +1,14 @@
 
-#[WIP]my recommended packages for a comprehensive 
-#environment for doing stuff
+# [WIP]my recommended packages for a comprehensive 
+# environment for doing stuff
 
-#terminal
+# terminal
 htop
 vim
 powertop
 borg
 
-#window manager and utilities
+# window manager and utilities
 i3
 rofi
 feh
@@ -18,10 +18,10 @@ volctl
 gnome-keyring
 aw-qt
 
-#if bluetooth
+# if bluetooth
 blueman-applet
 
-#graphical
+# graphical
 terminology
 mpv
 firefox-nightly
