@@ -17,7 +17,6 @@ Plugin 'ajmwagar/vim-deus'
 Plugin 'junegunn/goyo.vim'
 
 Plugin 'vimwiki/vimwiki'
-Plugin 'michal-h21/vimwiki-sync'
 Plugin 'michal-h21/vim-zettel'
 
 "Programming language (IDE) stuff
@@ -73,12 +72,13 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "Configure syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 4
+set laststatus=0
 
 " If the current buffer has never been saved, it will have no name,
 " call the file browser to save it, otherwise just save it.
@@ -100,3 +100,4 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 set backspace=2 " make backspace work like most other programs
+set number
