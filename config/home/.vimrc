@@ -3,34 +3,28 @@ set nocompatible              " be iMproved, required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-"Let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
 "Swiss knife for searching
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 
-Plugin 'unblevable/quick-scope'
-Plugin 'ajmwagar/vim-deus'
+Plug 'unblevable/quick-scope'
+Plug 'ajmwagar/vim-deus'
 
-    "Plugin for Goyo mode, which hides unnecessary visual clutter temporarily
-Plugin 'junegunn/goyo.vim'
+"Plug for Goyo mode, which hides unnecessary visual clutter temporarily
+Plug 'junegunn/goyo.vim'
 
-Plugin 'vimwiki/vimwiki'
-Plugin 'michal-h21/vim-zettel'
+Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vim-zettel'
 
 "Programming language (IDE) stuff
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-syntastic/syntastic'
+Plug 'neoclide/coc.nvim', {'branch': 'release' }
+Plug 'vim-syntastic/syntastic'
 
-
-"All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
+filetype plugin indent on
 syntax on
 
-"See :h vundle for more details or wiki for FAQ
-"Put your non-Plugin stuff after this line
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
@@ -94,13 +88,12 @@ command -nargs=0 -bar Update if &modified
 nnoremap <silent> <C-S> :<C-u>Update<CR>
 
 "Python specific things & stuff
-let python_highlight_all=1
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix 
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+
 set backspace=2 " make backspace work like most other programs
 set number
+set autoread
 
 noremap <Leader>s :update<CR>
+
+inoremap <silent><expr> <c-space> coc#refresh()
