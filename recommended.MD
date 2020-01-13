@@ -3,9 +3,8 @@
 
 # terminal
 htop
-vim
-powertop
-borg
+nvim
+zsh
 
 # window manager and utilities
 i3
@@ -20,9 +19,11 @@ aw-qt
 # if bluetooth
 blueman-applet
 
+#if laptop
+powertop
 # graphical
 terminology
 mpv
-firefox-nightly
+firefox
 
 preload
