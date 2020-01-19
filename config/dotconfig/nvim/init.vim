@@ -13,6 +13,9 @@ Plug 'junegunn/goyo.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release' }
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
+
+"Latex support
+Plug 'lervag/vimtex'
 call plug#end()
 
 if has("autocmd")
@@ -48,6 +51,13 @@ set number
 set laststatus=0
 set wildignore+=*/target/*
 
+" Latex configuration
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
 " If the current buffer has never been saved, it will have no name,
 " call the file browser to save it, otherwise just save it.
 " Remember to set `stty stop undef` in shell
@@ -62,10 +72,12 @@ command -nargs=0 -bar Update if &modified
 "Set autocommand to open nerdtree when opening vim without a file argument
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 nnoremap <silent> <C-S> :<C-u>Update<CR>
 noremap <Leader>s :update<CR>
-
-autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-
 inoremap <silent><expr> <c-space> coc#refresh()
+autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+autocmd FileType tex set nonumber
+
+let g:goyo_width=120
+let g:goyo_height=100
+
