@@ -5,6 +5,7 @@
 htop
 nvim
 zsh
+httpie # http client for humans
 
 # window manager and utilities
 i3
