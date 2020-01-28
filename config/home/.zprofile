@@ -9,4 +9,6 @@ export PATH=“/usr/local/texlive/2019basic/bin/x86_64-darwin/:$PATH”
 export LC_ALL=en_US.UTF-8
 export SONAR_TOKEN="6ca5fb0a1b7b68474ed8d274e4be7cd65eedd0e1"
 
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home/
+
 alias vim='nvim'
