@@ -14,6 +14,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release' }
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
 
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 "Latex support
 Plug 'lervag/vimtex'
 call plug#end()
@@ -27,6 +29,13 @@ set encoding=utf-8
 let mapleader = ","
 set mouse=a
 set linebreak
+set backspace=2 " make backspace work like most other programs
+set number
+set laststatus=0
+set wildignore+=*/target/*
+set shiftwidth=4
+set clipboard=unnamedplus
+setl conceallevel=0
 
 "Store an undo buffer in a file in $HOME/.vimundo
 set undofile
@@ -46,10 +55,6 @@ colorscheme deus
 let g:deus_termcolors=256
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-set backspace=2 " make backspace work like most other programs
-set number
-set laststatus=0
-set wildignore+=*/target/*
 
 " Latex configuration
 let g:tex_flavor='latex'
@@ -76,8 +81,13 @@ nnoremap <silent> <C-S> :<C-u>Update<CR>
 noremap <Leader>s :update<CR>
 inoremap <silent><expr> <c-space> coc#refresh()
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+autocmd FileType markdown :CocDisable
+autocmd FileType markdown set nonumber
 autocmd FileType tex set nonumber
 
-let g:goyo_width=120
+let g:pandoc#spell#enabled = 0
+let g:pandoc#modules#disabled = ["folding"]
+
+let g:goyo_width=140
 let g:goyo_height=100
 

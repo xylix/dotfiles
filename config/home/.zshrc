@@ -24,3 +24,12 @@ rubberate() {
     rubber --pdf $1
     rubber --clean $1
 }
+
+docpandify() {
+    pandoc --pdf-engine=xelatex -i $1 -o $1.pdf 
+}
+
+o-docpandify() {
+    docpandify $1
+    open $1.pdf
+}
