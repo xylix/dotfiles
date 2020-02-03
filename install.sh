@@ -1,8 +1,8 @@
 #/bin/bash
-export DOTFILES=/home/xylix/dotfiles
-cp -r --symbolic-link $DOTFILES/config/home/* $HOME/.
+export DOTFILES=$HOME/dotfiles
+cp -r --symbolic-link $DOTFILES/config/home/. $HOME/.
 
-cp -r --symbolic-link $DOTFILES/config/dotconfig/* $HOME/.config/.
+cp -r --symbolic-link $DOTFILES/config/dotconfig/. $HOME/.config/.
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
