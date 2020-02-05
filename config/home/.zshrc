@@ -20,16 +20,12 @@ source $ZSH/oh-my-zsh.sh
 
 source $HOME/.zprofile
 
-rubberate() {
-    rubber --pdf $1
-    rubber --clean $1
-}
+git-lines() { git diff --stat 4b825dc642cb6eb9a060e54bf8d69288fbee4904 }
 
-docpandify() {
-    pandoc --pdf-engine=xelatex -i $1 -o $1.pdf 
-}
+docpandify() { pandoc --pdf-engine=xelatex -i $1 -o $1.pdf }
 
 o-docpandify() {
     docpandify $1
     open $1.pdf
 }
+
