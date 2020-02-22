@@ -1,11 +1,23 @@
 [user]
 	name = "Kerkko Pelttari"
 	email = kerk.pelt@gmail.com
-[pull]
-	rebase = true
+[core]
+    editor = nvim
 [help]
 	autocorrect = -1
+[pull]
+	rebase = true
 [push]
-	default = current
-[core]
-	editor = vim
+    default = current
+[log]
+    abbrevCommit = true
+[pager]
+    branch = false
+[merge]
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+    cmd = nvim -d $BASE $LOCAL
+[mergetool "advanced-vimdiff"]
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED
