@@ -5,13 +5,17 @@ call plug#begin('~/.vim/plugged')
 "Swiss knife for opening / changing files
 Plug 'kien/ctrlp.vim'
 
+" Git diff column in the gutter
+Plug 'airblade/vim-gitgutter'
 Plug 'unblevable/quick-scope'
 Plug 'ajmwagar/vim-deus'
 "Adds Goyo mode, which hides unnecessary visual clutter temporarily
 Plug 'junegunn/goyo.vim'
 "IDE-like features
 Plug 'neoclide/coc.nvim', {'branch': 'release' }
+" Am i using polyglot for anything??
 Plug 'sheerun/vim-polyglot'
+
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -80,6 +84,9 @@ autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 autocmd FileType markdown :CocDisable
 autocmd FileType markdown set nonumber
 autocmd FileType tex set nonumber
+
+autocmd FileType javascript,javascriptreact,typescript,typescriptreact set tabstop=4 shiftwidth=4 expandtab
+
 
 let g:pandoc#spell#enabled = 0
 let g:pandoc#modules#disabled = ["folding"]
