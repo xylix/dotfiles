@@ -87,10 +87,11 @@ autocmd FileType tex set nonumber
 
 autocmd FileType javascript,javascriptreact,typescript,typescriptreact set tabstop=4 shiftwidth=4 expandtab
 
-
 let g:pandoc#spell#enabled = 0
 let g:pandoc#modules#disabled = ["folding"]
 
 let g:goyo_width=140
 let g:goyo_height=100
 
+autocmd BufNewFile,BufFilePre,BufRead * setlocal foldmethod=syntax
+autocmd BufNewFile,BufFilePre,BufRead * normal zR
