@@ -3,7 +3,7 @@ let &packpath = &runtimepath
 call plug#begin('~/.vim/plugged')
 
 "Swiss knife for opening / changing files
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Git diff column in the gutter
 Plug 'airblade/vim-gitgutter'
@@ -29,11 +29,12 @@ if has("autocmd")
 endif
 
 set encoding=utf-8
+set title " Show current file in title
 let mapleader = ","
 set mouse=a
 set linebreak
 set backspace=2 " make backspace work like most other programs
-set number
+set number relativenumber
 set laststatus=0
 set wildignore+=*/target/*
 set shiftwidth=4
@@ -95,3 +96,9 @@ let g:goyo_height=100
 
 autocmd BufNewFile,BufFilePre,BufRead * setlocal foldmethod=syntax
 autocmd BufNewFile,BufFilePre,BufRead * normal zR
+
+"Tab change with leader
+noremap <leader>t gt
+noremap <leader>T gT
+"Consider _ a word delimiter
+set iskeyword+=_
