@@ -1,7 +1,10 @@
+[net]
+git-fetch-with-cli = true
 [user]
 	name = "Kerkko Pelttari"
 	email = kerk.pelt@gmail.com
 [core]
+    excludesfile = ~/.gitignore_global
     editor = nvim
 [help]
 	autocorrect = -1
