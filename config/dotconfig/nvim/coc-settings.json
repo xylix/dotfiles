@@ -1,5 +1,4 @@
 {
-    "diagnostic.virtualText": true,
     "python.jediEnabled": false,
     "python.formatting.provider": "black"
 }

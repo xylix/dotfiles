@@ -24,8 +24,8 @@ Plug 'lervag/vimtex'
 call plug#end()
 
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g'\"" | endif
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+		\| exe "normal! g'\"" | endif
 endif
 
 set encoding=utf-8
@@ -34,7 +34,7 @@ let mapleader = ","
 set mouse=a
 set linebreak
 set backspace=2 " make backspace work like most other programs
-set number relativenumber
+set number
 set laststatus=0
 set wildignore+=*/target/*
 set shiftwidth=4
@@ -71,16 +71,15 @@ set conceallevel=1
 " call the file browser to save it, otherwise just save it.
 " Remember to set `stty stop undef` in shell
 command -nargs=0 -bar Update if &modified 
-\    if empty(bufname('%'))
-\        browse confirm write
-\    else
-\        confirm write
-\    endif
-\endif
+	    \    if empty(bufname('%'))
+	    \        browse confirm write
+	    \    else
+	    \        confirm write
+	    \    endif
+	    \endif
 
 nnoremap <silent> <C-S> :<C-u>Update<CR>
 noremap <Leader>s :update<CR>
-inoremap <silent><expr> <c-space> coc#refresh()
 autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 autocmd FileType markdown :CocDisable
 autocmd FileType markdown set nonumber
@@ -102,3 +101,12 @@ noremap <leader>t gt
 noremap <leader>T gT
 "Consider _ a word delimiter
 set iskeyword+=_
+
+"C-space to refresh coc in insert mode
+inoremap <silent><expr> <c-space> coc#refresh()
+noremap <leader>g <Plug>coc-declaration
+
+"Setup config dir variable and source tab bar number function 
+let nvim_config_dir = stdpath('config')
+exec 'source' nvim_config_dir . '/tab-bar.vim'
+set tabline=%!Tabline()
