@@ -12,7 +12,7 @@ ZSH_THEME="gallois"
 # Node adds node-docs command for easier node documentation access
 # Brew adds aliases, including `bubo` for update & list outdated and `bubc` for upgrade and cleanup
 # Z adds `z <regex>` syntax for fast goto's into frequently visited directories / files
-plugins=(git gitfast git-escape-magic node brew z)
+plugins=(git gitfast git-escape-magic node brew z zsh-syntax-highlighting)
 
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -30,3 +30,6 @@ o-docpandify() {
     docpandify $1
     open $1.pdf
 }
+
+# added by travis gem
+[ -f /Users/xylix/.travis/travis.sh ] && source /Users/xylix/.travis/travis.sh
