@@ -1,16 +1,14 @@
-
-# [WIP]my recommended packages for a comprehensive environment for doing stuff
+# packages for a comprehensive environment for doing stuff
 
 # terminal
 htop
-nvim
+neovim
 zsh
-httpie # http client for humans
 
 # window manager and utilities
-i3
-rofi
-feh
+i3 #the wm
+rofi #omnitool / launcher
+feh #wallpaper-manager
 nm-applet
 dunst #notification manager
 volctl
@@ -19,11 +17,10 @@ aw-qt
 
 # if bluetooth
 blueman-applet
-
 #if laptop
 powertop
 # graphical
-terminology
+kitty
 mpv
 firefox
 
