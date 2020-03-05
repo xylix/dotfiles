@@ -3,5 +3,6 @@
     "python.jediEnabled": false,
     "python.formatting.provider": "black",
     "python.linting.mypyEnabled": true,
-    "python.linting.mypyArgs": ["--strict", "--ignore-missing-imports","--follow-imports=silent","--show-column-numbers"]
+    "python.linting.mypyArgs": ["--strict", "--ignore-missing-imports","--follow-imports=silent","--show-column-numbers"],
+    "python.linting.pylintEnabled": true
 }
