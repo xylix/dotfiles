@@ -19,6 +19,9 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 "Latex support
 Plug 'lervag/vimtex'
+"WhichKey keybind helper tool
+"Plug 'liuchengxu/vim-which-key'
+"
 call plug#end()
 
 "# (neo)vim configuration
@@ -62,15 +65,29 @@ autocmd BufNewFile,BufFilePre,BufRead * normal zR
 
 "Leader keybinds
 let mapleader=","
+noremap <silent> <leader>h :noh<cr>
 "Tab change with leader
 noremap <leader>t gt
 noremap <leader>T gT
 
-" Currently these don't do anything
-noremap <leader>g <Plug>(coc-declaration)
+nmap <leader>rn <Plug>(coc-rename)
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>g <Plug>(coc-declaration)
 "Hotkeys to jump to next and prev error
-noremap <leader>n <Plug>(coc-diagnostic-next-error)
-noremap <leader>p <Plug>(coc-diagnostic-previous-error)
+nmap <leader>n <Plug>(coc-diagnostic-next-error)
+
+" This still doesn't work
+nmap <leader>p <Plug>(coc-diagnostic-previous-error)
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+nnoremap <F1> :call <SID>show_documentation()<CR>
 
 "Setup config dir variable and source tab bar number function 
 let nvim_config_dir = stdpath('config')
