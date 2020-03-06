@@ -6,6 +6,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 " Git diff column in the gutter
 Plug 'airblade/vim-gitgutter'
+" Conflict detection and custom highlighting
+Plug 'rhysd/conflict-marker.vim'
 Plug 'unblevable/quick-scope'
 Plug 'ajmwagar/vim-deus'
 "Adds Goyo mode, which hides unnecessary visual clutter temporarily
@@ -25,6 +27,8 @@ Plug 'lervag/vimtex'
 call plug#end()
 
 "# (neo)vim configuration
+set tabline=%!Tabline()
+
 if has("autocmd")
     au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 		\| exe "normal! g'\"" | endif
@@ -92,11 +96,7 @@ nnoremap <F1> :call <SID>show_documentation()<CR>
 "Setup config dir variable and source tab bar number function 
 let nvim_config_dir = stdpath('config')
 exec 'source' nvim_config_dir . '/tab-bar.vim'
-set tabline=%!Tabline()
-
-"Git conflict section background coloration
-exec 'source' nvim_config_dir . '/conflict-highlights.vim'
-autocmd BufRead * call ConflictHighlights()
+exec 'source' nvim_config_dir . '/conflict-marker-config.vim'
 
 noremap <silent> <C-S> :update<CR>
 noremap <Leader>s :update<CR>
