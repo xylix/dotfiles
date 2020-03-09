@@ -158,7 +158,7 @@ exec --no-startup-id /home/xylix/dotfiles/battery-watcher.sh
 exec --no-startup-id aw-qt
 exec firefox-nightly
 
-exec --no-startup-id compton --no-fading-openclose #-f "-f":lla voi enabloida workspacevaihto fade animaation, compton hoitaa transparencyn jne. 
+exec --no-startup-id picom--no-fading-openclose #-f "-f":lla voi enabloida workspacevaihto fade animaation, picom hoitaa transparencyn jne. 
 
 #disable window titles and edges
 new_window 1pixel
