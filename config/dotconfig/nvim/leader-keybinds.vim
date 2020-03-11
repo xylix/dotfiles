@@ -24,7 +24,8 @@ function LeaderKeybinds()
     " CoC keybinds
     nmap <leader>rn <Plug>(coc-rename)
     vmap <leader>f  <Plug>(coc-format-selected)
-    nmap <leader>g <Plug>(coc-declaration)
+    nmap <leader>gd <Plug>(coc-declaration)
+    nmap <leader>gr <Plug>(coc-references)
 
     "Hotkeys to jump to next and prev error
     nmap <silent><leader>n <Plug>(coc-diagnostic-next-error)
