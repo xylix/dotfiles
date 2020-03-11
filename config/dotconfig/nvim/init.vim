@@ -22,10 +22,9 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 "Latex support
 Plug 'lervag/vimtex'
 "WhichKey keybind helper tool
-"Plug 'liuchengxu/vim-which-key'
-"
-call plug#end()
+Plug 'liuchengxu/vim-which-key'
 
+call plug#end()
 "# (neo)vim configuration
 set tabline=%!Tabline()
 
@@ -67,12 +66,23 @@ let g:deus_termcolors=256
 autocmd BufNewFile,BufFilePre,BufRead * setlocal foldmethod=syntax
 autocmd BufNewFile,BufFilePre,BufRead * normal zR
 
+"Allow esc to exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+"Disable line numbers in terminal mode
+au TermOpen * setlocal listchars= nonumber norelativenumber
+
 "Leader keybinds
-let mapleader=","
-noremap <silent> <leader>h :noh<cr>
+let mapleader = " "
+" tab terminal
+noremap <leader>tt :tabnew<bar>terminal<CR>
+noremap <leader>j :jumps<CR>
+"Highlights off
+noremap <silent> <leader>ho :noh<CR> 
+" help tab
+noremap <leader>ht :tab help 
 "Tab change with leader
-noremap <leader>t gt
-noremap <leader>T gT
+noremap <leader>t :tabnext<CR>
+noremap <leader>T :tabprevious<CR>
 
 nmap <leader>rn <Plug>(coc-rename)
 vmap <leader>f  <Plug>(coc-format-selected)
@@ -102,7 +112,7 @@ noremap <silent> <C-S> :update<CR>
 noremap <Leader>s :update<CR>
 "# Plugin and Filetype configurations
 
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 "jsx js tsx ts config
 autocmd FileType javascript,javascriptreact,typescript,typescriptreact set tabstop=4 shiftwidth=4 expandtab
 ".md config
@@ -111,15 +121,38 @@ autocmd FileType markdown :CocDisable
 autocmd FileType markdown set nonumber
 " Latex configuration
 autocmd FileType tex set nonumber
-let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
-let g:tex_conceal='abdmg'
+let tex_flavor='latex'
+let vimtex_view_method='zathura'
+let vimtex_quickfix_mode=0
+let tex_conceal='abdmg'
 "Pandoc config
-let g:pandoc#spell#enabled = 0
-let g:pandoc#modules#disabled = ["folding"]
+let pandoc#spell#enabled = 0
+let pandoc#modules#disabled = ["folding"]
 
-let g:goyo_width=140
-let g:goyo_height=100
-"C-space to refresh coc in insert mode
-inoremap <silent><expr> <c-space> coc#refresh()
+let goyo_width=140
+let goyo_height=100
+
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+let which_key_map = {}
+let which_key_map['w'] = {
+      \ 'name' : '+windows' ,
+      \ 'w' : ['<C-W>w'     , 'other-window']          ,
+      \ 'd' : ['<C-W>c'     , 'delete-window']         ,
+      \ '-' : ['<C-W>s'     , 'split-window-below']    ,
+      \ '|' : ['<C-W>v'     , 'split-window-right']    ,
+      \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
+      \ 'h' : ['<C-W>h'     , 'window-left']           ,
+      \ 'j' : ['<C-W>j'     , 'window-below']          ,
+      \ 'l' : ['<C-W>l'     , 'window-right']          ,
+      \ 'k' : ['<C-W>k'     , 'window-up']             ,
+      \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
+      \ 'J' : ['resize +5'  , 'expand-window-below']   ,
+      \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
+      \ 'K' : ['resize -5'  , 'expand-window-up']      ,
+      \ '=' : ['<C-W>='     , 'balance-window']        ,
+      \ 's' : ['<C-W>s'     , 'split-window-below']    ,
+      \ 'v' : ['<C-W>v'     , 'split-window-below']    ,
+      \ '?' : ['Windows'    , 'fzf-window']            ,
+      \ }
+nnoremap <c-w> :WhichKey '<c-w>'<cr>
