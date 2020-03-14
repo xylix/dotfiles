@@ -22,7 +22,6 @@ call plug#end()
 
 "Setup config dir variable and source tab bar number function 
 let g:nvim_config_dir = stdpath('config')
-exec 'source' nvim_config_dir . '/conflict-marker-config.vim'
 exec 'source' nvim_config_dir . '/vim-config.vim'
 exec 'source' nvim_config_dir . '/plugin-config.vim'
 exec 'source' nvim_config_dir . '/leader-keybinds.vim'
@@ -36,7 +35,16 @@ function s:neo_vim_terminal_config()
     au TermOpen * setlocal listchars= nonumber norelativenumber
 endfunction
 
+" @arg namespace: namespace where to set settings
+" @arg ...: tuples containing a key and a value to be set within the namespace
+function SetManyOptions(namespace, ...)
+    for i in a:000
+	let a:namespace . l:i:0 = l:i:1<space>
+    endfor
+endfunction
+
 call VimConfig()
 call LeaderKeybinds()
 call <SID>neo_vim_terminal_config()
+call ConflictMarkerOptions()
 call PluginOptions()

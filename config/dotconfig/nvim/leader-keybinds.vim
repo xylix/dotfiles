@@ -9,9 +9,10 @@ function LeaderKeybinds()
     "Highlights off
     noremap <silent> <leader>ho :noh<CR> 
 
-    noremap <leader>th :tab help
+    noremap <leader>th :tab help<space>
     noremap <silent><leader>tn :tabnew<CR>
     noremap <silent><leader>tx :tabclose<CR>
+    noremap <silent><leader>tm :tabmove<space>
     
     "Window close, split horizontal and split vertical
     noremap <silent><leader>wx <C-W>c

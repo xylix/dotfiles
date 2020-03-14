@@ -33,6 +33,7 @@ function VimConfig()
 		    \| exe "normal! g'\"" | endif
     endif
 
+    set autoread
     set encoding=utf-8
     set mouse=a
     set linebreak number title

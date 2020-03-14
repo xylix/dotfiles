@@ -1,4 +1,4 @@
-function ConflictMarkerConfig()
+function ConflictMarkerOptions()
     " Disable conflict market feature that requires matchit.vim
     let g:conflict_marker_enable_matchit = 0
     " Replace conflict marker plugin default coloring settings with own
@@ -17,10 +17,7 @@ function ConflictMarkerConfig()
     "Keep both cb or :ConflictMarkerBoth
 endfunction
 
-
 function PluginOptions()
-    call ConflictMarkerConfig()
-    
     colorscheme deus
     let g:deus_termcolors=256
 
