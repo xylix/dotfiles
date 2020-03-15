@@ -8,6 +8,7 @@ Plug 'rhysd/conflict-marker.vim' " Conflict detection and custom highlighting
 Plug 'unblevable/quick-scope'
 Plug 'ajmwagar/vim-deus'
 Plug 'junegunn/goyo.vim' "Adds Goyo mode, which hides unnecessary visual clutter temporarily
+Plug 'markonm/traces.vim' "Live substitution highlights
 
 "IDE-like features
 Plug 'neoclide/coc.nvim', {'branch': 'release' }
