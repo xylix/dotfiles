@@ -1,4 +1,7 @@
-function ConflictMarkerOptions()
+function PluginOptions()
+    colorscheme deus
+    let g:deus_termcolors=256
+    
     " Disable conflict market feature that requires matchit.vim
     let g:conflict_marker_enable_matchit = 0
     " Replace conflict marker plugin default coloring settings with own
@@ -15,11 +18,7 @@ function ConflictMarkerOptions()
     "Keep ours: co or :ConflictMarkerOurselves
     "Keep theirs: ct or :ConflictMarkerThemselves
     "Keep both cb or :ConflictMarkerBoth
-endfunction
 
-function PluginOptions()
-    colorscheme deus
-    let g:deus_termcolors=256
 
     let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
     "jsx js tsx ts config
