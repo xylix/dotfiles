@@ -47,5 +47,4 @@ endfunction
 call VimConfig()
 call LeaderKeybinds()
 call <SID>neo_vim_terminal_config()
-call ConflictMarkerOptions()
 call PluginOptions()
