@@ -1,5 +1,6 @@
-export LC_ALL=en_US.UTF-8
+alias vim="nvim"
 
+export LC_ALL=en_US.UTF-8
 export PATH=/usr/local/bin:$PATH
 export PATH=$PATH:"$HOME/.cargo/bin:"
 if [[ "$OSTYPE" == "darwin"* ]]; then 

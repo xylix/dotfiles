@@ -5,6 +5,7 @@ function LeaderKeybinds()
     noremap <Leader>s :update<CR>
     noremap <silent><leader> :WhichKey '<Space>'<CR>
 
+    noremap <leader>q :quit<CR>
     noremap <leader>j :jumps<CR>
     "Highlights off
     noremap <silent> <leader>ho :noh<CR> 
