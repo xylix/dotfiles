@@ -3,7 +3,7 @@
 # terminal
 htop
 neovim
-zsh
+fish
 
 # window manager and utilities
 i3 #the wm

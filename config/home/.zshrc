@@ -5,13 +5,6 @@ ZSH_THEME="gallois"
 
 # ENABLE_CORRECTION="true"
 
-# Plugins to load
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Gitfast gives faster git promp & tab completion. Escape-magic auto-escapes symbols in git commands
-# Node adds node-docs command for easier node documentation access
-# Brew adds aliases, including `bubo` for update & list outdated and `bubc` for upgrade and cleanup
-# Z adds `z <regex>` syntax for fast goto's into frequently visited directories / files
 plugins=(git gitfast git-escape-magic node brew z zsh-syntax-highlighting)
 
 if type brew &>/dev/null; then
