@@ -29,7 +29,7 @@ function VimConfig()
     set tabline=%!Tabline()
 
     if has("autocmd")
-	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 		    \| exe "normal! g'\"" | endif
     endif
 
@@ -55,7 +55,15 @@ function VimConfig()
     set termguicolors
     
     "Configure folds by syntax by default and open files with all folds open
-    autocmd BufNewFile,BufFilePre,BufRead * setlocal foldmethod=syntax
+    set foldmethod=syntax
     autocmd BufNewFile,BufFilePre,BufRead * normal zR
+    
+    autocmd FileType python setlocal foldmethod=indent
+    "jsx js tsx ts config
+    autocmd FileType javascript,javascriptreact,typescript,typescriptreact set tabstop=4 shiftwidth=4 expandtab
+    "markdown config
+    autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+    autocmd FileType markdown set nonumber
+    autocmd FileType tex set nonumber
 
 endfunction
