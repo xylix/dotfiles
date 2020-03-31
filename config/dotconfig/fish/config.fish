@@ -1,4 +1,6 @@
 set LC_ALL en_US.UTF-8
+
+set EDITOR nvim
 set PATH /usr/local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.poetry/bin $PATH

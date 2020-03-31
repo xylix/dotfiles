@@ -33,16 +33,16 @@ function s:neo_vim_terminal_config()
     "Allow esc to exit terminal mode
     tnoremap <Esc> <C-\><C-n>
     "Disable line numbers in terminal mode
-    au TermOpen * setlocal listchars= nonumber norelativenumber
+    autocmd TermOpen * setlocal listchars= nonumber norelativenumber
 endfunction
 
 " @arg namespace: namespace where to set settings
 " @arg ...: tuples containing a key and a value to be set within the namespace
-function SetManyOptions(namespace, ...)
-    for i in a:000
-	let a:namespace . l:i:0 = l:i:1<space>
-    endfor
-endfunction
+" function SetManyOptions(namespace, ...)
+"    for i in a:000
+"	let a:namespace . l:i:0 = l:i:1<space>
+"    endfor
+"endfunction
 
 call VimConfig()
 call LeaderKeybinds()
