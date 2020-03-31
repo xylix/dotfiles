@@ -1,10 +1,10 @@
 set LC_ALL en_US.UTF-8
 
 set EDITOR nvim
+set LESS -r
 set PATH /usr/local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.poetry/bin $PATH
-
 
 if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
