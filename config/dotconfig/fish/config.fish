@@ -12,6 +12,12 @@ if not functions -q fisher
     fish -c fisher
 end
 
+
+function varsave
+    echo Saving to variable $argv[1] value $$argv[1]
+    set -U $argv[1] $$argv[1] 
+end
+
 # Aliases
 function aw-plan 
     nvim ~/Google\ Drive/activitywatch/plan.md
@@ -22,12 +28,12 @@ function git-lines
 end
 
 function docpandify
-    pandoc --pdf-engine=xelatex -i $1 -o $1.pdf
+    pandoc --pdf-engine=xelatex -i $argv[1] -o $argv[1].pdf
 end
 
 function o-docpandify
-    docpandify $1
-    open $1.pdf
+    docpandify $argv[1]
+    open $argv[1].pdf
 end
 
 function bubo

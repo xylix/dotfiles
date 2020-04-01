@@ -2,11 +2,13 @@ function LeaderKeybinds()
     let g:mapleader = " "
     "C-S and leader-s to save
     noremap <silent><C-S> :update<CR>
-    noremap <Leader>s :update<CR>
+    noremap <silent><Leader>s :update<CR>
     noremap <silent><leader> :WhichKey '<Space>'<CR>
 
     noremap <leader>q :quit<CR>
     noremap <leader>j :jumps<CR>
+
+    noremap <leader>ei :edit $MYVIMRC<CR>
     "Highlights off
     noremap <silent> <leader>ho :noh<CR> 
     noremap <leader>rg :%s///g<left><left>
