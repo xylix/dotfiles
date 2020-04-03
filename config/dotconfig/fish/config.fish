@@ -5,6 +5,7 @@ set LESS -r
 set PATH /usr/local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.poetry/bin $PATH
+set PATH $HOME/neovim/bin $PATH
 
 if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
@@ -12,6 +13,9 @@ if not functions -q fisher
     fish -c fisher
 end
 
+function wordcount
+    printf 'lines: %s, words: %s\n' (pbpaste | wc -l | string trim) (pbpaste | wc -w | string trim)
+end
 
 function varsave
     echo Saving to variable $argv[1] value $$argv[1]
