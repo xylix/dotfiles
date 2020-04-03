@@ -2,12 +2,21 @@ function LeaderKeybinds()
     let g:mapleader = " "
     "C-S and leader-s to save
     noremap <silent><C-S> :update<CR>
-    noremap <silent><Leader>s :update<CR>
     noremap <silent><leader> :WhichKey '<Space>'<CR>
+   
+    " Save File if changes
+    noremap <silent><leader>s :update<CR>
+    " Save Session to cwd with default filename (Session.vim)
+    " noremap <leader>ss :mks!<CR>
 
-    noremap <leader>q :quit<CR>
+    noremap <silent><leader>qq :quit<CR>
+    " Write and quit all windows
+    noremap <leader>qw :xall<CR>
+    noremap <leader>qa :quitall<CR>
+    " Quit without write and update session file
+    noremap <leader>qs :mks!<CR>:quitall<CR>
+
     noremap <leader>j :jumps<CR>
-
     noremap <leader>ei :edit $MYVIMRC<CR>
     "Highlights off
     noremap <silent> <leader>ho :noh<CR> 

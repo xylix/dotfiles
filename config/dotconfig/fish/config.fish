@@ -2,6 +2,7 @@ set LC_ALL en_US.UTF-8
 
 set EDITOR nvim
 set LESS -r
+set PATH $HOME/dotfiles/scripts $PATH
 set PATH /usr/local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.poetry/bin $PATH
@@ -11,6 +12,11 @@ if not functions -q fisher
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
     curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
     fish -c fisher
+end
+
+# Start an nvim trying to load Session from file in current dir
+function sesh
+    nvim -S Session.vim
 end
 
 function wordcount
