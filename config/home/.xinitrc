@@ -1,2 +1,2 @@
-xrandr --dpi 144
+~/dotfiles/scripts/freedomscreenlayout.sh
 exec i3
