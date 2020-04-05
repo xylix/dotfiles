@@ -2,3 +2,5 @@
 .DS_Store
 .env
 Session.vim
+.mypy_cache/
+.vim/

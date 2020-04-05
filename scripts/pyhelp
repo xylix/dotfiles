@@ -1,5 +1,5 @@
 #!/usr/bin/python3
 import sys
 import importlib
-importlib.import_module(sys.argv[1], package=None)
+importlib.import_module(sys.argv[1])
 help(sys.argv[1])

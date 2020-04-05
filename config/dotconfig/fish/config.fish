@@ -31,13 +31,14 @@ end
 
 function varsave
     echo Saving to variable $argv[1] value $$argv[1]
-    set -U $argv[1] $$argv[1] 
+    set -U $argv[1] $$argv[1]
 end
 
 # Aliases
 function aw-plan 
     nvim ~/Google\ Drive/activitywatch/plan.md
 end
+
 
 function git-lines 
     git diff --stat 4b825dc642cb6eb9a060e54bf8d69288fbee4904
@@ -52,29 +53,18 @@ function o-docpandify
     open $argv[1].pdf
 end
 
-function bubo
-    brew update && brew outdated
-end
-function bubc 
-    brew upgrade && brew cleanup
-end
+function bubo; brew update && brew outdated; end
+function bubc; brew upgrade && brew cleanup; end
+
+# python Aliases
+function pdb; python -m pdb; end
+function ppjson; python -m json.tool; end
+function pydoc; python -m pydo; end
 
 # Git aliases
-function gst
-    git status
-end
-function gp
-    git push
-end
-function gpl
-    git pull
-end
-function gc
-    git commit -v
-end
-function ga
-    git add $argv
-end
-function gsw
-    git switch $argv
-end
+function gst; git status; end
+function gp; git push; end
+function gpl; git pull; end
+function gc; git commit -v; end
+function ga; git add $argv; end
+function gsw; git switch $argv; end
