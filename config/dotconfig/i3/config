@@ -188,3 +188,8 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym $mod+p exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 # Configurable filesystem search
 bindsym $mod+Shift+f exec --no-startup-id xdg-open "$(locate --ignore-case home media | rofi -threads 0 -dmenu -i -p "locate:")"
+
+# Screenshot binds
+bindsym Mod1+Shift+4 --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Mod1+Shift+3 --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+
