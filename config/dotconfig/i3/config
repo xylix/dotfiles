@@ -164,6 +164,10 @@ exec --no-startup-id picom--no-fading-openclose #-f "-f":lla voi enabloida works
 new_window 1pixel
 hide_edge_borders both
 
+# Change workspace with scroll
+bindsym --whole-window --border $mod+button4 workspace prev
+bindsym --whole-window --border $mod+button5 workspace next
+
 exec_always --no-startup-id feh --bg-fill /home/xylix/Pictures/space/planets-minimalistic.jpg
 
 
