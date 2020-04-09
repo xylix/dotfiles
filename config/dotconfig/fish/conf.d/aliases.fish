@@ -24,9 +24,11 @@ function pydoc
 end
 
 # Git
-function gst; git status; end
-function gp; git push; end
-function gpl; git pull; end
-function gc; git commit -v; end
-function ga; git add $argv; end
-function gsw; git switch $argv; end
+function git-conflicts; git diff --name-only --diff-filter=U ; end
+
+function gst; git status ; end
+function gp; git push ; end
+function gpl; git pull ; end
+function gc; git commit -v ; end
+function ga; git add $argv ; end
+function gsw; git switch $argv ; end
