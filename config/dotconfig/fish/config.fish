@@ -1,12 +1,18 @@
 set LC_ALL en_US.UTF-8
+set HUSKY_USE_YARN
 
 set EDITOR nvim
 set LESS -r
 set PATH $HOME/dotfiles/scripts $PATH
 set PATH /usr/local/bin $PATH
+set PATH $HOME/.local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.poetry/bin $PATH
 set PATH $HOME/neovim/bin $PATH
+
+# macos only
+set PATH "/Applications/Postgres.app/Contents/Versions/latest/bin" $PATH
+set -g fish_user_paths "/usr/local/opt/python@3.8/bin" $fish_user_paths
 
 # Start an nvim trying to load Session from file in current dir
 function sesh
