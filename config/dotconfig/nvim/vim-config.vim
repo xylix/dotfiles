@@ -87,6 +87,7 @@ function VimConfig()
     autocmd BufNewFile,BufFilePre,BufRead * normal zR
     
     autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType haskell setlocal expandtab tabstop=4 shiftwidth=4 expandtab 
     "jsx js tsx ts config
     autocmd FileType javascript,javascriptreact,typescript,typescriptreact setlocal tabstop=4 shiftwidth=4 expandtab
     "markdown config

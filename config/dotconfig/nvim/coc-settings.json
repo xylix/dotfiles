@@ -5,4 +5,6 @@
     "python.linting.mypyEnabled": true,
     "python.linting.mypyArgs": ["--strict", "--ignore-missing-imports","--follow-imports=silent","--show-column-numbers"],
     "python.linting.pylintEnabled": true
+    // Insert haskell-ide-engine etc here after bugs are solved
+   
 }

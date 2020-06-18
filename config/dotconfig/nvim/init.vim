@@ -19,6 +19,9 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'lervag/vimtex' "Latex support
 Plug 'liuchengxu/vim-which-key' "WhichKey keybind helper tool
 
+" In testing currently
+Plug 'diepm/vim-rest-console'
+
 call plug#end()
 
 "Setup config dir variable and source tab bar number function 
