@@ -22,7 +22,9 @@ end
 function wordcount
     printf 'lines: %s, words: %s\n' (pbpaste | wc -l | string trim) (pbpaste | wc -w | string trim)
 end
-
+function fix
+    $EDITOR -p (git diff --name-only | uniq)
+end
 function varsave
     echo Saving to variable $argv[1] value $$argv[1]
     set -U $argv[1] $$argv[1]
