@@ -4,7 +4,17 @@
     "python.formatting.provider": "black",
     "python.linting.mypyEnabled": true,
     "python.linting.mypyArgs": ["--strict", "--ignore-missing-imports","--follow-imports=silent","--show-column-numbers"],
-    "python.linting.pylintEnabled": true
+    "python.linting.pylintEnabled": true,
+    "robocode.language-server.python": "/usr/local/opt/python@3.8/bin/python3",
     // Insert haskell-ide-engine etc here after bugs are solved
-   
+    "languageserver": {
+	"robotframework-lsp":{
+	    "command": "robotframework_ls",
+	    "filetypes": ["robot", "resource"],
+	    "initializationOptions": {
+	    },
+	    "settings": {
+	    }
+	} 
+    }
 }

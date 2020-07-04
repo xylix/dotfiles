@@ -20,6 +20,7 @@ Plug 'lervag/vimtex' "Latex support
 Plug 'liuchengxu/vim-which-key' "WhichKey keybind helper tool
 
 " In testing currently
+Plug 'Costallat/robotframework-vim' "Robot framework syntax support
 Plug 'diepm/vim-rest-console'
 
 call plug#end()
