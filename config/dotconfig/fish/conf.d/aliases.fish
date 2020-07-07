@@ -4,7 +4,7 @@ function aw-plan
 end
 
 function git-lines 
-    git diff --stat 4b825dc642cb6eb9a060e54bf8d69288fbee4904
+    git diff --stat 4b825dc642cb6eb9a060e54bf8d69288fbee4904 $argv
 end
 
 # Brew
