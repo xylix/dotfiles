@@ -59,6 +59,7 @@ function VimConfig()
 	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 		    \| exe "normal! g'\"" | endif
     endif
+    lang en_US.UTF-8
 
     set autoread
     set encoding=utf-8
