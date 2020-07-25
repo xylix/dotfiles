@@ -4,7 +4,7 @@ set HUSKY_USE_YARN
 set EDITOR nvim
 set LESS -r
 set PATH $HOME/dotfiles/scripts $PATH
-set PATH /usr/local/bin $PATH
+set PATH $HOME/local-brew/brew/bin $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.poetry/bin $PATH
