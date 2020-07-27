@@ -95,5 +95,13 @@ function VimConfig()
     autocmd BufNewFile,BufFilePre,BufRead *.md setlocal filetype=markdown
     autocmd FileType markdown setlocal nonumber
     autocmd FileType tex setlocal nonumber
+    
+    autocmd BufNewFile,BufRead *.robot setlocal filetype=robot
+
+    set listchars=eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<
+
+    " Disable ex mode hotkey and command history search hotkey
+    map q: <Nop>
+    nnoremap Q <nop>
 
 endfunction
