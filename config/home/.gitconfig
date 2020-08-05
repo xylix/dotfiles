@@ -13,7 +13,7 @@ git-fetch-with-cli = true
 [push]
     default = current
 [log]
-    abbrevCommit = true
+    abbrevCommit = false
 [pager]
     branch = false
 [merge]
