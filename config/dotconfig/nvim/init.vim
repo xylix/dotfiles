@@ -21,6 +21,7 @@ Plug 'liuchengxu/vim-which-key' "WhichKey keybind helper tool
 
 " In testing currently
 Plug 'diepm/vim-rest-console'
+Plug 'alx741/vim-hindent'
 
 call plug#end()
 
