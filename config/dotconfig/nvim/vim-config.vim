@@ -98,6 +98,11 @@ function VimConfig()
     
     autocmd BufNewFile,BufRead *.robot setlocal filetype=robot
 
+    autocmd FileType haskell syn match haskellLambda '\\' conceal cchar=λ
+    autocmd FileType haskell set conceallevel=2 concealcursor=nv
+    autocmd FileType haskell syn match haskellCompose '\.' conceal cchar=∘
+
+
     set listchars=eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<
 
     " Disable ex mode hotkey and command history search hotkey
