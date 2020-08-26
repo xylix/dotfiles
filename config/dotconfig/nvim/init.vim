@@ -21,7 +21,8 @@ Plug 'liuchengxu/vim-which-key' "WhichKey keybind helper tool
 
 " In testing currently
 Plug 'diepm/vim-rest-console'
-Plug 'alx741/vim-hindent'
+Plug 'alx741/vim-hindent' "Haskell autoformatting
+Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
 
 call plug#end()
 
@@ -30,7 +31,7 @@ let g:nvim_config_dir = stdpath('config')
 exec 'source' nvim_config_dir . '/vim-config.vim'
 exec 'source' nvim_config_dir . '/plugin-config.vim'
 exec 'source' nvim_config_dir . '/leader-keybinds.vim'
-    
+
 function s:neo_vim_terminal_config()
     "terminal in new tab
     noremap <silent><leader>tt :tabnew<bar>terminal<CR>
