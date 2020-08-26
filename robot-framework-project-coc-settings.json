@@ -1,0 +1,19 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": ["python"],
+    "python.linting.mypyEnabled": true,
+    "python.linting.mypyArgs": ["--config-file Browser/mypy.ini", "--show-column-numbers"],
+    "python.formatting.provider": "black",
+    "eslint.options": {"configFile": "/Users/kpelttari/Code/robotframework/robotframework-browser/node/.eslintrc.js"},
+    "languageserver": {
+	"robotframework-lsp":{
+	    "command": "robotframework_ls",
+	    "filetypes": ["robot", "resource"],
+	    "initializationOptions": {
+	    },
+	    "settings.robot.python": {
+		"executable": "/Users/kpelttari/Code/robotframework/robotframework-browser/.venv/bin/python"
+	    }
+	}
+    }
+}
+
