@@ -14,6 +14,9 @@ set PATH $HOME/neovim/bin $PATH
 set PATH "/Applications/Postgres.app/Contents/Versions/latest/bin" $PATH
 set -U fish_user_paths "/usr/local/opt/python@3.8/bin" $fish_user_paths
 
+# WSL mobaxterm display
+export DISPLAY=(/sbin/ip route | awk '/default/ { print $3 }'):0
+
 # Start an nvim trying to load Session from file in current dir
 function sesh
     nvim -S Session.vim
