@@ -13,15 +13,18 @@ Plug 'markonm/traces.vim' "Live substitution highlights
 "IDE-like features
 Plug 'neoclide/coc.nvim', {'branch': 'release' }
 Plug 'sheerun/vim-polyglot' "Syntax highlighting & formatting
+" Haskell specific plugins
+Plug 'alx741/vim-hindent' "Haskell autoformatting
+Plug 'Twinside/vim-haskellFold' " improved haskell foldinfo
+
 "Pandoc syntax support (an usable pandoc-flavoured latex supporting markdown etc. compiler)
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'lervag/vimtex' "Latex support
 Plug 'liuchengxu/vim-which-key' "WhichKey keybind helper tool
-
+'
 " In testing currently
 Plug 'diepm/vim-rest-console'
-Plug 'alx741/vim-hindent' "Haskell autoformatting
 Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
 
 call plug#end()
