@@ -4,6 +4,27 @@
     "python.formatting.provider": "black",
     "python.linting.mypyEnabled": true,
     "python.linting.mypyArgs": ["--strict", "--ignore-missing-imports","--follow-imports=silent","--show-column-numbers"],
-    "python.linting.pylintEnabled": false
+    "python.linting.pylintEnabled": false,
+    "languageserver": {
+        "haskell": {
+            "command": "hie-wrapper",
+            "args": ["--lsp"],
+            "rootPatterns": [
+                "*.cabal",
+                "stack.yaml",
+                "cabal.project",
+                "package.yaml"
+            ],
+            "filetypes": [
+                "hs",
+                "lhs",
+                "haskell"
+            ],
+            "initializationOptions": {
+                "haskell": {
+                }
+            }
+        }
+    }
 }
 
