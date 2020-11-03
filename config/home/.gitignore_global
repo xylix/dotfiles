@@ -1,6 +1,8 @@
 .idea
 .DS_Store
 .env
+venv
+windows-venv
 Session.vim
 .mypy_cache/
 .vim/
