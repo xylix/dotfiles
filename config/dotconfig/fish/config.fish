@@ -12,7 +12,7 @@ set PATH $HOME/neovim/bin $PATH
 
 # macos only
 set PATH "/Applications/Postgres.app/Contents/Versions/latest/bin" $PATH
-set -U fish_user_paths "/usr/local/opt/python@3.8/bin" $fish_user_paths
+# set -U fish_user_paths "/usr/local/opt/python@3.8/bin" $fish_user_paths
 
 # Start an nvim trying to load Session from file in current dir
 function sesh
@@ -38,3 +38,9 @@ function o-docpandify
     docpandify $argv[1]
     open $argv[1].pdf
 end
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval /Users/kerkko/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
+
