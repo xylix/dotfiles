@@ -2,6 +2,7 @@
     "codeLens.enable": true,
     "python.jediEnabled": false,
     "python.formatting.provider": "black",
+    "coc.preferences.formatOnSaveFiletypes": ["python"],
     "python.linting.mypyEnabled": false,
     "python.linting.mypyArgs": ["--ignore-missing-imports","--follow-imports=silent","--show-column-numbers"],
     "python.linting.pylintEnabled": true,
@@ -24,11 +25,6 @@
                 "haskell": {
                 }
             }
-        },
-        "robotframework-lsp": {
-            "command": "robotframework_ls",
-            "filetypes": ["*.robot", "robot"]
         }
     }
 }
-

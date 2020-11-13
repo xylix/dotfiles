@@ -47,5 +47,6 @@ function LeaderKeybinds()
     nmap <silent><leader>p <Plug>(coc-diagnostic-previous-error)
     nmap <silent><leader>ca :CocAction<CR>
     nmap <silent><leader>cl :CocList<CR>
+    nmap <silent><leader>cc :CocCommand<CR>
 endfunction
 
