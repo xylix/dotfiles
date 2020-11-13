@@ -22,10 +22,11 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'lervag/vimtex' "Latex support
 Plug 'liuchengxu/vim-which-key' "WhichKey keybind helper tool
-'
+Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
+
 " In testing currently
 Plug 'diepm/vim-rest-console'
-Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
+Plug 'AndrewRadev/tagalong.vim' "Change both ends of a pair of html tags when editing tags
 
 call plug#end()
 
