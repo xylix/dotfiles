@@ -3,7 +3,7 @@ let &packpath = &runtimepath
 call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim' "Swiss knife for opening & finding files
-Plug 'airblade/vim-gitgutter' " Git diff column in the gutter
+" Plug 'airblade/vim-gitgutter' " Git diff column in the gutter
 Plug 'rhysd/conflict-marker.vim' " Conflict detection and custom highlighting
 Plug 'unblevable/quick-scope'
 Plug 'ajmwagar/vim-deus'
