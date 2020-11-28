@@ -38,7 +38,6 @@ function VimConfig()
     set mouse=a
     set linebreak number title
     set backspace=2 " make backspace work like most other programs
-    set shiftwidth=4
     set clipboard=unnamedplus
     "Consider _ a word delimiter
     set iskeyword+=_
@@ -59,9 +58,6 @@ function VimConfig()
     autocmd BufNewFile,BufFilePre,BufRead * normal zR
     
     autocmd FileType python setlocal foldmethod=indent
-    autocmd FileType haskell setlocal expandtab tabstop=4 shiftwidth=4 expandtab 
-    "jsx js tsx ts config
-    autocmd FileType javascript,javascriptreact,typescript,typescriptreact setlocal tabstop=2 shiftwidth=2 expandtab
     "markdown config
     autocmd BufNewFile,BufFilePre,BufRead *.md setlocal filetype=markdown
     autocmd FileType markdown setlocal nonumber
@@ -72,7 +68,6 @@ function VimConfig()
     autocmd FileType haskell syn match haskellLambda '\\' conceal cchar=λ
     autocmd FileType haskell set conceallevel=2 concealcursor=nv
     autocmd FileType haskell syn match haskellCompose '\.' conceal cchar=∘
-
 
     set listchars=eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<
 
