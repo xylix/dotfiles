@@ -25,8 +25,9 @@ Plug 'liuchengxu/vim-which-key' "WhichKey keybind helper tool
 Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
 
 " In testing currently
-Plug 'diepm/vim-rest-console'
+Plug 'itchyny/lightline.vim'
 Plug 'AndrewRadev/tagalong.vim' "Change both ends of a pair of html tags when editing tags
+Plug 'zsugabubus/crazy8.nvim'
 
 call plug#end()
 
