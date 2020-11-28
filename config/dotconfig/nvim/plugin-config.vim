@@ -46,15 +46,12 @@ function PluginOptions()
     nnoremap <F1> :call <SID>show_documentation()<CR>
     nnoremap <Leader>hh :call <SID>show_documentation()<CR>
 
-    let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-yaml', 'coc-pyright', 'coc-tsserver']
+    let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-yaml', 'coc-pyright', 'coc-tsserver', 'coc-vimlsp']
 
     " Lightline related
     set laststatus=2
     set noshowmode
-    " let g:lightline#colorscheme = 'deus'
     let g:lightline = {
       \ 'colorscheme': 'deus',
       \ }
-    " let s:palette = g:lightline#colorscheme#deus#palette
-    " let s:palette.tabline.tabs
 endfunction
