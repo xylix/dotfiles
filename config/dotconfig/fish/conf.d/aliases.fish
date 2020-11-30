@@ -10,7 +10,7 @@ end
 # Brew
 
 function bubo; brew update && brew outdated; end
-function bubc; brew upgrade && brew cleanup; end
+function bubc; brew upgrade --fetch-HEAD && brew cleanup; end
 
 # python
 function pdb
