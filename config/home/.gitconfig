@@ -2,7 +2,8 @@
 git-fetch-with-cli = true
 [user]
 	name = "Kerkko Pelttari"
-	email = kerk.pelt@gmail.com
+	email = kerkko@robocorp.com
+	signingkey = 1566E1074D6E26477D0186982CBAD605AF74408D
 [core]
     excludesfile = ~/.gitignore_global
     editor = nvim
@@ -26,3 +27,10 @@ git-fetch-with-cli = true
     cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[commit]
+	gpgsign = true
