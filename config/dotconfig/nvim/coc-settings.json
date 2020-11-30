@@ -1,6 +1,5 @@
 {
     "codeLens.enable": true,
-    "python.jediEnabled": false,
     "python.formatting.provider": "black",
     "coc.preferences.formatOnSaveFiletypes": ["python"],
     "python.linting.mypyEnabled": false,
@@ -25,6 +24,12 @@
                 "haskell": {
                 }
             }
-        }
-    }
+        },
+				"robotframework_ls": {
+						"command": "robotframework_ls",
+						"filetypes": ["robot"]
+						"settings": {
+						}
+				}
+		}
 }
