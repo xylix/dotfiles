@@ -25,11 +25,11 @@
                 }
             }
         },
-				"robotframework_ls": {
-						"command": "robotframework_ls",
-						"filetypes": ["robot"]
-						"settings": {
-						}
-				}
-		}
+        "robotframework_ls": {
+            "command": "robotframework_ls",
+            "filetypes": ["robot"],
+            "settings": {
+            }
+        }
+    }
 }
