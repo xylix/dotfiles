@@ -64,6 +64,7 @@ function VimConfig()
     autocmd FileType tex setlocal nonumber
     
     autocmd BufNewFile,BufRead *.robot setlocal filetype=robot
+    autocmd FileType robot exec 'source' g:nvim_config_dir . '/syntax/robot.vim'
 
     autocmd FileType haskell syn match haskellLambda '\\' conceal cchar=λ
     autocmd FileType haskell set conceallevel=2 concealcursor=nv
