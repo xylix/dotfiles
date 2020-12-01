@@ -32,9 +32,11 @@ function LeaderKeybinds()
     noremap <silent><leader>wh <C-W>s
     noremap <silent><leader>wv <C-W>v
 
-    "Tab change with leader tab and shift tab
-    noremap <silent><leader><tab> gt<CR>
-    noremap <silent><leader><S-tab> :tabprevious<CR>
+    "Tab change with tab and shift tab
+    noremap <silent><tab> gt<CR>
+    noremap <silent><S-tab> :tabprevious<CR>
+    " noremap <silent><leader><tab> gt<CR>
+    " noremap <silent><leader><S-tab> :tabprevious<CR>
     " CoC keybinds
     nmap <leader>rn <Plug>(coc-rename)
     vmap <leader>f  <Plug>(coc-format-selected)
@@ -47,5 +49,6 @@ function LeaderKeybinds()
     nmap <silent><leader>p <Plug>(coc-diagnostic-previous-error)
     nmap <silent><leader>ca :CocAction<CR>
     nmap <silent><leader>cl :CocList<CR>
+    nmap <silent><leader>cc :CocCommand<CR>
 endfunction
 

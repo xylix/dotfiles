@@ -45,4 +45,15 @@ function PluginOptions()
 
     nnoremap <F1> :call <SID>show_documentation()<CR>
     nnoremap <Leader>hh :call <SID>show_documentation()<CR>
+
+    let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-yaml', 'coc-pyright', 'coc-tsserver', 'coc-vimlsp', 'coc-rust-analyzer', 'coc-sh']
+
+    " Lightline related
+    set laststatus=2
+    set noshowmode
+    let g:lightline = {
+      \ 'colorscheme': 'deus',
+      \ }
+
+
 endfunction

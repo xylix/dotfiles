@@ -3,8 +3,7 @@ let &packpath = &runtimepath
 call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim' "Swiss knife for opening & finding files
-Plug 'airblade/vim-gitgutter' " Git diff column in the gutter
-Plug 'rhysd/conflict-marker.vim' " Conflict detection and custom highlighting
+Plug 'rhysd/conflict-marker.vim' " Conflict detection and custom highlighting, TODO: can this be replcaed with coc-git?
 Plug 'unblevable/quick-scope'
 Plug 'ajmwagar/vim-deus'
 Plug 'junegunn/goyo.vim' "Adds Goyo mode, which hides unnecessary visual clutter temporarily
@@ -12,17 +11,23 @@ Plug 'markonm/traces.vim' "Live substitution highlights
 
 "IDE-like features
 Plug 'neoclide/coc.nvim', {'branch': 'release' }
-Plug 'sheerun/vim-polyglot' "Syntax highlighting & formatting
+" Haskell specific plugins
+Plug 'alx741/vim-hindent' "Haskell autoformatting
+Plug 'Twinside/vim-haskellFold' " improved haskell foldinfo
+
 "Pandoc syntax support (an usable pandoc-flavoured latex supporting markdown etc. compiler)
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'lervag/vimtex' "Latex support
 Plug 'liuchengxu/vim-which-key' "WhichKey keybind helper tool
+Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
 
 " In testing currently
-Plug 'diepm/vim-rest-console'
-Plug 'alx741/vim-hindent' "Haskell autoformatting
-Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
+Plug 'itchyny/lightline.vim' " Tab and statusline plugin
+Plug 'AndrewRadev/tagalong.vim' "Change both ends of a pair of html tags when editing tags
+Plug 'zsugabubus/crazy8.nvim'
+Plug 'nvim-treesitter/nvim-treesitter' " A nicer highligh provider than polyglot
+" Plug 'sheerun/vim-polyglot' "Syntax highlighting & formatting
 
 call plug#end()
 
@@ -48,6 +53,15 @@ endfunction
 "	let a:namespace . l:i:0 = l:i:1<space>
 "    endfor
 "endfunction
+lua <<EOF
+  require'nvim-treesitter.configs'.setup {
+    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    highlight = {
+      enable = true,              -- false will disable the whole extension
+      disable = { "c", "rust" },  -- list of language that will be disabled
+    },
+  }
+EOF
 
 call VimConfig()
 call LeaderKeybinds()
