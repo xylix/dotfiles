@@ -1,7 +1,7 @@
 "=============================================================================
 " File:         after/syntax/robot.vim
-" Author:       Michael Foukarakis
-" Version:      0.2
+" Author:       Kerkko Pelttari
+" Version:      0.3
 " Created:      Fri 17 Dec 2010 11:31:46 AM EET
 " Last Update:  Tue 28 Jul 2015 15:39:21 AM CEST
 "------------------------------------------------------------------------
@@ -23,6 +23,7 @@ if exists("b:current_syntax")
 endif
 let s:cpo_save=&cpo
 set cpo&vim
+syn case ignore
 "------------------------------------------------------------------------
 " Matches
 "------------------------------------------------------------------------
@@ -44,15 +45,25 @@ syn match robotCommonSet            "\c\[\(Documentation\|Timeout\)\]"
 " Keyword settings
 syn match robotKeywordSet           "\c\[\(Arguments\|Return\)\]"
 " Testcase settings
-syn match robotTestcaseSet          "\c\[\(Tags\|Setup\|Teardown\|Precondition\|Postcondition\|Template\)\]"
+" syn match robotTestcaseSet          "\c\[\(Tags\|Setup\|Teardown\|Precondition\|Postcondition\|Template\)\]"
+syn keyword robotTestcaseSetting          [Tags] 
+syn keyword robotTestCaseSetting          [Setup]
+syn keyword robotTestCaseSetting          [Teardown]
+syn keyword robotTestCaseSetting          [Precondition]
+syn keyword robotTestCaseSetting          [Postcondition]
+syn keyword robotTestCaseSetting          [Template]
 
 " Robot Gherkin support
 syn match robotGherkin              "\c\<\(Given\|When\|Then\|And\|But\)\>"
 
 " Settings (global)
 syn match robotSetup                "\c\<\(Suite\|Test\) \(Setup\|Teardown\|Precondition\|Postcondition\)\>"
-syn match robotSettings             "\c\<\(Library\|Resource\|Variables\|Documentation\|Metadata\|Force Tags\|Default Tags\|Test Template\|Test Timeout\)\>"
-
+syn keyword robotSettings                 Library
+syn keyword robotSettings                 Resource 
+syn keyword robotSettings                 Variables
+syn keyword robotSettings                 Metadata 
+syn keyword robotSettings                 Documentation 
+syn match multiwordRobotSettings "\c\<\(Force Tags\| Default Tags\|Test Template\|Test Timeout\)\>"
 " Standard libraries
 " List variables in reverse order to match the longest pattern not the first one.
 syn match collectionsLibrary        "\c\<\(Sort List\|Should Not Contain Match\|Should Contain Match\|Set To Dictionary\|Set List Value\|Reverse List\|Remove Values From List\|Remove From List\|Remove From Dictionary\|Remove Duplicates\|Log List\|Log Dictionary\|Lists Should Be Equal\|List Should Not Contain Value\|List Should Not Contain Duplicates\|List Should Contain Value\|List Should Contain Sub List\|Keep In Dictionary\|Insert Into List\|Get Slice From List\|Get Matches\|Get Match Count\|Get Index From List\|Get From List\|Get From Dictionary\|Get Dictionary Values\|Get Dictionary Keys\|Get Dictionary Items\|Dictionary Should Not Contain Value\|Dictionary Should Not Contain Key\|Dictionary Should Contain Value\|Dictionary Should Contain Sub Dictionary\|Dictionary Should Contain Key\|Dictionary Should Contain Item\|Dictionaries Should Be Equal\|Create Dictionary\|Count Values In List\|Copy List\|Copy Dictionary\|Convert To List\|Combine Lists\|Append To List\)\>"
@@ -91,6 +102,7 @@ syn region robotString      start="\"" excludenl end="\""
 hi def link robotVariable           Type
 hi def link robotSetup              Include
 hi def link robotSettings           Include
+hi def link multiwordRobotSettings  Include
 hi def link robotTestCaseName       Function
 hi def link robotComment            Comment
 hi def link robotEllipsis           String
@@ -103,7 +115,7 @@ hi def link robotPath               Constant
 hi def link robotOperator           Operator
 hi def link robotCommonSet          Keyword
 hi def link robotKeywordSet         Keyword
-hi def link robotTestcaseSet        Keyword
+hi def link robotTestcaseSetting    Keyword
 hi def link robotGherkin            Keyword
 
 hi def link builtInLibrary          Comment
