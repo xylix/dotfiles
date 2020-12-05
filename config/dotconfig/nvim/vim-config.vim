@@ -38,7 +38,7 @@ function VimConfig()
     set mouse=a
     set linebreak number title
     set backspace=2 " make backspace work like most other programs
-    set clipboard=unnamedplus
+    " set clipboard=unnamedplus
     "Consider _ a word delimiter
     set iskeyword+=_
 
