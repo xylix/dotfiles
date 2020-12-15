@@ -21,7 +21,7 @@ function PluginOptions()
 
 
     " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-    let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
+    let g:ctrlp_user_command = 'fd --hidden --type f --color=never "" %s'
     let g:ctrlp_use_caching = 0
 
     autocmd FileType markdown :CocDisable
