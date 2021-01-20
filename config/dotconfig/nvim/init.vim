@@ -28,6 +28,7 @@ Plug 'AndrewRadev/tagalong.vim' "Change both ends of a pair of html tags when ed
 Plug 'zsugabubus/crazy8.nvim'
 Plug 'nvim-treesitter/nvim-treesitter' " A nicer highligh provider than polyglot
 " Plug 'sheerun/vim-polyglot' "Syntax highlighting & formatting
+" Plug 'chrisbra/Colorizer' "Hex and css color highlighting
 
 call plug#end()
 
