@@ -6,3 +6,4 @@ Session.vim
 .mypy_cache/
 .vim/
 kpelttari-notes.md
+playwright-log.txt
