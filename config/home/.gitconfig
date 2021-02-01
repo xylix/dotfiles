@@ -34,3 +34,5 @@ git-fetch-with-cli = true
 	process = git-lfs filter-process
 [commit]
 	gpgsign = true
+[init]
+	defaultBranch = master
