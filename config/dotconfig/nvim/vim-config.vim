@@ -25,6 +25,8 @@ function! FoldText()
 endfunction
 
 function VimConfig() 
+    set shiftwidth=4
+    set tabstop=4
     set foldtext=FoldText()
 
     if has("autocmd")

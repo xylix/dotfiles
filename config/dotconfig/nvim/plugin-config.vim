@@ -19,12 +19,12 @@ function PluginOptions()
     "Keep theirs: ct or :ConflictMarkerThemselves
     "Keep both cb or :ConflictMarkerBoth
 
-
     " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-    let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
+    let g:ctrlp_user_command = 'fd --hidden --type f --color=never "" %s'
     let g:ctrlp_use_caching = 0
 
-    autocmd FileType markdown :CocDisable
+    " let g:colorizer_auto_color = 1
+    " autocmd BufNewFile,BufRead * :ColorHighlight
     " Latex configuration
     let g:tex_flavor='latex'
     let g:vimtex_view_method='zathura'
