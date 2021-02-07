@@ -7,12 +7,13 @@
     "python.linting.pylintEnabled": true,
     "languageserver": {
         "haskell": {
-            "command": "hie-wrapper",
+            "command": "haskell-language-server-wrapper",
             "args": ["--lsp"],
             "rootPatterns": [
                 "*.cabal",
+                ".hie-bios",
                 "stack.yaml",
-                "cabal.project",
+                "cabal.config",
                 "package.yaml"
             ],
             "filetypes": [
