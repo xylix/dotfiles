@@ -2,5 +2,5 @@
 function update-all
 	update-rcc
 	update-nvim
-	bubo && bubc
+	update-brew
 end

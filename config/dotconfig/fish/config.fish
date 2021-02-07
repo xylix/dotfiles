@@ -1,14 +1,16 @@
-set LC_ALL en_US.UTF-8
-set HUSKY_USE_YARN
+set -gx LC_ALL en_US.UTF-8
+set -gx HUSKY_USE_YARN
 
-set EDITOR nvim
-set LESS -r
+set -gx EDITOR nvim
+set -gx LESS -r
 set PATH $HOME/dotfiles/scripts $PATH
 set PATH $HOME/local-brew/brew/bin $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.poetry/bin $PATH
 set PATH $HOME/neovim/bin $PATH
+# Set a socket for neovim-remote usage
+set -gx NVIM_LISTEN_ADDRESS /tmp/nvimsocket 
 
 # Override fish intro greeting
 set fish_greeting
@@ -50,3 +52,5 @@ function o-docpandify
     docpandify $argv[1]
     open $argv[1].pdf
 end
+
+direnv hook fish | source

@@ -58,6 +58,8 @@ function VimConfig()
     set foldmethod=syntax
     set fillchars=fold:\
     autocmd BufNewFile,BufFilePre,BufRead * normal zR
+
+    autocmd FileType typescript,javascript,*.ts,*.js set tabstop=2 shiftwidth=2
     
     autocmd FileType python setlocal foldmethod=indent
     "markdown config
