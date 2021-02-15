@@ -159,8 +159,8 @@ exec --no-startup-id /home/xylix/dotfiles/battery-watcher.sh
 exec --no-startup-id aw-qt
 
 # Open graphical applications on spesific workspaces
-exec --no-startup-id i3-msg 'workspace 4; exec discord'
 exec --no-startup-id i3-msg 'workspace 1; exec firefox'
+exec --no-startup-id i3-msg 'workspace 4; exec discord'
 
 exec --no-startup-id picom--no-fading-openclose #-f "-f":lla voi enabloida workspacevaihto fade animaation, picom hoitaa transparencyn jne. 
 
