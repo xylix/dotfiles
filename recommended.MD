@@ -24,4 +24,8 @@ kitty
 mpv
 firefox
 
+# Linux disk cacher
 preload
+
+# topgrade, generic software update program https://github.com/r-darwish/topgrade
+topgrade
