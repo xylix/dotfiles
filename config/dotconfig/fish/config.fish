@@ -3,6 +3,7 @@ set -gx HUSKY_USE_YARN
 
 set -gx EDITOR nvim
 set -gx LESS -r
+set -gx GPG_TTY (tty)
 set PATH $HOME/dotfiles/scripts $PATH
 set PATH $HOME/local-brew/brew/bin $PATH
 set PATH $HOME/.local/bin $PATH
