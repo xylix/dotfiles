@@ -21,7 +21,7 @@ set PATH "/Applications/Postgres.app/Contents/Versions/latest/bin" $PATH
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-eval /Users/kerkko/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+# eval /Users/kerkko/miniconda3/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
 # Start an nvim trying to load Session from file in current dir
@@ -52,5 +52,3 @@ function o-docpandify
     docpandify $argv[1]
     open $argv[1].pdf
 end
-
-direnv hook fish | source

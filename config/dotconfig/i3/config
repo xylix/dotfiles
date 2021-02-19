@@ -160,7 +160,9 @@ exec --no-startup-id aw-qt
 
 # Open graphical applications on spesific workspaces
 exec --no-startup-id i3-msg 'workspace 1; exec firefox'
-exec --no-startup-id i3-msg 'workspace 4; exec discord'
+exec --no-startup-id i3-msg 'workspace 2; exec kitty'
+exec --no-startup-id i3-msg 'workspace 2; exec kitty -d $HOME/logseq-database'
+# exec --no-startup-id i3-msg 'workspace 4; exec discord'
 
 exec --no-startup-id picom--no-fading-openclose #-f "-f":lla voi enabloida workspacevaihto fade animaation, picom hoitaa transparencyn jne. 
 
@@ -172,7 +174,9 @@ hide_edge_borders both
 bindsym --whole-window --border $mod+button4 workspace prev
 bindsym --whole-window --border $mod+button5 workspace next
 
-exec_always --no-startup-id feh --bg-fill /home/xylix/Google\ Drive/Pictures/art/Wallpapers/Rootbound-Crag_XLN_2560x1600_Wallpaper.jpg
+# exec_always --no-startup-id feh --bg-fill /home/xylix/Google\ Drive/Pictures/art/Wallpapers/Rootbound-Crag_XLN_2560x1600_Wallpaper.jpg
+# exec_always --no-startup-id feh --bg-fill /home/xylix/Google\ Drive/Pictures/art/IMG_6691.jpg
+exec_always --no-startup-id feh --bg-fill /home/xylix/Google\ Drive/Pictures/artandwallpapers1/akane_coffee.jpg
 
 # Audio (mediakeys)
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10%
