@@ -10,7 +10,7 @@ Plug 'junegunn/goyo.vim' "Adds Goyo mode, which hides unnecessary visual clutter
 Plug 'markonm/traces.vim' "Live substitution highlights
 
 "IDE-like features
-Plug 'neoclide/coc.nvim', {'branch': 'release' }
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocUpdateSync' }
 " Haskell specific plugins
 Plug 'alx741/vim-hindent' "Haskell autoformatting
 Plug 'Twinside/vim-haskellFold' " improved haskell foldinfo
@@ -26,8 +26,7 @@ Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
 Plug 'itchyny/lightline.vim' " Tab and statusline plugin
 Plug 'AndrewRadev/tagalong.vim' "Change both ends of a pair of html tags when editing tags
 Plug 'zsugabubus/crazy8.nvim'
-Plug 'nvim-treesitter/nvim-treesitter' " A nicer highligh provider than polyglot
-" Plug 'sheerun/vim-polyglot' "Syntax highlighting & formatting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'chrisbra/Colorizer' "Hex and css color highlighting
 Plug 'vimwiki/vimwiki'
 let g:vimwiki_key_mappings = { 'all_maps': 0, }
