@@ -15,6 +15,9 @@ volctl
 gnome-keyring
 aw-qt
 
+mutt #weird CLI mail client
+ghi # CLI github client https://github.com/stephencelis/ghi
+
 # if bluetooth
 blueman-applet
 #if laptop
