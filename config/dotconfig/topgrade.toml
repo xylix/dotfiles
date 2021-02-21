@@ -57,10 +57,10 @@ remote_topgrade_path = ".cargo/bin/topgrade"
 
 # Custom commands
 [commands]
+"build RCC from sources" = "fish -c update-rcc"
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 # Somehow make following work:
 # [macos-only commands]
-# rcc-update
 # conda something something?
 
 [brew]
