@@ -14,6 +14,7 @@ dunst #notification manager
 volctl
 gnome-keyring
 aw-qt
+picom # composite manager, maintained fork of compton
 
 mutt #weird CLI mail client
 ghi # CLI github client https://github.com/stephencelis/ghi

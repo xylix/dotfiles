@@ -158,6 +158,8 @@ exec --no-startup-id greenclip daemon #Clipboard history manager
 exec --no-startup-id /home/xylix/dotfiles/battery-watcher.sh
 exec --no-startup-id aw-qt
 exec --no-startup-id dunst
+exec --no-startup-id picom 
+
 
 # Open graphical applications on spesific workspaces
 exec --no-startup-id i3-msg 'workspace 1; exec firefox'
