@@ -1,0 +1,5 @@
+[Unit]
+Description=Dim monitors 1 & 2
+
+[Service]
+ExecStart=sh -c "ddcutil -d 1 setvcp 10 10 && ddcutil -d 2 setvcp 10 10"

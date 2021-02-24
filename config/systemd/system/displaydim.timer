@@ -1,0 +1,9 @@
+[Unit]
+Description=Run dim display in evenings
+
+[Timer]
+OnCalendar=*-*-* 20:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

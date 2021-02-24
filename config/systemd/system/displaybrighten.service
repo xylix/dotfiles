@@ -1,0 +1,5 @@
+[Unit]
+Description=Brighten monitors
+
+[Service]
+ExecStart=sh -c "ddcutil -d 1 setvcp 10 90 && ddcutil -d 2 setvcp 10 90"
