@@ -161,11 +161,30 @@ exec --no-startup-id dunst
 exec --no-startup-id picom 
 
 
+# Set workspaces to displays (display id's are freedom specific)
+# Primary display
+workspace 1 output DP-4
+workspace 2 output DP-4
+workspace 3 output DP-4
+workspace 4 output DP-4
+# Secondary display
+workspace 7 output DP-2
+workspace 8 output DP-2
+workspace 9 output DP-2
+workspace 10 output DP-2
+
 # Open graphical applications on spesific workspaces
 exec --no-startup-id i3-msg 'workspace 1; exec firefox'
 exec --no-startup-id i3-msg 'workspace 2; exec kitty'
-exec --no-startup-id i3-msg 'workspace 2; exec kitty -d $HOME/logseq-database'
-# exec --no-startup-id i3-msg 'workspace 4; exec discord'
+# The following 3 should be on 2nd monitor
+exec --no-startup-id i3-msg 'workspace 7; exec todoist'
+exec --no-startup-id i3-msg 'workspace 8; exec kitty -d $HOME/logseq-database'
+# Only for work
+exec --no-startup-id i3-msg 'workspace 4; exec insomnia'
+exec --no-startup-id i3-msg 'workspace 9; exec slack'
+exec --no-startup-id i3-msg 'workspace 9; exec zoom'
+# Only for freetime
+# exec --no-startup-id i3-msg 'workspace 9; exec discord'
 
 exec --no-startup-id picom --no-fading-openclose #-f "-f":lla voi enabloida workspacevaihto fade animaation, picom hoitaa transparencyn jne. 
 

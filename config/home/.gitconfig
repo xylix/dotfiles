@@ -11,6 +11,7 @@ git-fetch-with-cli = true
 	autocorrect = -1
 [pull]
 	rebase = true
+	ff = only
 [push]
     default = current
 [log]
@@ -37,4 +38,4 @@ git-fetch-with-cli = true
 [init]
 	defaultBranch = master
 [gpg]
-	program = gpg2
+	program = gpg
