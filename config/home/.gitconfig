@@ -10,7 +10,6 @@ git-fetch-with-cli = true
 [help]
 	autocorrect = -1
 [pull]
-	rebase = true
 	ff = only
 [push]
     default = current
