@@ -30,7 +30,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'chrisbra/Colorizer' "Hex and css color highlighting
 Plug 'vimwiki/vimwiki'
 let g:vimwiki_key_mappings = { 'all_maps': 0, }
-
 call plug#end()
 
 "Setup config dir variable and source tab bar number function 
@@ -38,6 +37,7 @@ let g:nvim_config_dir = stdpath('config')
 exec 'source' nvim_config_dir . '/vim-config.vim'
 exec 'source' nvim_config_dir . '/plugin-config.vim'
 exec 'source' nvim_config_dir . '/leader-keybinds.vim'
+exec 'source' nvim_config_dir . '/vimwiki.vim'
 
 function s:neo_vim_terminal_config()
     "terminal in new tab
