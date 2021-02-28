@@ -1,6 +1,6 @@
 # Defined in /tmp/fish.B3QMZI/update-rcc.fish @ line 2
 function update-rcc
-	if test -f $HOME/Code/robocorp/rcc
+	if test -d $HOME/Code/robocorp/rcc
 		cd /Users/kerkko/Code/robocorp/rcc
 		git pull
 		rake build
