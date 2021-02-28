@@ -18,6 +18,9 @@ function take-backup --description "Take a local backup of github folders"
 	python ./github_backup/github_backup.py xylix github-xylix-backupdir --visibility all -p -d --account
 	if test -d ./github-xylix-backupdir/repositories/logseq-database
 		echo "Succesfully backed up, including private repos"
+		echo "zipping the result"
+		zip -r github-xylix-backupdir.zip github-xylix-backupdir
+		test -f github-xylix-backup.zip
 	else
 		echo "Did not backup some private repos. Could be auth / token problem."
 	end
