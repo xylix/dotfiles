@@ -227,8 +227,9 @@ bindsym Mod1+Shift+4 --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png
 bindsym Mod1+Shift+3 --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 
 # macOS style copypaste
-bindsym $mod+c exec "xclip -out -selection primary | xclip -in -selection clipboard"
+# bindsym $mod+c exec "xclip -out -selection primary | xclip -in -selection clipboard"
 
 # This does not work for some reason
 # bindsym $mod+v nop
-# bindsym $mod+v exec "xclip -out -selection clipboard"
+# bindsym Mod1+v exec "xclip -out -selection clipboard"
+# bindsym $mod+v exec "xvkbd -xsendevent -text \\CV"
