@@ -2,7 +2,7 @@
 #assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = ["go"]
+disable = []
 
 # Ignore failures for these steps
 #ignore_failures = ["powershell"]
@@ -37,10 +37,9 @@ remote_topgrade_path = ".cargo/bin/topgrade"
 [git]
 #max_concurrency = 5
 # Additional git repositories to pull
-#repos = [
-#    "~/src/*/",
-#    "~/.config/something"
-#]
+repos = [
+    "~/logseq-database/"
+]
 
 # Don't pull the predefined git repos
 #predefined_repos = false

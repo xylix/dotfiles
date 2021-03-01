@@ -15,6 +15,7 @@ volctl
 gnome-keyring
 aw-qt
 picom # composite manager, maintained fork of compton
+xclip #clipboard copypaste tool for linux
 
 mutt #weird CLI mail client
 ghi # CLI github client https://github.com/stephencelis/ghi

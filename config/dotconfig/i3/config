@@ -226,3 +226,9 @@ bindsym $mod+Shift+f exec --no-startup-id xdg-open "$(locate --ignore-case home 
 bindsym Mod1+Shift+4 --release exec "scrot -s /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 bindsym Mod1+Shift+3 --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 
+# macOS style copypaste
+bindsym $mod+c exec "xclip -out -selection primary | xclip -in -selection clipboard"
+
+# This does not work for some reason
+# bindsym $mod+v nop
+# bindsym $mod+v exec "xclip -out -selection clipboard"
