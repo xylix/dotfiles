@@ -2,8 +2,9 @@
 git-fetch-with-cli = true
 [user]
 	name = "Kerkko Pelttari"
-	email = kerkko@robocorp.com
-	signingkey = 1566E1074D6E26477D0186982CBAD605AF74408D
+	email = kerk.pelt@gmail.com
+	signingkey = 779BD808EA21C02CCAD9A7A2EAC7899527340145
+	# signingkey = 1566E1074D6E26477D0186982CBAD605AF74408D
 [core]
     excludesfile = ~/.gitignore_global
     editor = nvim
