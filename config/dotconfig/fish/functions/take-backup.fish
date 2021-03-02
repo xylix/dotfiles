@@ -1,4 +1,5 @@
-function take-backup --description "Take a local backup of github folders"
+# Defined in /tmp/fish.uFOnK2/take-backup.fish @ line 2
+function take-backup --description 'Take a local backup of github folders'
 	if test -f $HOME/.github-backup.conf
 		echo ".github-backup.conf exists"
 	else
@@ -15,7 +16,7 @@ function take-backup --description "Take a local backup of github folders"
 
 	# With debug prints
 	# python ./github_backup/github_backup.py xylix github-xylix-backupdir -d --visibility private 
-	python ./github_backup/github_backup.py xylix github-xylix-backupdir --visibility all -p -d --account
+	github-backup xylix github-xylix-backupdir --visibility all -p -d --account
 	if test -d ./github-xylix-backupdir/repositories/logseq-database
 		echo "Succesfully backed up, including private repos"
 		echo "zipping the result"

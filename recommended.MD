@@ -1,7 +1,7 @@
 # packages for a comprehensive environment for doing stuff
 
 # terminal
-htop
+bottom
 neovim
 fish
 
