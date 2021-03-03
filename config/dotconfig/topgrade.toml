@@ -38,7 +38,8 @@ remote_topgrade_path = ".cargo/bin/topgrade"
 #max_concurrency = 5
 # Additional git repositories to pull
 repos = [
-    "~/logseq-database/"
+    "~/logseq-database/",
+    "~/dotfiles/",
 ]
 
 # Don't pull the predefined git repos
