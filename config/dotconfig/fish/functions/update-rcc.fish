@@ -1,10 +1,14 @@
-# Defined in /tmp/fish.B3QMZI/update-rcc.fish @ line 2
 function update-rcc
 	if test -d $HOME/Code/robocorp/rcc
-		cd /Users/kerkko/Code/robocorp/rcc
+		cd $HOME/Code/robocorp/rcc
 		git pull
 		rake build
-		cp /Users/kerkko/Code/robocorp/rcc/build/macos64/rcc /Users/kerkko/.local/bin/rcc
+		switch (uname)
+			case Darwin
+				cp $HOME/Code/robocorp/rcc/build/macos64/rcc $HOME/.local/bin/rcc
+			case Linux	
+				cp $HOME/Code/robocorp/rcc/build/linux64/rcc $HOME/.local/bin/rcc
+		end
 	else
 		echo "No RCC repo cloned, skipping update-rcc"
 	end
