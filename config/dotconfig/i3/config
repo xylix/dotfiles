@@ -176,6 +176,7 @@ workspace 10 output DP-2
 # Open graphical applications on spesific workspaces
 exec --no-startup-id i3-msg 'workspace 1; exec firefox'
 exec --no-startup-id i3-msg 'workspace 2; exec kitty'
+exec --no-startup-id i3-msg 'workspace 10; exec spotify'
 # The following 3 should be on 2nd monitor
 exec --no-startup-id i3-msg 'workspace 7; exec todoist'
 exec --no-startup-id i3-msg 'workspace 8; exec kitty -d $HOME/logseq-database'
