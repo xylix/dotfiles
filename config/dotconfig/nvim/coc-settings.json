@@ -1,5 +1,7 @@
 {
     "codeLens.enable": true,
+    "workspace.workspaceFolderCheckCwd": true,
+    "workspace.bottomUpFiletypes": [],
     "python.formatting.provider": "black",
     "coc.preferences.formatOnSaveFiletypes": ["python"],
     "python.linting.mypyEnabled": false,
