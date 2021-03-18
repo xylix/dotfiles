@@ -201,7 +201,7 @@ bindsym --whole-window --border $mod+button5 workspace next
 
 # exec_always --no-startup-id feh --bg-fill /home/xylix/Google\ Drive/Pictures/art/Wallpapers/Rootbound-Crag_XLN_2560x1600_Wallpaper.jpg
 # exec_always --no-startup-id feh --bg-fill /home/xylix/Google\ Drive/Pictures/art/IMG_6691.jpg
-exec_always --no-startup-id feh --bg-fill /home/xylix/Google\ Drive/Pictures/artandwallpapers1/akane_coffee.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/Insync/kerk.pelt@gmail.com/Google\ Drive/Pictures/art/artandwallpapers1/akane_coffee.jpg
 
 # Audio (mediakeys)
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10%
