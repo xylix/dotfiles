@@ -185,6 +185,8 @@ exec --no-startup-id i3-msg 'workspace 8; exec kitty -d $HOME/logseq-database'
 #exec --no-startup-id i3-msg 'workspace 9; exec slack'
 #exec --no-startup-id i3-msg 'workspace 9; exec zoom'
 # Only for freetime
+
+assign [class="discord"] → 9
 exec --no-startup-id i3-msg 'workspace 9; exec discord'
 
 exec --no-startup-id picom --no-fading-openclose #-f "-f":lla voi enabloida workspacevaihto fade animaation, picom hoitaa transparencyn jne. 
