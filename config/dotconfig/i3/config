@@ -237,3 +237,5 @@ bindsym Mod1+Shift+3 --release exec "scrot -u /tmp/screenshot-$(date +%F_%T).png
 # bindsym $mod+v nop
 # bindsym Mod1+v exec "xclip -out -selection clipboard"
 # bindsym $mod+v exec "xvkbd -xsendevent -text \\CV"
+# Google drive sync tool
+exec --no-startup-id insync start
