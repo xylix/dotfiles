@@ -17,15 +17,16 @@ git-fetch-with-cli = true
 [log]
     abbrevCommit = false
 [pager]
-    branch = false
+	branch = false
+# define command which will be used when "nvim" is set as a merge tool
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+# set "nvim" as tool for merging
 [merge]
-  tool = vimdiff
+  tool = nvim
+# automatically launch merge tool without displaying a prompt
 [mergetool]
-  prompt = true
-[mergetool "vimdiff"]
-    cmd = nvim -d $BASE $LOCAL
-[mergetool "advanced-vimdiff"]
-    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED
+  prompt = false
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [filter "lfs"]
