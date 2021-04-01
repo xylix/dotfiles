@@ -158,7 +158,7 @@ exec --no-startup-id greenclip daemon #Clipboard history manager
 exec --no-startup-id /home/xylix/dotfiles/battery-watcher.sh
 exec --no-startup-id aw-qt
 exec --no-startup-id dunst
-exec --no-startup-id picom 
+exec --no-startup-id picom --vsync
 
 
 # Set workspaces to displays (display id's are freedom specific)
