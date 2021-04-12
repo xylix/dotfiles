@@ -144,11 +144,12 @@ bar {
     mode hide
     font pango: System San Fransisco 12
     status_command i3status
-	colors {
-		separator #757575
-	}
-        position top
-	tray_output primary
+    separator_symbol " | "
+    colors {
+        separator #757575
+    }
+    position top
+    tray_output primary
 }
 
 exec --no-startup-id nm-applet #network manager taskbar applet

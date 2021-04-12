@@ -12,6 +12,8 @@ general {
         color_good = "#8DF900"
         color_bad = "#FC0023"
         color_degraded = "#383830"
+
+	# sep_block_width 2 
 }
 
 #order += "ipv6"
@@ -35,7 +37,7 @@ order += "tztime local"
 #}
 
 battery 0 {
-        format = "%status %percentage %remaining"
+        format = "🔋 %status %percentage %remaining"
         path = "/sys/class/power_supply/BAT0/uevent"
 }
 
@@ -44,7 +46,7 @@ battery 0 {
 #}
 
 tztime local {
-        format = "%d-%m-%Y %H:%M:%S"
+        format = "📅 %d-%m-%Y %H:%M:%S"
 }
 #
 #load {
