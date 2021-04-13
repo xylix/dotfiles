@@ -12,6 +12,7 @@ general {
         color_good = "#8DF900"
         color_bad = "#FC0023"
         color_degraded = "#383830"
+        markup = pango
 
 	# sep_block_width 2 
 }
@@ -21,9 +22,18 @@ general {
 #order += "run_watch DHCP"
 #order += "wireless _first_"
 #order += "ethernet _first_"
-order += "battery 0"
-#order += "load"
+# order += "battery 1"
+order += "load"
+order += "disk /"
 order += "tztime local"
+
+load {
+        format = "<span background='#f59335'>🖥</span><span background='#e5e9f0'>%5min Load </span>"
+}
+
+disk "/" {
+        format = "<span background='#fec7cd'>🖸 </span><span background='#e5e9f0'> %free Free </span>"
+}
 
 #wireless _first_ {
 #        format_up = "W: (%quality at %essid) %ip"
@@ -41,12 +51,31 @@ battery 0 {
         path = "/sys/class/power_supply/BAT0/uevent"
 }
 
+
+battery 1 {
+	last_full_capacity = true
+        format = "<span background='#a3be8c'> 🔋 %status %percentage </span>"
+        format_down = "No Battery"
+        status_chr = "Charging"
+        status_bat = "Battery"
+        status_unk = "Unknown"
+        status_full = "Charged"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
+}
+
 #run_watch DHCP {
 #        pidfile = "/var/run/dhclient*.pid"
 #}
 
+# tztime local {
+#         format = "📅 %d-%m-%Y %H:%M:%S"
+# }
+
+
 tztime local {
-        format = "📅 %d-%m-%Y %H:%M:%S"
+		format = "<span background='#81a1c1'>🕑 </span><span background='#e5e9f0'> %time </span>"
+		format_time = "%a %-d %b %H:%M"
 }
 #
 #load {
