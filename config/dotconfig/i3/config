@@ -164,10 +164,11 @@ bar {
         inactive_workspace      #2f343f #2f343f #d8dee8
         urgent_workspacei       #2f343f #ebcb8b #2f343f
     }
-        status_command i3status
+    status_command i3status
 
     position top
-    tray_output primary
+    # tray_output primary
+    tray_output DP-4
 }
 
 # colour of border, background, text, indicator, and child_border
