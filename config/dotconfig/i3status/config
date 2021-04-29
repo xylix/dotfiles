@@ -32,7 +32,7 @@ load {
 }
 
 disk "/" {
-        format = "<span background='#fec7cd'>🖸 </span><span background='#e5e9f0'> %free Free </span>"
+        format = "<span background='#fec7cd'>🖸 </span><span background='#e5e9f0'> %percentage_free Free </span>"
 }
 
 #wireless _first_ {

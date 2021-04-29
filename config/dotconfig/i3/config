@@ -203,7 +203,10 @@ workspace 10 output DP-2
 
 # Open graphical applications on spesific workspaces
 exec --no-startup-id i3-msg 'workspace 1; exec firefox'
-assign [class="Spotify"] → 10
+# Without pavucontrol there's weird clipping noise
+exec --no-startup-id i3-msg 'workspace 7; exec pavucontrol'
+assign [class=Spotify] 8
+# for_window [class=Spotify] floating enable; resize set 1440 1024
 exec --no-startup-id spotify
 # The following 3 should be on 2nd monitor
 # exec --no-startup-id i3-msg 'workspace 7; exec todoist'
@@ -215,12 +218,12 @@ exec --no-startup-id i3-msg 'workspace 2; exec kitty -d $HOME/logseq-database'
 #exec --no-startup-id i3-msg 'workspace 9; exec zoom'
 # Only for freetime
 
-assign [class="discord"] → 9
-exec --no-startup-id i3-msg 'workspace 9; exec discord'
+assign [class=discord] 9
+exec --no-startup-id i3-msg 'workspace 9; exec discord --no-sandbox'
 
 exec --no-startup-id picom --no-fading-openclose #-f "-f":lla voi enabloida workspacevaihto fade animaation, picom hoitaa transparencyn jne. 
 
-#disable window titles and edges
+# 1px window titles and edges
 new_window 1pixel
 hide_edge_borders both
 

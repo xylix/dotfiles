@@ -28,7 +28,7 @@ Plug 'itchyny/lightline.vim' " Tab and statusline plugin
 Plug 'AndrewRadev/tagalong.vim' "Change both ends of a pair of html tags when editing tags
 Plug 'zsugabubus/crazy8.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'chrisbra/Colorizer' "Hex and css color highlighting
+Plug 'chrisbra/Colorizer' "Hex and css color highlighting
 
 Plug 'tpope/vim-fugitive' " Git plugin
 let g:vimwiki_key_mappings = { 'all_maps': 0, }
