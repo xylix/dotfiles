@@ -207,6 +207,7 @@ exec --no-startup-id i3-msg 'workspace 1; exec firefox'
 exec --no-startup-id i3-msg 'workspace 7; exec pavucontrol'
 assign [class=Spotify] 8
 # for_window [class=Spotify] floating enable; resize set 1440 1024
+for_window [class="Inspector"] floating enable
 exec --no-startup-id spotify
 # The following 3 should be on 2nd monitor
 # exec --no-startup-id i3-msg 'workspace 7; exec todoist'
