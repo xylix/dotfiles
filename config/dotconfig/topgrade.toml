@@ -17,7 +17,8 @@ disable = []
 #run_in_tmux = true
 
 # List of remote machines with Topgrade installed on them
-remote_topgrades = ["xylix", "raspi-1-wlan"]
+remote_topgrades = ["xylix", "tela"]
+# raspi-1-wlan
 
 # Arguments to pass SSH when upgrading remote systems
 #ssh_arguments = "-o ConnectTimeout=2"
