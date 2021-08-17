@@ -34,3 +34,6 @@ preload
 
 # topgrade, generic software update program https://github.com/r-darwish/topgrade
 topgrade
+
+# python packages
+ipython
