@@ -37,3 +37,5 @@ topgrade
 
 # python packages
 ipython
+
+# good gifmaking tool https://www.cockos.com/licecap/
