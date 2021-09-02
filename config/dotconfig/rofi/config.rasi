@@ -1,0 +1,12 @@
+configuration {
+combi-modi:    "window,drun,ssh";
+modi:          "combi";
+width: 80;
+lines: 19;
+font: "System San Fransisco 22";
+padding: 200;
+separator-style: "none";
+opacity: 80;
+
+theme: "/usr/share/rofi/themes/android_notification.rasi";
+}
