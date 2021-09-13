@@ -2,5 +2,5 @@ config/dotconfig/fish/fish_variables
 config/home/.ssh/id_ed25519
 config/home/.ssh/id_ed25519.pub
 config/home/.ssh/known_hosts
-
+config/dotconfig/fish/functions/_*
 
