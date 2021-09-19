@@ -64,6 +64,7 @@ function VimConfig()
     autocmd FileType typescript,javascript set tabstop=2 shiftwidth=2 softtabstop=0 expandtab smarttab
     
     autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
     "markdown config
     autocmd BufNewFile,BufFilePre,BufRead *.md setlocal filetype=markdown
     autocmd FileType markdown setlocal nonumber
@@ -82,4 +83,10 @@ function VimConfig()
     map q: <Nop>
     nnoremap Q <nop>
 
+    if system('uname -r') =~ "microsoft"
+	augroup Yank
+	    autocmd!
+	    autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+        augroup END
+    endif
 endfunction
