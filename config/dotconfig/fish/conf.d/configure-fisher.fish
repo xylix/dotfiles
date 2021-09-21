@@ -6,6 +6,5 @@ for file in $fisher_path/conf.d/*.fish
 end
 
 if not functions -q fisher
-    curl https://git.io/fisher --create-dirs -sLo $fisher_path/functions/fisher.fish
-    fish -c fisher
+    echo "Install fisher with `curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher`"
 end

@@ -39,3 +39,6 @@ topgrade
 ipython
 
 # good gifmaking tool https://www.cockos.com/licecap/
+
+# For properly handing .envrc files, with fish
+direnv
