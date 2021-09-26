@@ -25,8 +25,8 @@ function! FoldText()
 endfunction
 
 function VimConfig() 
-    set shiftwidth=4
-    set tabstop=4
+    set tabstop=4 shiftwidth=4 softtabstop=1 expandtab smarttab
+
     set foldtext=FoldText()
 
     if has("autocmd")
@@ -58,7 +58,7 @@ function VimConfig()
     set foldmethod=syntax
     set fillchars=fold:\
     autocmd BufNewFile,BufFilePre,BufRead * normal zR
-
+    
     autocmd BufNewFile,BufFilePre,BufRead *.ts setlocal filetype=typescript
     autocmd BufNewFile,BufFilePre,BufRead *.js  setlocal filetype=javascript
     autocmd FileType typescript,javascript set tabstop=2 shiftwidth=2 softtabstop=0 expandtab smarttab
