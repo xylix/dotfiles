@@ -1,3 +1,12 @@
+function! MarkdownLevel()
+    let h = matchstr(getline(v:lnum), '^#\+')
+    if empty(h)
+        return "="
+    else
+        return ">" . len(h)     
+    endif 
+endfunction
+
 function! FoldText()
     let l:lpadding = &fdc
     redir => l:signs
@@ -24,7 +33,7 @@ function! FoldText()
     return l:text  . repeat(' ', l:width - strlen(substitute(l:text, ".", "x", "g")))
 endfunction
 
-function VimConfig() 
+function! VimConfig() 
     set tabstop=4 shiftwidth=4 softtabstop=1 expandtab smarttab
 
     set foldtext=FoldText()
@@ -65,10 +74,18 @@ function VimConfig()
     
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
+    
     "markdown config
     autocmd BufNewFile,BufFilePre,BufRead *.md setlocal filetype=markdown
     autocmd FileType markdown setlocal nonumber
     " autocmd FileType tex setlocal nonumber
+    
+    " Vimwiki folds need to be configured after the plugin is initialized and
+    " the folding overwritten
+    autocmd FileType markdown,vimwiki setlocal
+        \ foldmethod=expr
+        \ foldtext=FoldText()
+        \ foldexpr=MarkdownLevel()
     
     autocmd BufNewFile,BufRead *.robot setlocal filetype=robot
     autocmd FileType robot exec 'source' g:nvim_config_dir . '/syntax/robot.vim'
@@ -76,6 +93,10 @@ function VimConfig()
     autocmd FileType haskell syn match haskellLambda '\\' conceal cchar=λ
     autocmd FileType haskell set conceallevel=2 concealcursor=nv
     autocmd FileType haskell syn match haskellCompose '\.' conceal cchar=∘
+
+
+    autocmd BufNewFile,BufFilePre,BufRead *.hbs setlocal filetype=handlebars
+    autocmd FileType handlebars set syntax=html
 
     set listchars=eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<
 

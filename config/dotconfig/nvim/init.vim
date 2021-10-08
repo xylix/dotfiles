@@ -39,8 +39,8 @@ call plug#end()
 
 "Setup config dir variable and source tab bar number function 
 let g:nvim_config_dir = stdpath('config')
-exec 'source' nvim_config_dir . '/vim-config.vim'
 exec 'source' nvim_config_dir . '/plugin-config.vim'
+exec 'source' nvim_config_dir . '/vim-config.vim'
 exec 'source' nvim_config_dir . '/leader-keybinds.vim'
 exec 'source' nvim_config_dir . '/vimwiki.vim'
 
