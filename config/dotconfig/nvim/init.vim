@@ -1,3 +1,7 @@
+" useful for debugging things that don't visibly log or error
+"set verbosefile=~/.local/log/vim/verbose.log
+" set verbose=1
+
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 call plug#begin('~/.vim/plugged')
