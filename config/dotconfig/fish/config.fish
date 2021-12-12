@@ -1,5 +1,6 @@
 set -gx LC_ALL en_US.UTF-8
 set -gx HUSKY_USE_YARN
+# set -gx PLAYWRIGHT_BROWSERS_PATH /Users/kerkko/.robocorp/blobs
 
 set -gx EDITOR nvim
 set -gx LESS -r
@@ -32,6 +33,7 @@ end
 
 function v
     source .venv/bin/activate.fish
+    nvm use
 end
 
 function wordcount
