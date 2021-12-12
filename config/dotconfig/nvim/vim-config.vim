@@ -33,7 +33,8 @@ function! FoldText()
     return l:text  . repeat(' ', l:width - strlen(substitute(l:text, ".", "x", "g")))
 endfunction
 
-function! VimConfig() 
+function! VimConfig()
+    set pyxversion=3
     set tabstop=4 shiftwidth=4 softtabstop=1 expandtab smarttab
 
     set foldtext=FoldText()
