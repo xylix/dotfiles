@@ -6,7 +6,6 @@ set -gx EDITOR nvim
 set -gx LESS -r
 set -gx GPG_TTY (tty)
 set PATH $HOME/dotfiles/scripts $PATH
-set PATH $HOME/local-brew/brew/bin $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.poetry/bin $PATH
@@ -19,7 +18,9 @@ set fish_greeting
 
 # macos only
 set PATH "/Applications/Postgres.app/Contents/Versions/latest/bin" $PATH
-# set -U fish_user_paths "/usr/local/opt/python@3.8/bin" $fish_user_paths
+# arm homebrew config
+set PATH /opt/homebrew/bin $PATH
+alias ibrew 'arch -x86_64 /usr/local/bin/brew'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
