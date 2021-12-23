@@ -56,3 +56,7 @@ function o-docpandify
     docpandify $argv[1]
     open $argv[1].pdf
 end
+
+function ncdu
+    echo "just use gdu"
+end
