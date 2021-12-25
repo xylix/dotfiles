@@ -16,8 +16,6 @@ set -gx NVIM_LISTEN_ADDRESS /tmp/nvimsocket
 # Override fish intro greeting
 set fish_greeting
 
-# macos only
-set PATH "/Applications/Postgres.app/Contents/Versions/latest/bin" $PATH
 # arm homebrew config
 set PATH /opt/homebrew/bin $PATH
 alias ibrew 'arch -x86_64 /usr/local/bin/brew'
