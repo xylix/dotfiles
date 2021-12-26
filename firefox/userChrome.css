@@ -2,6 +2,9 @@ tabs {
   counter-reset: tab-counter;
 }
 
+
+/* For some reason :nth-last-child(1) or :last-child does not work */
+/* tab:last-child .tab-content::before, */
 tab:nth-child(1) .tab-content::before,
 tab:nth-child(2) .tab-content::before,
 tab:nth-child(3) .tab-content::before,
@@ -9,8 +12,7 @@ tab:nth-child(4) .tab-content::before,
 tab:nth-child(5) .tab-content::before,
 tab:nth-child(6) .tab-content::before,
 tab:nth-child(7) .tab-content::before,
-tab:nth-child(8) .tab-content::before,
-tab:last-child .tab-content::before {
+tab:nth-child(8) .tab-content::before {
   counter-increment: tab-counter;
   content: counter(tab-counter) "";
 
