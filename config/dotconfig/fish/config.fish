@@ -10,6 +10,7 @@ set PATH $HOME/.local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.poetry/bin $PATH
 set PATH $HOME/neovim/bin $PATH
+set PATH $HOME/go/bin $PATH
 # Set a socket for neovim-remote usage
 set -gx NVIM_LISTEN_ADDRESS /tmp/nvimsocket 
 
