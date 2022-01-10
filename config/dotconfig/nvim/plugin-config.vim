@@ -60,6 +60,22 @@ function PluginOptions()
     "vimwiki
     let g:vimwiki_folding='custom'
 
+    function! s:goto_tag(tagkind) abort
+        let tagname = expand('<cWORD>')
+        let winnr = winnr()
+        let pos = getcurpos()
+        let pos[0] = bufnr()
+
+        if CocAction('jump' . a:tagkind)
+            call settagstack(winnr, { 
+                        \ 'curidx': gettagstack()['curidx'], 
+                        \ 'items': [{'tagname': tagname, 'from': pos}] 
+                        \ }, 't')
+        endif
+    endfunction
+    nmap gd :call <SID>goto_tag("Definition")<CR>
+    nmap gi :call <SID>goto_tag("Implementation")<CR>
+    nmap gr :call <SID>goto_tag("References")<CR>
 
 
 endfunction
