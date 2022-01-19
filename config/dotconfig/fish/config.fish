@@ -32,7 +32,13 @@ function sesh
 end
 
 function v
-    source .venv/bin/activate.fish
+    if test -d .venv
+        source .venv/bin/activate.fish
+    else if test -d venv
+        source venv/bin/activate.fish
+    else
+        echo "No Python venv available"
+    end
     nvm use
 end
 
