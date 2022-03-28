@@ -8,7 +8,6 @@ set -gx GPG_TTY (tty)
 set PATH $HOME/dotfiles/scripts $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
-set PATH $HOME/.poetry/bin $PATH
 set PATH $HOME/neovim/bin $PATH
 set PATH $HOME/go/bin $PATH
 # Set a socket for neovim-remote usage
