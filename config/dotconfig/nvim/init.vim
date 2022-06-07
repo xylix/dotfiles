@@ -67,10 +67,11 @@ endfunction
 
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    
+    ensure_installed = { "python", "bash", "dockerfile", "fish", "json", "json5", "yaml", "make", "toml", "haskell", "vim"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
       enable = true,              -- false will disable the whole extension
-      disable = { "c", "ocaml", "ocamllex", "ql", "cpp", "verilog", "fennel", "nix", "clojure", "php"},  -- list of language that will be disabled
+      -- disable = { "c", "ocaml", "ocamllex", "ql", "cpp", "verilog", "fennel", "nix", "clojure", "php"},  -- list of language that will be disabled
     },
   }
 EOF
