@@ -27,8 +27,8 @@ end
 function git-conflicts; git diff --name-only --diff-filter=U ; end
 
 function gst; git status ; end
-function gp; git push ; end
-function gpl; git pull ; end
+function gpsh; git push ; end
+function gpu; git pull ; end
 function gc; git commit -v ; end
 function ga; git add $argv ; end
 function gsw; git switch $argv ; end
