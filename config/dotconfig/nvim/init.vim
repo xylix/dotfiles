@@ -38,6 +38,8 @@ Plug 'AndrewRadev/tagalong.vim' "Change both ends of a pair of html tags when ed
 Plug 'chrisbra/Colorizer' "Hex and css color highlighting
 
 Plug 'tpope/vim-fugitive' " Git plugin
+
+" Plug 'github/copilot.vim' "Github copilot
 let g:vimwiki_key_mappings = { 'all_maps': 0, }
 call plug#end()
 
