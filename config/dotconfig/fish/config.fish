@@ -1,24 +1,24 @@
 set -gx LC_ALL en_US.UTF-8
 set -gx HUSKY_USE_YARN
+# set -gx PLAYWRIGHT_BROWSERS_PATH /Users/kerkko/.robocorp/blobs
 
 set -gx EDITOR nvim
 set -gx LESS -r
 set -gx GPG_TTY (tty)
 set PATH $HOME/dotfiles/scripts $PATH
-set PATH $HOME/local-brew/brew/bin $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
-set PATH $HOME/.poetry/bin $PATH
 set PATH $HOME/neovim/bin $PATH
+set PATH $HOME/go/bin $PATH
 # Set a socket for neovim-remote usage
 set -gx NVIM_LISTEN_ADDRESS /tmp/nvimsocket 
 
 # Override fish intro greeting
 set fish_greeting
 
-# macos only
-set PATH "/Applications/Postgres.app/Contents/Versions/latest/bin" $PATH
-# set -U fish_user_paths "/usr/local/opt/python@3.8/bin" $fish_user_paths
+# arm homebrew config
+set PATH /opt/homebrew/bin $PATH
+alias ibrew 'arch -x86_64 /usr/local/bin/brew'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -31,7 +31,14 @@ function sesh
 end
 
 function v
-    source .venv/bin/activate.fish
+    if test -d .venv
+        source .venv/bin/activate.fish
+    else if test -d venv
+        source venv/bin/activate.fish
+    else
+        echo "No Python venv available"
+    end
+    nvm use
 end
 
 function wordcount
@@ -52,4 +59,8 @@ end
 function o-docpandify
     docpandify $argv[1]
     open $argv[1].pdf
+end
+
+function ncdu
+    echo "just use gdu"
 end

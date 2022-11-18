@@ -1,3 +1,12 @@
+function! MarkdownLevel()
+    let h = matchstr(getline(v:lnum), '^#\+')
+    if empty(h)
+        return "="
+    else
+        return ">" . len(h)     
+    endif 
+endfunction
+
 function! FoldText()
     let l:lpadding = &fdc
     redir => l:signs
@@ -24,9 +33,10 @@ function! FoldText()
     return l:text  . repeat(' ', l:width - strlen(substitute(l:text, ".", "x", "g")))
 endfunction
 
-function VimConfig() 
-    set shiftwidth=4
-    set tabstop=4
+function! VimConfig()
+    set pyxversion=3
+    set tabstop=4 shiftwidth=4 softtabstop=1 expandtab smarttab
+
     set foldtext=FoldText()
 
     if has("autocmd")
@@ -58,16 +68,25 @@ function VimConfig()
     set foldmethod=syntax
     set fillchars=fold:\
     autocmd BufNewFile,BufFilePre,BufRead * normal zR
-
+    
     autocmd BufNewFile,BufFilePre,BufRead *.ts setlocal filetype=typescript
     autocmd BufNewFile,BufFilePre,BufRead *.js  setlocal filetype=javascript
     autocmd FileType typescript,javascript set tabstop=2 shiftwidth=2 softtabstop=0 expandtab smarttab
     
     autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
+    
     "markdown config
     autocmd BufNewFile,BufFilePre,BufRead *.md setlocal filetype=markdown
     autocmd FileType markdown setlocal nonumber
     " autocmd FileType tex setlocal nonumber
+    
+    " Vimwiki folds need to be configured after the plugin is initialized and
+    " the folding overwritten
+    autocmd FileType markdown,vimwiki setlocal
+        \ foldmethod=expr
+        \ foldtext=FoldText()
+        \ foldexpr=MarkdownLevel()
     
     autocmd BufNewFile,BufRead *.robot setlocal filetype=robot
     autocmd FileType robot exec 'source' g:nvim_config_dir . '/syntax/robot.vim'
@@ -76,10 +95,20 @@ function VimConfig()
     autocmd FileType haskell set conceallevel=2 concealcursor=nv
     autocmd FileType haskell syn match haskellCompose '\.' conceal cchar=∘
 
+
+    autocmd BufNewFile,BufFilePre,BufRead *.hbs setlocal filetype=handlebars
+    autocmd FileType handlebars set syntax=html
+
     set listchars=eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<
 
     " Disable ex mode hotkey and command history search hotkey
     map q: <Nop>
     nnoremap Q <nop>
 
+    if system('uname -r') =~ "microsoft"
+	augroup Yank
+	    autocmd!
+	    autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+        augroup END
+    endif
 endfunction

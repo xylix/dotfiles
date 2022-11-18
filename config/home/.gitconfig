@@ -35,7 +35,7 @@ git-fetch-with-cli = true
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [commit]
-	gpgsign = true
+	gpgsign = false
 [init]
 	defaultBranch = master
 [gpg]

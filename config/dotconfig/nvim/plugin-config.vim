@@ -48,7 +48,30 @@ function PluginOptions()
     nnoremap <F1> :call <SID>show_documentation()<CR>
     nnoremap <Leader>hh :call <SID>show_documentation()<CR>
 
-    let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-yaml', 'coc-pyright', 'coc-tsserver', 'coc-vimlsp', 'coc-rust-analyzer', 'coc-sh']
+    let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-yaml', 'coc-pyright', 'coc-tsserver', 'coc-vimlsp', 'coc-sh', 'coc-snippets']
+
+    inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+    inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+    " Make <CR> to accept selected completion item or notify coc.nvim to format
+    " <C-g>u breaks current undo, please make your own choice.
+    inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                                  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+    function! CheckBackspace() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    " Use <c-space> to trigger completion.
+    if has('nvim')
+      inoremap <silent><expr> <c-enter> coc#refresh()
+    else
+      inoremap <silent><expr> <c-@> coc#refresh()
+    endif
 
     " Lightline related
     set laststatus=2
@@ -56,6 +79,26 @@ function PluginOptions()
     let g:lightline = {
       \ 'colorscheme': 'deus',
       \ }
+
+    "vimwiki
+    let g:vimwiki_folding='custom'
+
+    function! s:goto_tag(tagkind) abort
+        let tagname = expand('<cWORD>')
+        let winnr = winnr()
+        let pos = getcurpos()
+        let pos[0] = bufnr()
+
+        if CocAction('jump' . a:tagkind)
+            call settagstack(winnr, { 
+                        \ 'curidx': gettagstack()['curidx'], 
+                        \ 'items': [{'tagname': tagname, 'from': pos}] 
+                        \ }, 't')
+        endif
+    endfunction
+    nmap gd :call <SID>goto_tag("Definition")<CR>
+    nmap gi :call <SID>goto_tag("Implementation")<CR>
+    nmap gr :call <SID>goto_tag("References")<CR>
 
 
 endfunction

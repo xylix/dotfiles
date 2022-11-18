@@ -1,3 +1,7 @@
+" useful for debugging things that don't visibly log or error
+"set verbosefile=~/.local/log/vim/verbose.log
+" set verbose=1
+
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 call plug#begin('~/.vim/plugged')
@@ -8,9 +12,17 @@ Plug 'unblevable/quick-scope'
 Plug 'ajmwagar/vim-deus'
 Plug 'junegunn/goyo.vim' "Adds Goyo mode, which hides unnecessary visual clutter temporarily
 Plug 'markonm/traces.vim' "Live substitution highlights
+Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
+Plug 'vimwiki/vimwiki'
+Plug 'itchyny/lightline.vim' " Tab and statusline plugin
 
 "IDE-like features
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocUpdateSync' }
+"Good syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'liuchengxu/vim-which-key' "WhichKey keybind helper tool
+
 " Haskell specific plugins
 Plug 'alx741/vim-hindent' "Haskell autoformatting
 Plug 'Twinside/vim-haskellFold' " improved haskell foldinfo
@@ -19,25 +31,22 @@ Plug 'Twinside/vim-haskellFold' " improved haskell foldinfo
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'lervag/vimtex' "Latex support
-Plug 'liuchengxu/vim-which-key' "WhichKey keybind helper tool
-Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
-Plug 'vimwiki/vimwiki'
 
 " In testing currently
-Plug 'itchyny/lightline.vim' " Tab and statusline plugin
 Plug 'AndrewRadev/tagalong.vim' "Change both ends of a pair of html tags when editing tags
-Plug 'zsugabubus/crazy8.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'zsugabubus/crazy8.nvim'
 Plug 'chrisbra/Colorizer' "Hex and css color highlighting
 
 Plug 'tpope/vim-fugitive' " Git plugin
+
+" Plug 'github/copilot.vim' "Github copilot
 let g:vimwiki_key_mappings = { 'all_maps': 0, }
 call plug#end()
 
 "Setup config dir variable and source tab bar number function 
 let g:nvim_config_dir = stdpath('config')
-exec 'source' nvim_config_dir . '/vim-config.vim'
 exec 'source' nvim_config_dir . '/plugin-config.vim'
+exec 'source' nvim_config_dir . '/vim-config.vim'
 exec 'source' nvim_config_dir . '/leader-keybinds.vim'
 exec 'source' nvim_config_dir . '/vimwiki.vim'
 
@@ -60,10 +69,11 @@ endfunction
 
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    
+    ensure_installed = { "python", "bash", "dockerfile", "fish", "json", "json5", "yaml", "make", "toml", "haskell", "vim"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
       enable = true,              -- false will disable the whole extension
-      disable = { "c", "ocaml", "ocamllex", "ql", "cpp", "verilog", "fennel", "nix", "clojure", "php"},  -- list of language that will be disabled
+      -- disable = { "c", "ocaml", "ocamllex", "ql", "cpp", "verilog", "fennel", "nix", "clojure", "php"},  -- list of language that will be disabled
     },
   }
 EOF

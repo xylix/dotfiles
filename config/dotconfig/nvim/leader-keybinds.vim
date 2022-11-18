@@ -47,8 +47,10 @@ function LeaderKeybinds()
     nmap <silent><leader>n <Plug>(coc-diagnostic-next-error)
     " This still doesn't work
     nmap <silent><leader>p <Plug>(coc-diagnostic-previous-error)
-    nmap <silent><leader>ca :CocAction<CR>
+    nmap <silent><leader>ca :call CocActionAsync("codeAction"))<CR>
     nmap <silent><leader>cl :CocList<CR>
     nmap <silent><leader>cc :CocCommand<CR>
+
+    autocmd CursorHold * silent call CocActionAsync('highlight')
 endfunction
 

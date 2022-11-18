@@ -34,3 +34,11 @@ preload
 
 # topgrade, generic software update program https://github.com/r-darwish/topgrade
 topgrade
+
+# python packages
+ipython
+
+# good gifmaking tool https://www.cockos.com/licecap/
+
+# For properly handing .envrc files, with fish
+direnv
