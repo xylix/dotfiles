@@ -191,15 +191,15 @@ exec --no-startup-id picom --vsync
 
 # Set workspaces to displays (display id's are freedom specific)
 # Primary display
-workspace 1 output DP-4
-workspace 2 output DP-4
-workspace 3 output DP-4
-workspace 4 output DP-4
+workspace 1 output HDMI-0
+workspace 2 output HDMI-0
+workspace 3 output HDMI-0
+workspace 4 output HDMI-0
 # Secondary display
-workspace 7 output DP-2
-workspace 8 output DP-2
-workspace 9 output DP-2
-workspace 10 output DP-2
+workspace 7 output DP-4
+workspace 8 output DP-4
+workspace 9 output DP-4
+workspace 10 output DP-4
 
 # Open graphical applications on spesific workspaces
 exec --no-startup-id i3-msg 'workspace 1; exec firefox'
