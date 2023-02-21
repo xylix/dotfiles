@@ -29,7 +29,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec rofi -show 
+bindsym $mod+d exec rofi -show combi
 
 # change focus
 bindsym $mod+j focus left
