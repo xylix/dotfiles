@@ -33,6 +33,7 @@
             "command": "robotframework_ls",
             "filetypes": ["robot"],
             "settings": {
+                "robot.completions.keywords.format": "Title Case"
             }
         },
         "terraform": {
