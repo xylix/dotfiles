@@ -39,6 +39,12 @@ Plug 'chrisbra/Colorizer' "Hex and css color highlighting
 
 Plug 'tpope/vim-fugitive' " Git plugin
 
+" Finnish spellchecking
+" Plug 'git@github.com:xylix/Vimchant.git'
+" set updatetime=1000
+" let g:vimchant_spellcheck_lang = 'fi'
+
+
 " Plug 'github/copilot.vim' "Github copilot
 let g:vimwiki_key_mappings = { 'all_maps': 0, }
 call plug#end()
