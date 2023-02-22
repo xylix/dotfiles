@@ -74,7 +74,9 @@ function! VimConfig()
     autocmd FileType typescript,javascript set tabstop=2 shiftwidth=2 softtabstop=0 expandtab smarttab
     
     autocmd FileType python setlocal foldmethod=indent
-    autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab
+    autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab colorcolumn=88
+
+    autocmd FileType robot set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab colorcolumn=120
     
     "markdown config
     autocmd BufNewFile,BufFilePre,BufRead *.md setlocal filetype=markdown
