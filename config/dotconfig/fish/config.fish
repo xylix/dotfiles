@@ -5,6 +5,7 @@ set -gx HUSKY_USE_YARN
 set -gx EDITOR nvim
 set -gx LESS -r
 set -gx GPG_TTY (tty)
+set -gx HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK 1
 set PATH $HOME/dotfiles/scripts $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
