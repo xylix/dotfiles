@@ -75,6 +75,8 @@ function! VimConfig()
     
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab colorcolumn=88
+    
+    autocmd FileType rst set colorcolumn=88
 
     autocmd FileType robot set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab colorcolumn=120
     
