@@ -3,8 +3,8 @@ function! MarkdownLevel()
     if empty(h)
         return "="
     else
-        return ">" . len(h)     
-    endif 
+        return ">" . len(h)
+    endif
 endfunction
 
 function! FoldText()
@@ -60,38 +60,38 @@ function! VimConfig()
     set undofile
     set undolevels=1000
     set undoreload=10000
-    "Set deus as colorscheme and some related variables to ensure proper background 
+    "Set deus as colorscheme and some related variables to ensure proper background
     set t_Co=256
     set termguicolors
-    
+
     "Configure folds by syntax by default and open files with all folds open
     set foldmethod=syntax
     set fillchars=fold:\
     autocmd BufNewFile,BufFilePre,BufRead * normal zR
-    
+
     autocmd BufNewFile,BufFilePre,BufRead *.ts setlocal filetype=typescript
     autocmd BufNewFile,BufFilePre,BufRead *.js  setlocal filetype=javascript
     autocmd FileType typescript,javascript set tabstop=2 shiftwidth=2 softtabstop=0 expandtab smarttab
-    
+
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab colorcolumn=88
-    
+
     autocmd FileType rst set colorcolumn=88
 
     autocmd FileType robot set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab colorcolumn=120
-    
+
     "markdown config
     autocmd BufNewFile,BufFilePre,BufRead *.md setlocal filetype=markdown
     autocmd FileType markdown setlocal nonumber
     " autocmd FileType tex setlocal nonumber
-    
+
     " Vimwiki folds need to be configured after the plugin is initialized and
     " the folding overwritten
     autocmd FileType markdown,vimwiki setlocal
         \ foldmethod=expr
         \ foldtext=FoldText()
         \ foldexpr=MarkdownLevel()
-    
+
     autocmd BufNewFile,BufRead *.robot setlocal filetype=robot
     autocmd FileType robot exec 'source' g:nvim_config_dir . '/syntax/robot.vim'
 
@@ -115,4 +115,7 @@ function! VimConfig()
 	    autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
         augroup END
     endif
+
+    " strip trailing whitespace
+    autocmd BufWritePre * :%s/\s\+$//e
 endfunction
