@@ -49,7 +49,7 @@ Plug 'tpope/vim-fugitive' " Git plugin
 let g:vimwiki_key_mappings = { 'all_maps': 0, }
 call plug#end()
 
-"Setup config dir variable and source tab bar number function 
+"Setup config dir variable and source tab bar number function
 let g:nvim_config_dir = stdpath('config')
 exec 'source' nvim_config_dir . '/plugin-config.vim'
 exec 'source' nvim_config_dir . '/vim-config.vim'
@@ -75,11 +75,11 @@ endfunction
 
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
-    
+
     ensure_installed = { "python", "bash", "dockerfile", "fish", "json", "json5", "yaml", "make", "toml", "haskell", "vim"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
       enable = true,              -- false will disable the whole extension
-      -- disable = { "c", "ocaml", "ocamllex", "ql", "cpp", "verilog", "fennel", "nix", "clojure", "php"},  -- list of language that will be disabled
+      disable = {"latex"},  -- list of language that will be disabled
     },
   }
 EOF

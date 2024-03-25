@@ -99,6 +99,7 @@ function! VimConfig()
     autocmd FileType haskell set conceallevel=2 concealcursor=nv
     autocmd FileType haskell syn match haskellCompose '\.' conceal cchar=∘
 
+    autocmd FileType latex,tex set conceallevel=2 concealcursor=nv
 
     autocmd BufNewFile,BufFilePre,BufRead *.hbs setlocal filetype=handlebars
     autocmd FileType handlebars set syntax=html
