@@ -8,8 +8,8 @@ let &packpath = &runtimepath
 " vimwiki configs need to be set before it is loaded
 let g:vimwiki_key_mappings = { 'all_maps': 0, }
 let g:vimwiki_global_ext = 0
-let g:vimwiki_ext2syntax = {}
-let g:vimwiki_list = [{'path': '~/logseq-database/', 'path_html': '~/logseq-database/build'}]
+" let g:vimwiki_ext2syntax = {}
+let g:vimwiki_list = [{'path': '~/logseq-database/', 'path_html': '~/logseq-database/build', 'syntax': 'markdown', 'ext': 'md'}]
 
 call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim' "Swiss knife for opening & finding files
@@ -37,7 +37,7 @@ Plug 'Twinside/vim-haskellFold' " improved haskell foldinfo
 "Pandoc syntax support (an usable pandoc-flavoured latex supporting markdown etc. compiler)
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'lervag/vimtex' "Latex support
+" Plug 'lervag/vimtex' "Latex support
 
 " In testing currently
 Plug 'AndrewRadev/tagalong.vim' "Change both ends of a pair of html tags when editing tags
@@ -51,9 +51,7 @@ Plug 'tpope/vim-fugitive' " Git plugin
 " set updatetime=1000
 " let g:vimchant_spellcheck_lang = 'fi'
 
-
 " Plug 'github/copilot.vim' "Github copilot
-let g:vimwiki_key_mappings = { 'all_maps': 0, }
 call plug#end()
 
 "Setup config dir variable and source tab bar number function
