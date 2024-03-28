@@ -4,8 +4,14 @@
 
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
-call plug#begin('~/.vim/plugged')
 
+" vimwiki configs need to be set before it is loaded
+let g:vimwiki_key_mappings = { 'all_maps': 0, }
+let g:vimwiki_global_ext = 0
+let g:vimwiki_ext2syntax = {}
+let g:vimwiki_list = [{'path': '~/logseq-database/', 'path_html': '~/logseq-database/build'}]
+
+call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim' "Swiss knife for opening & finding files
 Plug 'rhysd/conflict-marker.vim' " Conflict detection and custom highlighting, TODO: can this be replcaed with coc-git?
 Plug 'unblevable/quick-scope'
@@ -13,6 +19,7 @@ Plug 'ajmwagar/vim-deus'
 Plug 'junegunn/goyo.vim' "Adds Goyo mode, which hides unnecessary visual clutter temporarily
 Plug 'markonm/traces.vim' "Live substitution highlights
 Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
+
 Plug 'vimwiki/vimwiki'
 Plug 'itchyny/lightline.vim' " Tab and statusline plugin
 
@@ -72,7 +79,9 @@ endfunction
 "	let a:namespace . l:i:0 = l:i:1<space>
 "    endfor
 "endfunction
-
+" Let neovim know we don't want to check or load ruby and perl integrations
+let g:loaded_ruby_provider = 0
+let g:loaded_perl_provider = 0
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
 
