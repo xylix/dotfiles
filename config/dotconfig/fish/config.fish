@@ -12,7 +12,7 @@ set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/neovim/bin $PATH
 set PATH $HOME/go/bin $PATH
 # Set a socket for neovim-remote usage
-set -gx NVIM_LISTEN_ADDRESS /tmp/nvimsocket 
+set -gx NVIM_LISTEN_ADDRESS /tmp/nvimsocket
 
 # Override fish intro greeting
 set fish_greeting
@@ -65,3 +65,5 @@ end
 function ncdu
     echo "just use gdu"
 end
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/xylix/.ghcup/bin # ghcup-env
