@@ -46,6 +46,8 @@ Plug 'chrisbra/Colorizer' "Hex and css color highlighting
 
 Plug 'tpope/vim-fugitive' " Git plugin
 
+" Plug 'derekelkins/agda-vim'
+
 " Finnish spellchecking
 " Plug 'git@github.com:xylix/Vimchant.git'
 " set updatetime=1000
@@ -60,6 +62,7 @@ exec 'source' nvim_config_dir . '/plugin-config.vim'
 exec 'source' nvim_config_dir . '/vim-config.vim'
 exec 'source' nvim_config_dir . '/leader-keybinds.vim'
 exec 'source' nvim_config_dir . '/vimwiki.vim'
+" exec 'source' nvim_config_dir . '/agda-config.vim'
 
 function s:neo_vim_terminal_config()
     "terminal in new tab
@@ -95,3 +98,4 @@ call VimConfig()
 call LeaderKeybinds()
 call <SID>neo_vim_terminal_config()
 call PluginOptions()
+call AgdaOptions()
