@@ -1,7 +1,7 @@
 function PluginOptions()
     colorscheme deus
     let g:deus_termcolors=256
-    
+
     " Disable conflict market feature that requires matchit.vim
     let g:conflict_marker_enable_matchit = 0
     " Replace conflict marker plugin default coloring settings with own
@@ -11,8 +11,8 @@ function PluginOptions()
     let g:conflict_marker_end   = '^>>>>>>> .*$'
     " Set highlight colors
     highlight ConflictMarkerBegin guibg=#2f7366
-    highlight ConflictMarkerOurs guibg=#2e5049 
-    highlight ConflictMarkerTheirs guibg=#344f69 
+    highlight ConflictMarkerOurs guibg=#2e5049
+    highlight ConflictMarkerTheirs guibg=#344f69
     highlight ConflictMarkerEnd guibg=#2f628e
     "Keep none: cn or :ConflictMarkerNone
     "Keep ours: co or :ConflictMarkerOurselves
@@ -26,8 +26,10 @@ function PluginOptions()
     " let g:colorizer_auto_color = 1
     " autocmd BufNewFile,BufRead * :ColorHighlight
     " Latex configuration
-    let g:tex_flavor='latex'
-    let g:vimtex_view_method='zathura'
+    let g:tex_flavor='latex' " Default tex file format
+    let g:vimtex_view_method = 'skim' " Choose which program to use to view PDF file
+    let g:vimtex_view_skim_sync = 1 " Value 1 allows forward search after every successful compilation
+    let g:vimtex_view_skim_activate = 1 " Value 1 allows change focus to skim after command `:VimtexView` is given
     let g:vimtex_quickfix_mode=0
     let g:tex_conceal='abdmg'
     "Pandoc config
@@ -36,7 +38,7 @@ function PluginOptions()
 
     let g:goyo_width=140
     let g:goyo_height=100
-    
+
     function s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
 	    execute 'tab help '.expand('<cword>')
@@ -48,7 +50,7 @@ function PluginOptions()
     nnoremap <F1> :call <SID>show_documentation()<CR>
     nnoremap <Leader>hh :call <SID>show_documentation()<CR>
 
-    let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-yaml', 'coc-pyright', 'coc-tsserver', 'coc-vimlsp', 'coc-sh', 'coc-snippets']
+    let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-yaml', 'coc-pyright', 'coc-tsserver', 'coc-vimlsp', 'coc-sh', 'coc-snippets'] "todo: add coc r lsp and coc-texlab if they good
 
     " inoremap <silent><expr> <TAB>
     "  \ coc#pum#visible() ? coc#pum#next(1) :
@@ -90,15 +92,14 @@ function PluginOptions()
         let pos[0] = bufnr()
 
         if CocAction('jump' . a:tagkind)
-            call settagstack(winnr, { 
-                        \ 'curidx': gettagstack()['curidx'], 
-                        \ 'items': [{'tagname': tagname, 'from': pos}] 
+            call settagstack(winnr, {
+                        \ 'curidx': gettagstack()['curidx'],
+                        \ 'items': [{'tagname': tagname, 'from': pos}]
                         \ }, 't')
         endif
     endfunction
     nmap gd :call <SID>goto_tag("Definition")<CR>
     nmap gi :call <SID>goto_tag("Implementation")<CR>
     nmap gr :call <SID>goto_tag("References")<CR>
-
 
 endfunction

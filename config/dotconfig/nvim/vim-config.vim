@@ -70,7 +70,9 @@ function! VimConfig()
     autocmd BufNewFile,BufFilePre,BufRead * normal zR
 
     autocmd BufNewFile,BufFilePre,BufRead *.ts setlocal filetype=typescript
+    autocmd BufNewFile,BufFilePre,BufRead *.tsx setlocal filetype=typescript
     autocmd BufNewFile,BufFilePre,BufRead *.js  setlocal filetype=javascript
+    autocmd BufNewFile,BufFilePre,BufRead *.jsx  setlocal filetype=javascript
     autocmd FileType typescript,javascript set tabstop=2 shiftwidth=2 softtabstop=0 expandtab smarttab
 
     autocmd FileType python setlocal foldmethod=indent

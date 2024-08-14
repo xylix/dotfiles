@@ -1,9 +1,11 @@
-function LeaderKeybinds() 
+function LeaderKeybinds()
     let g:mapleader = " "
+    " let g:maplocalleader = " " this would do things weirdly
+
     "C-S and leader-s to save
     noremap <silent><C-S> :update<CR>
     noremap <silent><leader> :WhichKey '<Space>'<CR>
-   
+
     " Save File if changes
     noremap <silent><leader>s :update<CR>
     " Save Session to cwd with default filename (Session.vim)
@@ -19,14 +21,14 @@ function LeaderKeybinds()
     noremap <leader>j :jumps<CR>
     noremap <leader>ei :edit $MYVIMRC<CR>
     "Highlights off
-    noremap <silent> <leader>ho :noh<CR> 
+    noremap <silent> <leader>ho :noh<CR>
     noremap <leader>rg :%s///g<left><left>
 
     noremap <leader>th :tab help<space>
     noremap <silent><leader>tn :tabnew<CR>
     noremap <silent><leader>tx :tabclose<CR>
     noremap <silent><leader>tm :tabmove<space>
-    
+
     "Window close, split horizontal and split vertical
     noremap <silent><leader>wx <C-W>c
     noremap <silent><leader>wh <C-W>s
