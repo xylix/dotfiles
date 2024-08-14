@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Fullstack_mooc",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
