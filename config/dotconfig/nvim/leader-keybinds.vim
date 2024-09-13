@@ -53,6 +53,10 @@ function LeaderKeybinds()
     nmap <silent><leader>cl :CocList<CR>
     nmap <silent><leader>cc :CocCommand<CR>
 
+    "Aerial (outline tool)
+    noremap <leader>a :AerialToggle<CR>
+
+
     autocmd CursorHold * silent call CocActionAsync('highlight')
 endfunction
 

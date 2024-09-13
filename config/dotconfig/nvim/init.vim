@@ -46,6 +46,7 @@ Plug 'chrisbra/Colorizer' "Hex and css color highlighting
 
 Plug 'tpope/vim-fugitive' " Git plugin
 
+Plug 'stevearc/aerial.nvim' "another outline view
 " Plug 'derekelkins/agda-vim'
 
 " Finnish spellchecking
@@ -63,6 +64,7 @@ exec 'source' nvim_config_dir . '/vim-config.vim'
 exec 'source' nvim_config_dir . '/leader-keybinds.vim'
 exec 'source' nvim_config_dir . '/vimwiki.vim'
 " exec 'source' nvim_config_dir . '/agda-config.vim'
+" call AgdaOptions()
 
 function s:neo_vim_terminal_config()
     "terminal in new tab
@@ -84,6 +86,15 @@ endfunction
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
 lua <<EOF
+  require("aerial").setup({
+  -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+  on_attach = function(bufnr)
+    -- Jump forwards/backwards with '{' and '}'
+    vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+    vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+    end,
+  })
+  -- treesitter setup
   require'nvim-treesitter.configs'.setup {
 
     ensure_installed = { "python", "bash", "dockerfile", "fish", "json", "json5", "yaml", "make", "toml", "haskell", "vim"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -98,4 +109,3 @@ call VimConfig()
 call LeaderKeybinds()
 call <SID>neo_vim_terminal_config()
 call PluginOptions()
-call AgdaOptions()
