@@ -1,0 +1,19 @@
+meta {
+  name: get blog posts
+  type: http
+  seq: 11
+}
+
+get {
+  url: http://localhost:3003/api/blogs/66d06380e650cf0da9189021
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjY2ZDA2MzgxYTZlZTAyNDZmOTU1NjNlYSIsImlhdCI6MTcyNDkzMzA0NCwiZXhwIjoxNzI0OTM2NjQ0fQ.Ys2KulNZfiktCkWVsHbkve8cNyX0EuMeDrcnNLKZN_A
+}
+
+body:json {
+  {}
+}

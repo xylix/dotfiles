@@ -1,0 +1,19 @@
+meta {
+  name: delete blog post
+  type: http
+  seq: 10
+}
+
+delete {
+  url: http://localhost:3003/api/blogs/66d04edb076333820cc35637
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjY2ZDA0NTU2YjdjZWMyOGQxMWQ4NTM5YiIsImlhdCI6MTcyNDkyNjgwMCwiZXhwIjoxNzI0OTMwNDAwfQ.N5cKhILajDl2K8loS3Bx9kCDFjky1ZCFjfhHjR-z8oc
+}
+
+body:json {
+  {}
+}

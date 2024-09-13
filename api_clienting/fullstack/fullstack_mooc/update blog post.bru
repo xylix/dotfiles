@@ -1,0 +1,15 @@
+meta {
+  name: update blog post
+  type: http
+  seq: 7
+}
+
+put {
+  url: http://localhost:3003/api/blogs/66d06380e650cf0da9189021
+  body: json
+  auth: none
+}
+
+body:json {
+  {"title": "Apsin ABC blogi", "author": "Apsi Apina", "url": "google.com", "likes": 1}
+}

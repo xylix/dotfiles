@@ -1,0 +1,15 @@
+meta {
+  name: create user
+  type: http
+  seq: 9
+}
+
+post {
+  url: http://localhost:3003/api/users
+  body: json
+  auth: none
+}
+
+body:json {
+  {"username": "apsi", "password": "apsin_salainen_sana"}
+}

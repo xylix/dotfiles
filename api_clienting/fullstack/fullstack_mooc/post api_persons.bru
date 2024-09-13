@@ -1,0 +1,20 @@
+meta {
+  name: post api_persons
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:3001/api/persons/
+  body: json
+  auth: none
+}
+
+params:query {
+  ~name: Apsi Apina
+  ~number: abc-abc-abc
+}
+
+body:json {
+  {"name": "apsi", "number": "11111"}
+}
