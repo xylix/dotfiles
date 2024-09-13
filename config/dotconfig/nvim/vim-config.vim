@@ -89,10 +89,10 @@ function! VimConfig()
 
     " Vimwiki folds need to be configured after the plugin is initialized and
     " the folding overwritten
-    autocmd FileType markdown,vimwiki setlocal
-        \ foldmethod=expr
-        \ foldtext=FoldText()
-        \ foldexpr=MarkdownLevel()
+    "autocmd FileType markdown,vimwiki setlocal
+    "    \ foldmethod=expr
+    "    \ foldtext=FoldText()
+    "    \ foldexpr=MarkdownLevel()
 
     autocmd BufNewFile,BufRead *.robot setlocal filetype=robot
     autocmd FileType robot exec 'source' g:nvim_config_dir . '/syntax/robot.vim'

@@ -6,10 +6,10 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 
 " vimwiki configs need to be set before it is loaded
-let g:vimwiki_key_mappings = { 'all_maps': 0, }
-let g:vimwiki_global_ext = 0
+" let g:vimwiki_key_mappings = { 'all_maps': 0, }
+" let g:vimwiki_global_ext = 0
 " let g:vimwiki_ext2syntax = {}
-let g:vimwiki_list = [{'path': '~/logseq-database/', 'path_html': '~/logseq-database/build', 'syntax': 'markdown', 'ext': 'md'}]
+" let g:vimwiki_list = [{'path': '~/logseq-database/', 'path_html': '~/logseq-database/build', 'syntax': 'markdown', 'ext': 'md'}]
 
 call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim' "Swiss knife for opening & finding files
@@ -20,7 +20,7 @@ Plug 'junegunn/goyo.vim' "Adds Goyo mode, which hides unnecessary visual clutter
 Plug 'markonm/traces.vim' "Live substitution highlights
 Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
 
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 Plug 'itchyny/lightline.vim' " Tab and statusline plugin
 
 "IDE-like features

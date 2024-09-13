@@ -83,7 +83,7 @@ function PluginOptions()
       \ }
 
     "vimwiki
-    let g:vimwiki_folding='custom'
+    " let g:vimwiki_folding='custom'
 
     function! s:goto_tag(tagkind) abort
         let tagname = expand('<cWORD>')
