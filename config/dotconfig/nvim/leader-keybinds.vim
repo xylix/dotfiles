@@ -55,7 +55,11 @@ function LeaderKeybinds()
 
     "Aerial (outline tool)
     noremap <leader>a :AerialToggle<CR>
-
+    " FIXME: fix this on linux, gdate only works on mac
+    " inserts ISO timestamp
+    nmap <leader>di :r!gdate -Im<CR>
+    " inserts human readable time
+    nmap <leader>dh i<C-R>=strftime("%d.%m.%Y %I:%M")<CR><Esc>
 
     autocmd CursorHold * silent call CocActionAsync('highlight')
 endfunction
