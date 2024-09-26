@@ -55,9 +55,8 @@ function LeaderKeybinds()
 
     "Aerial (outline tool)
     noremap <leader>a :AerialToggle<CR>
-    " FIXME: fix this on linux, gdate only works on mac
     " inserts ISO timestamp
-    nmap <leader>di :r!gdate -Im<CR>
+    nmap <leader>di i<C-R>=strftime("%FT%T%z")<CR><Esc>
     " inserts human readable time
     nmap <leader>dh i<C-R>=strftime("%d.%m.%Y %I:%M")<CR><Esc>
 
