@@ -42,7 +42,9 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 " In testing currently
 Plug 'AndrewRadev/tagalong.vim' "Change both ends of a pair of html tags when editing tags
 " Plug 'zsugabubus/crazy8.nvim'
-Plug 'chrisbra/Colorizer' "Hex and css color highlighting
+Plug 'norcalli/nvim-colorizer.lua'  "Hex and css color highlighting
+set termguicolors "colorizer needs this
+
 
 Plug 'tpope/vim-fugitive' " Git plugin
 
@@ -144,6 +146,7 @@ lua <<EOF
     tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
     hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
   })
+  require'colorizer'.setup()
 EOF
 
 call VimConfig()
