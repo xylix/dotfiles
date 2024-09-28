@@ -1,4 +1,8 @@
+// vim: ft=jsonc
 {
+    /* */
+    "coc.source.around.enable": false,
+    "coc.source.buffer.enable": false,
     "codeLens.enable": true,
     "workspace.workspaceFolderCheckCwd": true,
     "workspace.bottomUpFiletypes": [],
