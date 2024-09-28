@@ -121,4 +121,6 @@ function! VimConfig()
 
     " strip trailing whitespace
     autocmd BufWritePre * :%s/\s\+$//e
+
+    autocmd FileType help wincmd T "open help pages in new tabs
 endfunction
