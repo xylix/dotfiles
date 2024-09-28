@@ -17,7 +17,6 @@ Plug 'rhysd/conflict-marker.vim' " Conflict detection and custom highlighting, T
 Plug 'unblevable/quick-scope'
 Plug 'ajmwagar/vim-deus'
 Plug 'junegunn/goyo.vim' "Adds Goyo mode, which hides unnecessary visual clutter temporarily
-Plug 'markonm/traces.vim' "Live substitution highlights
 Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
 
 " Plug 'vimwiki/vimwiki'
