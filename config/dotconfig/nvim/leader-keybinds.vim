@@ -5,6 +5,8 @@ function LeaderKeybinds()
     "C-S and leader-s to save
     noremap <silent><C-S> :update<CR>
     noremap <silent><leader> :WhichKey '<Space>'<CR>
+    " noremap <silent> g :WhichKey 'g'<CR> "this doesn't work, apparently
+    " whichkey doesn't work with build-in keybinds?
 
     " Save File if changes
     noremap <silent><leader>s :update<CR>
@@ -61,5 +63,7 @@ function LeaderKeybinds()
     nmap <leader>dh i<C-R>=strftime("%d.%m.%Y %I:%M")<CR><Esc>
 
     autocmd CursorHold * silent call CocActionAsync('highlight')
+    "Show git blame
+    nmap <leader>gb :CocCommand git.showBlameDoc<CR>
 endfunction
 
