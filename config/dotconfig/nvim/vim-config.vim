@@ -50,7 +50,6 @@ function! VimConfig()
     set mouse=a
     set linebreak number title
     set backspace=2 " make backspace work like most other programs
-    set clipboard=unnamedplus
     "Consider _ a word delimiter
     set iskeyword+=_
 
@@ -112,12 +111,17 @@ function! VimConfig()
     map q: <Nop>
     nnoremap Q <nop>
 
+    " Do not paste from system clipboard on windows (can result in encoding
+    " problems)
     if system('uname -r') =~ "microsoft"
 	augroup Yank
 	    autocmd!
 	    autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
         augroup END
+    else
+        set clipboard=unnamedplus
     endif
+
 
     " strip trailing whitespace
     autocmd BufWritePre * :%s/\s\+$//e
