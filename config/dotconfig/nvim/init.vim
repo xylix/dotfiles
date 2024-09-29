@@ -50,7 +50,9 @@ Plug 'tpope/vim-fugitive' " Git plugin
 Plug 'stevearc/aerial.nvim' "another outline view
 " Plug 'derekelkins/agda-vim'
 
-Plug '3rd/image.nvim' "inline images
+if $KITTY_WINDOW_ID != ""
+    Plug '3rd/image.nvim' "inline images
+endif
 
 " Finnish spellchecking
 " Plug 'git@github.com:xylix/Vimchant.git'
@@ -89,9 +91,6 @@ endfunction
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
 lua <<EOF
-  -- configure system luarocks that image.nvim uses
-  package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
-  package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
 
   require("aerial").setup({
   -- optionally use on_attach to set keymaps when aerial has attached to a buffer
@@ -110,7 +109,11 @@ lua <<EOF
       disable = {"latex"},  -- list of language that will be disabled
     },
   }
-
+  require'colorizer'.setup()
+  if os.getenv("KITTY_WINDOW_ID") then
+  -- configure system luarocks that image.nvim uses
+  package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
+  package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
   require("image").setup({
     backend = "kitty",
     integrations = {
@@ -145,7 +148,7 @@ lua <<EOF
     tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
     hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
   })
-  require'colorizer'.setup()
+  end
 EOF
 
 call VimConfig()
