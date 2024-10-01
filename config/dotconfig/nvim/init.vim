@@ -62,7 +62,6 @@ call plug#end()
 "Setup config dir variable and source tab bar number function
 let g:nvim_config_dir = stdpath('config')
 exec 'source' nvim_config_dir . '/helpers.vim'
-exec 'source' nvim_config_dir . '/leader-keybinds.vim'
 " configure vimwiki keybinds
 let g:mapleader = " "
 
@@ -83,6 +82,7 @@ function s:neo_vim_terminal_config()
     "Disable line numbers in terminal mode
     autocmd TermOpen * setlocal listchars= nonumber norelativenumber
 endfunction
+call <SID>neo_vim_terminal_config()
 
 " @arg namespace: namespace where to set settings
 " @arg ...: tuples containing a key and a value to be set within the namespace
@@ -155,7 +155,7 @@ lua <<EOF
   end
 EOF
 
-function! VimConfig()
+" VimConfig()
     set pyxversion=3
     set tabstop=4 shiftwidth=4 softtabstop=1 expandtab smarttab
 
@@ -249,9 +249,8 @@ function! VimConfig()
     autocmd BufWritePre * :%s/\s\+$//e
 
     autocmd FileType help wincmd T "open help pages in new tabs
-endfunction
-call VimConfig()
-function LeaderKeybinds()
+
+" LeaderKeybinds()
     let g:mapleader = " "
     " let g:maplocalleader = " " this would do things weirdly
 
@@ -318,11 +317,8 @@ function LeaderKeybinds()
     autocmd CursorHold * silent call CocActionAsync('highlight')
     "Show git blame
     nmap <leader>gb :CocCommand git.showBlameDoc<CR>
-endfunction
-call LeaderKeybinds()
 
-call <SID>neo_vim_terminal_config()
-function PluginOptions()
+" PluginOptions()
     colorscheme deus
     let g:deus_termcolors=256
 
@@ -425,5 +421,3 @@ function PluginOptions()
     nmap gd :call <SID>goto_tag("Definition")<CR>
     nmap gi :call <SID>goto_tag("Implementation")<CR>
     nmap gr :call <SID>goto_tag("References")<CR>
-endfunction
-call PluginOptions()
