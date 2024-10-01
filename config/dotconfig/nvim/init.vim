@@ -64,8 +64,8 @@ call plug#end()
 
 "Setup config dir variable and source tab bar number function
 let g:nvim_config_dir = stdpath('config')
+exec 'source' nvim_config_dir . '/helpers.vim'
 exec 'source' nvim_config_dir . '/plugin-config.vim'
-exec 'source' nvim_config_dir . '/vim-config.vim'
 exec 'source' nvim_config_dir . '/leader-keybinds.vim'
 exec 'source' nvim_config_dir . '/vimwiki.vim'
 " exec 'source' nvim_config_dir . '/agda-config.vim'
@@ -151,6 +151,101 @@ lua <<EOF
   end
 EOF
 
+function! VimConfig()
+    set pyxversion=3
+    set tabstop=4 shiftwidth=4 softtabstop=1 expandtab smarttab
+
+    set foldtext=FoldText()
+
+    if has("autocmd")
+	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+		    \| exe "normal! g'\"" | endif
+    endif
+    lang en_US.UTF-8
+
+    set autoread
+    set encoding=utf-8
+    set mouse=a
+    set linebreak number title
+    set backspace=2 " make backspace work like most other programs
+    "Consider _ a word delimiter
+    set iskeyword+=_
+
+    "Hide buffer something
+    set hidden
+    "Store an undo buffer in a file in $HOME/.vimundo
+    set undofile
+    set undolevels=1000
+    set undoreload=10000
+    "Set deus as colorscheme and some related variables to ensure proper background
+    set t_Co=256
+    set termguicolors
+
+    "Configure folds by syntax by default and open files with all folds open
+    set foldmethod=syntax
+    set fillchars=fold:\
+    autocmd BufNewFile,BufFilePre,BufRead * normal zR
+
+    autocmd BufNewFile,BufFilePre,BufRead *.ts setlocal filetype=typescript
+    autocmd BufNewFile,BufFilePre,BufRead *.tsx setlocal filetype=typescript
+    autocmd BufNewFile,BufFilePre,BufRead *.js  setlocal filetype=javascript
+    autocmd BufNewFile,BufFilePre,BufRead *.jsx  setlocal filetype=javascript
+    autocmd FileType typescript,javascript set tabstop=2 shiftwidth=2 softtabstop=0 expandtab smarttab
+
+    autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab colorcolumn=88
+
+    autocmd FileType rst set colorcolumn=88
+
+    autocmd FileType robot set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab colorcolumn=120
+
+    "markdown config
+    autocmd BufNewFile,BufFilePre,BufRead *.md setlocal filetype=markdown
+    autocmd FileType markdown setlocal nonumber
+    " autocmd FileType tex setlocal nonumber
+
+    " Vimwiki folds need to be configured after the plugin is initialized and
+    " the folding overwritten
+    "autocmd FileType markdown,vimwiki setlocal
+    "    \ foldmethod=expr
+    "    \ foldtext=FoldText()
+    "    \ foldexpr=MarkdownLevel()
+
+    autocmd BufNewFile,BufRead *.robot setlocal filetype=robot
+    autocmd FileType robot exec 'source' g:nvim_config_dir . '/syntax/robot.vim'
+
+    autocmd FileType haskell syn match haskellLambda '\\' conceal cchar=λ
+    autocmd FileType haskell set conceallevel=2 concealcursor=nv
+    autocmd FileType haskell syn match haskellCompose '\.' conceal cchar=∘
+
+    autocmd FileType latex,tex set conceallevel=2 concealcursor=nv
+
+    autocmd BufNewFile,BufFilePre,BufRead *.hbs setlocal filetype=handlebars
+    autocmd FileType handlebars set syntax=html
+
+    set listchars=eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<
+
+    " Disable ex mode hotkey and command history search hotkey
+    map q: <Nop>
+    nnoremap Q <nop>
+
+    " Do not paste from system clipboard on windows (can result in encoding
+    " problems)
+    if system('uname -r') =~ "microsoft"
+	augroup Yank
+	    autocmd!
+	    autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+        augroup END
+    else
+        set clipboard=unnamedplus
+    endif
+
+
+    " strip trailing whitespace
+    autocmd BufWritePre * :%s/\s\+$//e
+
+    autocmd FileType help wincmd T "open help pages in new tabs
+endfunction
 call VimConfig()
 call LeaderKeybinds()
 call <SID>neo_vim_terminal_config()
