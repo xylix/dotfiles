@@ -66,7 +66,15 @@ call plug#end()
 let g:nvim_config_dir = stdpath('config')
 exec 'source' nvim_config_dir . '/helpers.vim'
 exec 'source' nvim_config_dir . '/leader-keybinds.vim'
-exec 'source' nvim_config_dir . '/vimwiki.vim'
+" configure vimwiki keybinds
+let g:mapleader = " "
+
+noremap <leader>vdn :VimwikiDiaryNextDay<CR>
+noremap <leader>vdp :VimwikiDiaryPreviousDay<CR>
+noremap <leader>vb :VimwikiBacklinks<CR>
+noremap <CR> :VimwikiFollowLink<CR>
+noremap <BS> :VimwikiGoBackLink<CR>
+
 " exec 'source' nvim_config_dir . '/agda-config.vim'
 " call AgdaOptions()
 
