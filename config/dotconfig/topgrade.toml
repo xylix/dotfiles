@@ -3,7 +3,8 @@
 #assume_yes = true
 
 # Disable specific steps - same options as the command line flag
-disable = []
+# handled by system (brew or apt)
+disable = ["tlmgr"]
 
 # Ignore failures for these steps
 #ignore_failures = ["powershell"]
