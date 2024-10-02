@@ -253,24 +253,19 @@ EOF
 " LeaderKeybinds()
     let g:mapleader = " "
     " let g:maplocalleader = " " this would do things weirdly
-
-    "C-S and leader-s to save
-    noremap <silent><C-S> :update<CR>
     noremap <silent><leader> :WhichKey '<Space>'<CR>
-    " noremap <silent> g :WhichKey 'g'<CR> "this doesn't work, apparently
-    " whichkey doesn't work with build-in keybinds?
-
-    " Save File if changes
-    noremap <silent><leader>s :update<CR>
-    " Save Session to cwd with default filename (Session.vim)
-    " noremap <leader>ss :mks!<CR>
-
+    " noremap <silent> g :WhichKey 'g'<CR> "TODO: this doesn't work, apparently whichkey doesn't work with build-in keybinds?
+    "save file if changes
+    noremap <leader>s :update<CR>
+    "quit but not if there are unsaved changes
     noremap <silent><leader>qq :quit<CR>
     " Write and quit all windows
     noremap <leader>qw :xall<CR>
+    " Quit all windows without saving
     noremap <leader>qa :quitall<CR>
     " Quit without write and update session file
-    noremap <leader>qs :mks!<CR>:quitall<CR>
+    " Save Session to cwd with default filename (Session.vim)
+    noremap <leader>qs :mksession!<CR>:quitall<CR>
 
     noremap <leader>j :jumps<CR>
     noremap <leader>ei :edit $MYVIMRC<CR>
