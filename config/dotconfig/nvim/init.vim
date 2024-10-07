@@ -161,9 +161,9 @@ EOF
 
     set foldtext=FoldText()
 
+    " Start editing previously edited files where you left off
     if has("autocmd")
-	autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-		    \| exe "normal! g'\"" | endif
+	    autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     endif
     lang en_US.UTF-8
 
