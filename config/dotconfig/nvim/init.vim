@@ -56,9 +56,11 @@ endif
 " set updatetime=1000
 " let g:vimchant_spellcheck_lang = 'fi'
 
-" Plug 'github/copilot.vim' "Github copilot
+Plug 'github/copilot.vim' "Github copilot
+" https://github.com/zbirenbaum/copilot.lua has more features but more effort to setup
 call plug#end()
 
+let g:copilot_enabled = 0 " disable copilot by default
 "Setup config dir variable and source tab bar number function
 let g:nvim_config_dir = stdpath('config')
 exec 'source' nvim_config_dir . '/helpers.vim'
