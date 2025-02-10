@@ -19,7 +19,10 @@ set fish_greeting
 
 # arm homebrew config
 set PATH /opt/homebrew/bin $PATH
-alias ibrew 'arch -x86_64 /usr/local/bin/brew'
+# intel brew alias on macos with both installed, no longer necessary
+# alias ibrew 'arch -x86_64 /usr/local/bin/brew'
+
+alias python python3
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -63,7 +66,7 @@ function o-docpandify
 end
 
 function ncdu
-    echo "just use gdu"
+    echo "use dua"
 end
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/xylix/.ghcup/bin # ghcup-env
