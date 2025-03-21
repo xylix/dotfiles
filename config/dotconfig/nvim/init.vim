@@ -247,8 +247,11 @@ EOF
     endif
 
 
-    " strip trailing whitespace
-    autocmd BufWritePre * :%s/\s\+$//e
+    " strip trailing whitespace on write
+    " This leads to accidental changes when working with projects that have
+    " trailing whitespace in existing files. Would be more useful as a
+    " per-project setting. Disabled this for now.
+    " autocmd BufWritePre * :%s/\s\+$//e
 
     autocmd FileType help wincmd T "open help pages in new tabs
 
