@@ -5,7 +5,8 @@ ctrl - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -
 # ctrl-e annoyingly collides with the readline shortcut
 # ctrl - e : yabai -m space --layout float
 ctrl - s : yabai -m space --layout stack
-ctrl - b : yabai -m space --layout bsp
+# Would have used ctrl-b but collides with tmux prefix
+ctrl - g : yabai -m space --layout bsp
 
 # switch between windows
 ctrl - down : yabai -m window --focus stack.next || yabai -m window --focus south

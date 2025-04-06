@@ -4,11 +4,11 @@ yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
 # global settings
+    # external_bar                 all:4
 
 yabai -m config                                 \
-    # external_bar                 all:4
     menubar_opacity              1.0            \
-    mouse_follows_focus          off            \
+    mouse_follows_focus          on             \
     focus_follows_mouse          autoraise      \
     display_arrangement_order    default        \
     window_origin_display        default        \
