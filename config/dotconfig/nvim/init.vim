@@ -11,56 +11,8 @@ let &packpath = &runtimepath
 " let g:vimwiki_ext2syntax = {}
 " let g:vimwiki_list = [{'path': '~/logseq-database/', 'path_html': '~/logseq-database/build', 'syntax': 'markdown', 'ext': 'md'}]
 
-call plug#begin('~/.vim/plugged')
-Plug 'ctrlpvim/ctrlp.vim' "Swiss knife for opening & finding files
-Plug 'rhysd/conflict-marker.vim' " Conflict detection and custom highlighting, TODO: can this be replcaed with coc-git?
-Plug 'unblevable/quick-scope'
-Plug 'ajmwagar/vim-deus'
-Plug 'junegunn/goyo.vim' "Adds Goyo mode, which hides unnecessary visual clutter temporarily
-Plug 'rhysd/git-messenger.vim' "Way to check previous git commits in-line
 
-" Plug 'vimwiki/vimwiki'
-Plug 'itchyny/lightline.vim' " Tab and statusline plugin
-
-"IDE-like features
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocUpdateSync' }
-"Good syntax highlighting
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-Plug 'liuchengxu/vim-which-key' "WhichKey keybind helper tool
-
-" Haskell specific plugins
-Plug 'alx741/vim-hindent' "Haskell autoformatting
-Plug 'Twinside/vim-haskellFold' " improved haskell foldinfo
-
-"Pandoc syntax support (an usable pandoc-flavoured latex supporting markdown etc. compiler)
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-" Plug 'lervag/vimtex' "Latex support
-" In testing currently
-Plug 'AndrewRadev/tagalong.vim' "Change both ends of a pair of html tags when editing tags
-" Plug 'zsugabubus/crazy8.nvim'
-Plug 'norcalli/nvim-colorizer.lua'  "Hex and css color highlighting
-set termguicolors "colorizer needs this
-
-Plug 'tpope/vim-fugitive' " Git plugin
-Plug 'stevearc/aerial.nvim' "another outline view
-" Plug 'derekelkins/agda-vim'
-
-if $KITTY_WINDOW_ID != ""
-    Plug '3rd/image.nvim' "inline images
-endif
-
-" Finnish spellchecking
-" Plug 'git@github.com:xylix/Vimchant.git'
-" set updatetime=1000
-" let g:vimchant_spellcheck_lang = 'fi'
-
-Plug 'github/copilot.vim' "Github copilot
-" https://github.com/zbirenbaum/copilot.lua has more features but more effort to setup
-call plug#end()
-
-let g:copilot_enabled = 0 " disable copilot by default
+let g:lightline = { 'colorscheme': 'deus' } "Has to be set before editor color scheme, for some reason
 "Setup config dir variable and source tab bar number function
 let g:nvim_config_dir = stdpath('config')
 exec 'source' nvim_config_dir . '/helpers.vim'
@@ -96,7 +48,46 @@ call <SID>neo_vim_terminal_config()
 " Let neovim know we don't want to check or load ruby and perl integrations
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
+set termguicolors "colorizer needs this
+
 lua <<EOF
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+      vim.api.nvim_echo({
+        { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+        { out, "WarningMsg" },
+        { "\nPress any key to exit..." },
+      }, true, {})
+      vim.fn.getchar()
+      os.exit(1)
+    end
+  end
+  vim.opt.rtp:prepend(lazypath)
+
+  -- Make sure to setup `mapleader` and `maplocalleader` before
+  -- loading lazy.nvim so that mappings are correct.
+  -- This is also a good place to setup other settings (vim.opt)
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = "\\"
+
+  -- Setup lazy.nvim
+  require("lazy").setup({
+    spec = {
+      -- import plugins
+      { import = "plugins" },
+    },
+    -- colorscheme that will be used when installing plugins.
+    install = { colorscheme = { "deus" } },
+    -- automatically check for plugin updates
+    checker = { enabled = true },
+    -- Let lazy.nvim manage lua rocks (packages)
+    rocks = {
+      hererocks = true,
+    }
+  })
 
   require("aerial").setup({
   -- optionally use on_attach to set keymaps when aerial has attached to a buffer
@@ -116,50 +107,25 @@ lua <<EOF
     },
   }
   require'colorizer'.setup()
-  if os.getenv("KITTY_WINDOW_ID") then
-  -- configure system luarocks that image.nvim uses
-  package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua"
-  package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua"
-  require("image").setup({
-    backend = "kitty",
-    integrations = {
-      markdown = {
-        enabled = true,
-        clear_in_insert_mode = false,
-        download_remote_images = true,
-        only_render_image_at_cursor = false,
-        filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
-      },
-      neorg = {
-        enabled = true,
-        clear_in_insert_mode = false,
-        download_remote_images = true,
-        only_render_image_at_cursor = false,
-        filetypes = { "norg" },
-      },
-      html = {
-        enabled = false,
-      },
-      css = {
-        enabled = false,
-      },
-    },
-    max_width = nil,
-    max_height = nil,
-    max_width_window_percentage = nil,
-    max_height_window_percentage = 50,
-    window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
-    window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-    editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
-    tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
-    hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
-  })
+  -- Define a formatting command to utilize conform
+  vim.api.nvim_create_user_command("Format", function(args)
+  local range = nil
+  if args.count ~= -1 then
+    local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+    range = {
+      start = { args.line1, 0 },
+      ["end"] = { args.line2, end_line:len() },
+    }
   end
+  require("conform").format({ async = true, lsp_format = "fallback", range = range })
+end, { range = true })
 EOF
+let g:copilot_enabled = 0 " disable copilot by default
 
 " VimConfig()
     set pyxversion=3
     set tabstop=4 shiftwidth=4 softtabstop=1 expandtab smarttab
+    autocmd BufRead *.lua set tabstop=4 " Workaround because the above is not working for Lua files, `:verbose set tabstop?` didn't show any specific culprit.
 
     set foldtext=FoldText()
 
@@ -398,9 +364,6 @@ EOF
     " Lightline related
     set laststatus=2
     set noshowmode
-    let g:lightline = {
-      \ 'colorscheme': 'deus',
-      \ }
 
     "vimwiki
     " let g:vimwiki_folding='custom'
