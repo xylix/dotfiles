@@ -46,7 +46,8 @@ ctrl + shift - 9 : yabai -m window --space 9
 ctrl - space : yabai -m window --toggle float # ctrl-shift-space might avoid some collisions but I think this is nicer
 
 # switch between vertical and horizontal tiling
-ctrl - v : yabai -m window --toggle split
+# would have been nice to use ctrl-v but it conflicts with vims visual block selection
+ctrl - h : yabai -m window --toggle split
 
 # close running app
 ctrl + shift - q : yabai -m window --close
