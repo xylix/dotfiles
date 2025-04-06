@@ -421,3 +421,12 @@ EOF
     nmap gd :call <SID>goto_tag("Definition")<CR>
     nmap gi :call <SID>goto_tag("Implementation")<CR>
     nmap gr :call <SID>goto_tag("References")<CR>
+
+
+" Ignore urls and uris in spellchecking
+" doesn't yet quite work, doesn't capture the full URLs. But the first regex
+" does match fine when pasted into vims /
+" syn match urls "https\=:\/\/[-a-zA-Z0-9.\/@+%?#_]\+/" contains=@NoSpell
+" source: https://www.reddit.com/r/vim/comments/18l5nvp/is_there_a_way_what_spelling_ignore_url_for/
+syn match uris '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
+" source: https://vi.stackexchange.com/a/24534
