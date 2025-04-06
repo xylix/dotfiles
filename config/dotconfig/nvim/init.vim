@@ -1,6 +1,9 @@
 " useful for debugging things that don't visibly log or error
 "set verbosefile=~/.local/log/vim/verbose.log
 " set verbose=1
+set t_Co=256
+set termguicolors
+" colorizer and deus need these
 
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
@@ -12,7 +15,6 @@ let &packpath = &runtimepath
 " let g:vimwiki_list = [{'path': '~/logseq-database/', 'path_html': '~/logseq-database/build', 'syntax': 'markdown', 'ext': 'md'}]
 
 
-let g:lightline = { 'colorscheme': 'deus' } "Has to be set before editor color scheme, for some reason
 "Setup config dir variable and source tab bar number function
 let g:nvim_config_dir = stdpath('config')
 exec 'source' nvim_config_dir . '/helpers.vim'
@@ -48,7 +50,6 @@ call <SID>neo_vim_terminal_config()
 " Let neovim know we don't want to check or load ruby and perl integrations
 let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
-set termguicolors "colorizer needs this
 
 lua <<EOF
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -120,7 +121,6 @@ lua <<EOF
   require("conform").format({ async = true, lsp_format = "fallback", range = range })
 end, { range = true })
 EOF
-let g:copilot_enabled = 0 " disable copilot by default
 
 " VimConfig()
     set pyxversion=3
@@ -149,9 +149,6 @@ let g:copilot_enabled = 0 " disable copilot by default
     set undofile
     set undolevels=1000
     set undoreload=10000
-    "Set deus as colorscheme and some related variables to ensure proper background
-    set t_Co=256
-    set termguicolors
 
     "Configure folds by syntax by default and open files with all folds open
     set foldmethod=syntax
@@ -259,20 +256,6 @@ let g:copilot_enabled = 0 " disable copilot by default
     noremap <silent><S-tab> :tabprevious<CR>
     " noremap <silent><leader><tab> gt<CR>
     " noremap <silent><leader><S-tab> :tabprevious<CR>
-    " CoC keybinds
-    nmap <leader>rn <Plug>(coc-rename)
-    vmap <leader>f  <Plug>(coc-format-selected)
-    nmap <leader>gd <Plug>(coc-declaration)
-    nmap <leader>gr <Plug>(coc-references)
-
-    "Hotkeys to jump to next and prev error
-    nmap <silent><leader>n <Plug>(coc-diagnostic-next-error)
-    " This still doesn't work
-    nmap <silent><leader>p <Plug>(coc-diagnostic-previous-error)
-    nmap <silent><leader>ca :call CocActionAsync("codeAction"))<CR>
-    nmap <silent><leader>cl :CocList<CR>
-    nmap <silent><leader>cc :CocCommand<CR>
-
     "Aerial (outline tool)
     noremap <leader>a :AerialToggle<CR>
     " inserts ISO timestamp
@@ -280,14 +263,11 @@ let g:copilot_enabled = 0 " disable copilot by default
     " inserts human readable time
     nmap <leader>dh i<C-R>=strftime("%d.%m.%Y %I:%M")<CR><Esc>
 
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-    "Show git blame
-    nmap <leader>gb :CocCommand git.showBlameDoc<CR>
 
 " PluginOptions()
     colorscheme deus
-    let g:deus_termcolors=256
 
+    " FIXME: This works, the version in spec1.lua doesn't
     " Disable conflict market feature that requires matchit.vim
     let g:conflict_marker_enable_matchit = 0
     " Replace conflict marker plugin default coloring settings with own
@@ -305,26 +285,19 @@ let g:copilot_enabled = 0 " disable copilot by default
     "Keep theirs: ct or :ConflictMarkerThemselves
     "Keep both cb or :ConflictMarkerBoth
 
-    " let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-    let g:ctrlp_user_command = 'fd --hidden --type f --color=never "" %s'
-    let g:ctrlp_use_caching = 0
 
     " let g:colorizer_auto_color = 1
     " autocmd BufNewFile,BufRead * :ColorHighlight
     " Latex configuration
     let g:tex_flavor='latex' " Default tex file format
-    let g:vimtex_view_method = 'skim' " Choose which program to use to view PDF file
-    let g:vimtex_view_skim_sync = 1 " Value 1 allows forward search after every successful compilation
-    let g:vimtex_view_skim_activate = 1 " Value 1 allows change focus to skim after command `:VimtexView` is given
-    let g:vimtex_quickfix_mode=0
     let g:tex_conceal='abdmg'
-    "Pandoc config
-    let g:pandoc#spell#enabled = 0
-    let g:pandoc#modules#disabled = ["folding"]
 
-    let g:goyo_width=140
-    let g:goyo_height=100
+    function! CheckBackspace() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
 
+    " CoC configs
     function s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
 	    execute 'tab help '.expand('<cword>')
@@ -336,8 +309,6 @@ let g:copilot_enabled = 0 " disable copilot by default
     nnoremap <F1> :call <SID>show_documentation()<CR>
     nnoremap <Leader>hh :call <SID>show_documentation()<CR>
 
-    let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-yaml', 'coc-pyright', 'coc-tsserver', 'coc-vimlsp', 'coc-sh', 'coc-snippets'] "todo: add coc r lsp and coc-texlab if they good
-
     " inoremap <silent><expr> <TAB>
     "  \ coc#pum#visible() ? coc#pum#next(1) :
     "  \ CheckBackspace() ? "\<Tab>" :
@@ -348,22 +319,30 @@ let g:copilot_enabled = 0 " disable copilot by default
     " <C-g>u breaks current undo, please make your own choice.
     inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                                   \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-    function! CheckBackspace() abort
-      let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
-
     " Use <c-space> to trigger completion.
     if has('nvim')
       inoremap <silent><expr> <c-enter> coc#refresh()
     else
       inoremap <silent><expr> <c-@> coc#refresh()
     endif
+    " CoC keybinds
+    nmap <leader>rn <Plug>(coc-rename)
+    vmap <leader>f  <Plug>(coc-format-selected)
+    nmap <leader>gd <Plug>(coc-declaration)
+    nmap <leader>gr <Plug>(coc-references)
 
-    " Lightline related
-    set laststatus=2
-    set noshowmode
+    "Hotkeys to jump to next and prev error
+    nmap <silent><leader>n <Plug>(coc-diagnostic-next-error)
+    " This still doesn't work
+    nmap <silent><leader>p <Plug>(coc-diagnostic-previous-error)
+    nmap <silent><leader>ca :call CocActionAsync("codeAction"))<CR>
+    nmap <silent><leader>cl :CocList<CR>
+    nmap <silent><leader>cc :CocCommand<CR>
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+    "Show git blame
+    nmap <leader>gb :CocCommand git.showBlameDoc<CR>
+    " Coc configs over
+
 
     "vimwiki
     " let g:vimwiki_folding='custom'

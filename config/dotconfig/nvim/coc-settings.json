@@ -52,8 +52,10 @@
         }
     },
     "svelte.enable-ts-plugin": true,
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd",
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/19.1.2/clangd_19.1.2/bin/clangd",
     "snippets.ultisnips.pythonPrompt": false,
     "pyright.inlayHints.parameterTypes": false,
     "pyright.inlayHints.variableTypes": true,
+    "sumneko-lua.enableNvimLuaDev": true,
+    "Lua.hint.arrayIndex": "Disable",
 }

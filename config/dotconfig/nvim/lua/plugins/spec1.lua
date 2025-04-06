@@ -1,15 +1,77 @@
 return {
-	{ "ajmwagar/vim-deus", priority = 10000 },
-	{ "ctrlpvim/ctrlp.vim" }, --Swiss knife for opening & finding files
-	{ "rhysd/conflict-marker.vim" }, -- Conflict detection and custom highlighting, TODO: can this be replcaed with coc-git?
+	{
+		"ajmwagar/vim-deus",
+		priority = 10000,
+		init = function()
+			vim.g.deus_termcolors = 256
+		end,
+	},
+	{
+		"ctrlpvim/ctrlp.vim",
+		init = function()
+			-- let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+			vim.g.ctrlp_user_command = 'fd --hidden --type f --color=never "" %s'
+			vim.g.ctrlp_use_caching = 0
+		end,
+	}, --Swiss knife for opening & finding files
+	{
+		"rhysd/conflict-marker.vim",
+		config = function()
+			--" Disable conflict market feature that requires matchit.vim
+			vim.g.conflict_marker_enable_matchit = 0
+			--" Replace conflict marker plugin default coloring settings with own
+			vim.g.conflict_marker_highlight_group = ""
+			--" Include text after begin and end markers
+			vim.g.conflict_marker_begin = "^<<<<<<< .*$"
+			vim.g.conflict_marker_end = "^>>>>>>> .*$"
+
+			vim.api.nvim_set_hl(0, "ConflictMarkerBegin", { bg = "#2f7366" })
+			vim.api.nvim_set_hl(0, "ConflictMarkerOurs", { bg = "#2e5049" })
+			vim.api.nvim_set_hl(0, "ConflictMarkerTheirs", { bg = "#344f69" })
+			vim.api.nvim_set_hl(0, "ConflictMarkerEnd", { bg = "#2f628e" })
+			-- "Keep none: cn or :ConflictMarkerNone
+			-- "Keep ours: co or :ConflictMarkerOurselves
+			-- "Keep theirs: ct or :ConflictMarkerThemselves
+			-- "Keep both cb or :ConflictMarkerBoth
+		end,
+	}, -- Conflict detection and custom highlighting, TODO: can this be replcaed with coc-git?
 	{ "unblevable/quick-scope" },
-	{ "junegunn/goyo.vim" }, --Adds Goyo mode, which hides unnecessary visual clutter temporarily
+	{
+		"junegunn/goyo.vim",
+		init = function()
+			vim.g.goyo_width = 140
+			vim.g.goyo_height = 100
+		end,
+	}, --Adds Goyo mode, which hides unnecessary visual clutter temporarily
 	{ "rhysd/git-messenger.vim" }, --"Way to check previous git commits in-line
 	-- Plug 'vimwiki/vimwiki'
-	{ "itchyny/lightline.vim" }, -- Tab and statusline plugin
+	{
+		"itchyny/lightline.vim", -- Tab and statusline plugin
+		init = function()
+			vim.g.lightline = { colorscheme = "deus" }
+			vim.laststatus = 2
+			vim.showmode = true
+		end,
+	}, 
 
 	--IDE-like features
-	{ "neoclide/coc.nvim", branch = "release", build = ":CocUpdateSync" },
+	{
+		"neoclide/coc.nvim",
+		branch = "release",
+		build = ":CocUpdateSync",
+		init = function()
+			vim.g.coc_global_extensions = {
+				"coc-json",
+				"coc-git",
+				"coc-yaml",
+				"coc-pyright",
+				"coc-tsserver",
+				"coc-vimlsp",
+				"coc-sh",
+				"coc-snippets",
+			} --todo: add coc r lsp and coc-texlab if they good
+		end,
+	},
 	-- Good syntax highlighting
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
@@ -21,8 +83,20 @@ return {
 
 	--Pandoc syntax support (an usable pandoc-flavoured latex supporting markdown etc. compiler)
 	-- { 'vim-pandoc/vim-pandoc'
+	-- "Pandoc config
+	--let g:pandoc#spell#enabled = 0
+	-- let g:pandoc#modules#disabled = ["folding"]
 	-- { 'vim-pandoc/vim-pandoc-syntax'
-	{ "lervag/vimtex", ft = "tex" }, --"Latex support
+	{
+		"lervag/vimtex",
+		ft = "tex",
+		init = function()
+			vim.g.vimtex_view_method = "skim" -- Choose which program to use to view PDF file
+			vim.g.vimtex_view_skim_sync = 1 -- Value 1 allows forward search after every successful compilation
+			vim.g.vimtex_view_skim_activate = 1 -- Value 1 allows change focus to skim after command `:VimtexView` is given
+			vim.g.vimtex_quickfix_mode = 0
+		end,
+	}, --"Latex support
 	-- In testing currently
 	{ "AndrewRadev/tagalong.vim", ft = { "html", "jsx", "tsx", "svelte" } }, --Change both ends of a pair of html tags when editing tags
 	-- Plug 'zsugabubus/crazy8.nvim'
@@ -77,7 +151,12 @@ return {
 	-- set updatetime=1000
 	-- let g:vimchant_spellcheck_lang = 'fi'
 
-	{ "github/copilot.vim" }, --"Github copilot
+	{
+		"github/copilot.vim",
+		init = function()
+			vim.g.copilot_enabled = 0
+		end,
+	}, --"Github copilot
 	-- https://github.com/zbirenbaum/copilot.lua has more features but more effort to setup
 	{
 		"stevearc/conform.nvim",
