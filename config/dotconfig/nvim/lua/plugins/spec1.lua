@@ -2,10 +2,18 @@ return {
 	{
 		"ajmwagar/vim-deus",
 		priority = 10000,
-		init = function()
-			vim.g.deus_termcolors = 256
-		end,
+		init = function() vim.g.deus_termcolors = 256 end,
 	},
+	{
+		"stevearc/conform.nvim",
+		opts = {
+			formatters_by_ft = {
+				lua = { "stylua" },
+				python = { "isort", "black" },
+			},
+		},
+	},
+
 	{
 		"ctrlpvim/ctrlp.vim",
 		init = function()
@@ -42,7 +50,7 @@ return {
 			vim.g.goyo_width = 140
 			vim.g.goyo_height = 100
 		end,
-	},                      --Adds Goyo mode, which hides unnecessary visual clutter temporarily
+	}, --Adds Goyo mode, which hides unnecessary visual clutter temporarily
 	{ "rhysd/git-messenger.vim" }, --"Way to check previous git commits in-line
 	-- Plug 'vimwiki/vimwiki'
 	{
@@ -78,8 +86,8 @@ return {
 	{ "liuchengxu/vim-which-key" }, --WhichKey keybind helper tool
 
 	-- Haskell specific plugins
-	{ "alx741/vim-hindent",              ft = "haskell" }, --Haskell autoformatting
-	{ "Twinside/vim-haskellFold",        ft = "haskell" }, -- improved haskell foldinfo
+	{ "alx741/vim-hindent", ft = "haskell" }, --Haskell autoformatting
+	{ "Twinside/vim-haskellFold", ft = "haskell" }, -- improved haskell foldinfo
 
 	--Pandoc syntax support (an usable pandoc-flavoured latex supporting markdown etc. compiler)
 	-- { 'vim-pandoc/vim-pandoc'
@@ -88,7 +96,7 @@ return {
 	-- let g:pandoc#modules#disabled = ["folding"]
 	-- { 'vim-pandoc/vim-pandoc-syntax'
 	{
-		"lervag/vimtex",
+		"lervag/vimtex", --"Latex support
 		ft = "tex",
 		init = function()
 			vim.g.vimtex_view_method = "skim" -- Choose which program to use to view PDF file
@@ -96,14 +104,14 @@ return {
 			vim.g.vimtex_view_skim_activate = 1 -- Value 1 allows change focus to skim after command `:VimtexView` is given
 			vim.g.vimtex_quickfix_mode = 0
 		end,
-	},                                                                --"Latex support
+	},
 	-- In testing currently
-	{ "AndrewRadev/tagalong.vim",   ft = { "html", "jsx", "tsx", "svelte" } }, --Change both ends of a pair of html tags when editing tags
+	{ "AndrewRadev/tagalong.vim", ft = { "html", "jsx", "tsx", "svelte" } }, --Change both ends of a pair of html tags when editing tags
 	-- Plug 'zsugabubus/crazy8.nvim'
-	{ "norcalli/nvim-colorizer.lua" },                                --Hex and css color highlighting
-	{ "tpope/vim-fugitive" },                                         -- Git plugin
+	{ "norcalli/nvim-colorizer.lua" }, --Hex and css color highlighting
+	{ "tpope/vim-fugitive" }, -- Git plugin
 	{
-		"stevearc/aerial.nvim",                                   --Document outline view
+		"stevearc/aerial.nvim", --Document outline view
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
@@ -136,13 +144,13 @@ return {
 			max_height = nil,
 			max_width_window_percentage = nil,
 			max_height_window_percentage = 50,
-			window_overlap_clear_enabled = false,                          -- toggles images when windows are overlapped
+			window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
 			window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-			editor_only_render_when_focused = false,                       -- auto show/hide images when the editor gains/looses focus
-			tmux_show_only_in_active_window = false,                       -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+			editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+			tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
 			hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
 		},
-	},                                                                             --inline images
+	}, --inline images
 
 	--endif
 
@@ -153,9 +161,7 @@ return {
 
 	{
 		"github/copilot.vim",
-		init = function()
-			vim.g.copilot_enabled = 0
-		end,
+		init = function() vim.g.copilot_enabled = 0 end,
 	}, --"Github copilot
 	-- https://github.com/zbirenbaum/copilot.lua has more features but more effort to setup
 

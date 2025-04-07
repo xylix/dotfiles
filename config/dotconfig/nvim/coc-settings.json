@@ -6,8 +6,6 @@
     "codeLens.enable": true,
     "workspace.workspaceFolderCheckCwd": true,
     "workspace.bottomUpFiletypes": [],
-    "python.formatting.provider": "black",
-    "coc.preferences.formatOnSaveFiletypes": ["python"],
     "python.analysis.diagnosticMode": "workspace",
     "python.linting.mypyEnabled": false,
     "python.linting.mypyArgs": ["--ignore-missing-imports","--follow-imports=silent","--show-column-numbers"],

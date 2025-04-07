@@ -1,0 +1,2 @@
+syntax = "Lua51"
+collapse_simple_statement="Always"

@@ -101,7 +101,8 @@ lua <<EOF
   -- treesitter setup
   require'nvim-treesitter.configs'.setup {
 
-    ensure_installed = { "python", "bash", "dockerfile", "fish", "json", "json5", "yaml", "make", "toml", "haskell", "vim"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = { "python", "bash", "dockerfile", "fish", "json", "json5", "yaml", "make", "toml", "haskell", "vim", "javascript", "typescript"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    auto_install = true,
     highlight = {
       enable = true,              -- false will disable the whole extension
       disable = {"latex"},  -- list of language that will be disabled
@@ -109,17 +110,26 @@ lua <<EOF
   }
   require'colorizer'.setup()
   -- Define a formatting command to utilize conform
+  vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = {"*.py", "*.lua" },
+    callback = function(args)
+        require("conform").format({ bufnr = args.buf })
+    end,
+  })
   vim.api.nvim_create_user_command("Format", function(args)
-  local range = nil
-  if args.count ~= -1 then
-    local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-    range = {
-      start = { args.line1, 0 },
-      ["end"] = { args.line2, end_line:len() },
-    }
-  end
-  require("conform").format({ async = true, lsp_format = "fallback", range = range })
-end, { range = true })
+      local range = nil
+      if args.count ~= -1 then
+        local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+        range = {
+          start = { args.line1, 0 },
+          ["end"] = { args.line2, end_line:len() },
+        }
+      end
+      require("conform").format({ async = true, lsp_format = "fallback", range = range })
+    end, { range = true })
+    -- Could also use CoC editor.action.formatDocument, but it allows less
+    -- choice between formatters.
+    vim.api.nvim_set_keymap('n', '<leader>cf', ':Format<CR>', {})
 EOF
 
 " VimConfig()
@@ -262,8 +272,6 @@ EOF
     nmap <leader>di i<C-R>=strftime("%FT%T%z")<CR><Esc>
     " inserts human readable time
     nmap <leader>dh i<C-R>=strftime("%d.%m.%Y %I:%M")<CR><Esc>
-
-    nmap <leader>cf editor.action.formatDocument
 
 
 " PluginOptions()
