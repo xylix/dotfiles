@@ -2,7 +2,10 @@ return {
 	{
 		"ajmwagar/vim-deus",
 		priority = 10000,
-		init = function() vim.g.deus_termcolors = 256 end,
+		init = function()
+			vim.g.deus_termcolors = 256
+			vim.cmd("colorscheme deus")
+		end,
 	},
 	{
 		"stevearc/conform.nvim",
@@ -13,7 +16,6 @@ return {
 			},
 		},
 	},
-
 	{
 		"ctrlpvim/ctrlp.vim",
 		init = function()
@@ -24,23 +26,25 @@ return {
 	}, --Swiss knife for opening & finding files
 	{
 		"rhysd/conflict-marker.vim",
-		config = function()
-			--" Disable conflict market feature that requires matchit.vim
+		lazy = false,
+		init = function()
+			-- Disable conflict market feature that requires matchit.vim
 			vim.g.conflict_marker_enable_matchit = 0
 			--" Replace conflict marker plugin default coloring settings with own
 			vim.g.conflict_marker_highlight_group = ""
-			--" Include text after begin and end markers
-			vim.g.conflict_marker_begin = "^<<<<<<< .*$"
-			vim.g.conflict_marker_end = "^>>>>>>> .*$"
-
-			vim.api.nvim_set_hl(0, "ConflictMarkerBegin", { bg = "#2f7366" })
-			vim.api.nvim_set_hl(0, "ConflictMarkerOurs", { bg = "#2e5049" })
-			vim.api.nvim_set_hl(0, "ConflictMarkerTheirs", { bg = "#344f69" })
-			vim.api.nvim_set_hl(0, "ConflictMarkerEnd", { bg = "#2f628e" })
-			-- "Keep none: cn or :ConflictMarkerNone
-			-- "Keep ours: co or :ConflictMarkerOurselves
-			-- "Keep theirs: ct or :ConflictMarkerThemselves
-			-- "Keep both cb or :ConflictMarkerBoth
+		end,
+		config = function()
+			-- vim.schedule runs the setup at the next event loop execution, and this makes it work
+			vim.schedule(function()
+				vim.api.nvim_set_hl(0, "ConflictMarkerBegin", { bg = "#2f7366" })
+				vim.api.nvim_set_hl(0, "ConflictMarkerOurs", { bg = "#2e5049" })
+				vim.api.nvim_set_hl(0, "ConflictMarkerTheirs", { bg = "#344f69" })
+				vim.api.nvim_set_hl(0, "ConflictMarkerEnd", { bg = "#2f628e" })
+				-- "Keep none: cn or :ConflictMarkerNone
+				-- "Keep ours: co or :ConflictMarkerOurselves
+				-- "Keep theirs: ct or :ConflictMarkerThemselves
+				-- "Keep both cb or :ConflictMarkerBoth
+			end)
 		end,
 	}, -- Conflict detection and custom highlighting, TODO: can this be replcaed with coc-git?
 	{ "unblevable/quick-scope" },
@@ -52,7 +56,12 @@ return {
 		end,
 	}, --Adds Goyo mode, which hides unnecessary visual clutter temporarily
 	{ "rhysd/git-messenger.vim" }, --"Way to check previous git commits in-line
-	-- Plug 'vimwiki/vimwiki'
+	-- Plug 'vimmwiki/vimwiki'
+	-- vimwiki configs need to be set before it is loaded
+	-- let g:vimwiki_key_mappings = { 'all_maps': 0, }
+	-- let g:vimwiki_global_ext = 0
+	-- let g:vimwiki_ext2syntax = {}
+	-- let g:vimwiki_list = [{'path': '~/logseq-database/', 'path_html': '~/logseq-database/build', 'syntax': 'markdown', 'ext': 'md'}]
 	{
 		"itchyny/lightline.vim", -- Tab and statusline plugin
 		init = function()
@@ -108,7 +117,12 @@ return {
 	-- In testing currently
 	{ "AndrewRadev/tagalong.vim", ft = { "html", "jsx", "tsx", "svelte" } }, --Change both ends of a pair of html tags when editing tags
 	-- Plug 'zsugabubus/crazy8.nvim'
-	{ "norcalli/nvim-colorizer.lua" }, --Hex and css color highlighting
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup() -- Call Colorizer setup command to set up filetypes
+		end,
+	}, --Hex and css color highlighting
 	{ "tpope/vim-fugitive" }, -- Git plugin
 	{
 		"stevearc/aerial.nvim", --Document outline view
@@ -163,8 +177,7 @@ return {
 		"github/copilot.vim",
 		init = function() vim.g.copilot_enabled = 0 end,
 	}, --"Github copilot
-	-- https://github.com/zbirenbaum/copilot.lua has more features but more effort to setup
-
+	-- TODO: consider https://github.com/zbirenbaum/copilot.lua Vaatii vähän setup koska sillä on eri default behaviour mutta ois luaa
 	{
 		"chrishrb/gx.nvim",
 		keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },

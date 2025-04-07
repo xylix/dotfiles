@@ -8,25 +8,11 @@ set termguicolors
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 
-" vimwiki configs need to be set before it is loaded
-" let g:vimwiki_key_mappings = { 'all_maps': 0, }
-" let g:vimwiki_global_ext = 0
-" let g:vimwiki_ext2syntax = {}
-" let g:vimwiki_list = [{'path': '~/logseq-database/', 'path_html': '~/logseq-database/build', 'syntax': 'markdown', 'ext': 'md'}]
-
-
 "Setup config dir variable and source tab bar number function
 let g:nvim_config_dir = stdpath('config')
 exec 'source' nvim_config_dir . '/helpers.vim'
 " configure vimwiki keybinds
 let g:mapleader = " "
-
-noremap <leader>vdn :VimwikiDiaryNextDay<CR>
-noremap <leader>vdp :VimwikiDiaryPreviousDay<CR>
-noremap <leader>vb :VimwikiBacklinks<CR>
-noremap <CR> :VimwikiFollowLink<CR>
-noremap <BS> :VimwikiGoBackLink<CR>
-
 " exec 'source' nvim_config_dir . '/agda-config.vim'
 " call AgdaOptions()
 
@@ -52,6 +38,12 @@ let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
 
 lua <<EOF
+vim.g.did_load_filetypes = 1      -- Don't load filetype.vim
+vim.g.did_load_ftplugin = 1       -- Don't load ftplugin/*.vim
+vim.g.did_load_indent = 1         -- Don't load indent/*.vim
+vim.g.did_load_syntax = 1         -- Don't load syntax/*.vim
+
+
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
   if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -102,13 +94,12 @@ lua <<EOF
   require'nvim-treesitter.configs'.setup {
 
     ensure_installed = { "python", "bash", "dockerfile", "fish", "json", "json5", "yaml", "make", "toml", "haskell", "vim", "javascript", "typescript"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    auto_install = true,
+    auto_install = true, -- FIXME: It seems auto-install runs multiple times in parallel when vim is opened with multiple buffers of the viletype, for example nvim -p 1.md 2.md. This breaks the tmp file handling that treesitter does
     highlight = {
       enable = true,              -- false will disable the whole extension
       disable = {"latex"},  -- list of language that will be disabled
     },
   }
-  require'colorizer'.setup()
   -- Define a formatting command to utilize conform
   vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = {"*.py", "*.lua" },
@@ -161,7 +152,9 @@ EOF
     set undoreload=10000
 
     "Configure folds by syntax by default and open files with all folds open
-    set foldmethod=syntax
+    " set foldmethod=syntax
+    set foldmethod=expr
+    set foldexpr=nvim_treesitter#foldexpr()
     set fillchars=fold:\
     autocmd BufNewFile,BufFilePre,BufRead * normal zR
 
@@ -189,6 +182,16 @@ EOF
     "    \ foldmethod=expr
     "    \ foldtext=FoldText()
     "    \ foldexpr=MarkdownLevel()
+    "
+    " TODO: Program manual replacements for vimwikifunctions. Or maybe replace
+    " VimwikiFollowLink with gx
+    " TAI ihan vaan `gf` näyttää toimivan lokaaleille linkeille, esim.
+    " ./agda-config.vim (ja ctrl-o menee takaspäin)
+    noremap <leader>vdn :VimwikiDiaryNextDay<CR>
+    noremap <leader>vdp :VimwikiDiaryPreviousDay<CR>
+    noremap <leader>vb :VimwikiBacklinks<CR>
+    noremap <CR> gf
+    noremap <BS> <C-o
 
     autocmd BufNewFile,BufRead *.robot setlocal filetype=robot
     autocmd FileType robot exec 'source' g:nvim_config_dir . '/syntax/robot.vim'
@@ -197,6 +200,9 @@ EOF
     autocmd FileType haskell set conceallevel=2 concealcursor=nv
     autocmd FileType haskell syn match haskellCompose '\.' conceal cchar=∘
 
+    " Latex configuration
+    let g:tex_flavor='latex' " Default tex file format
+    let g:tex_conceal='abdmg'
     autocmd FileType latex,tex set conceallevel=2 concealcursor=nv
 
     autocmd BufNewFile,BufFilePre,BufRead *.hbs setlocal filetype=handlebars
@@ -274,33 +280,10 @@ EOF
     nmap <leader>dh i<C-R>=strftime("%d.%m.%Y %I:%M")<CR><Esc>
 
 
-" PluginOptions()
-    colorscheme deus
+    " PluginOptions()
+    "vimwiki
+    " let g:vimwiki_folding='custom'
 
-    " FIXME: This works, the version in spec1.lua doesn't
-    " Disable conflict market feature that requires matchit.vim
-    let g:conflict_marker_enable_matchit = 0
-    " Replace conflict marker plugin default coloring settings with own
-    let g:conflict_marker_highlight_group = ''
-    " Include text after begin and end markers
-    let g:conflict_marker_begin = '^<<<<<<< .*$'
-    let g:conflict_marker_end   = '^>>>>>>> .*$'
-    " Set highlight colors
-    highlight ConflictMarkerBegin guibg=#2f7366
-    highlight ConflictMarkerOurs guibg=#2e5049
-    highlight ConflictMarkerTheirs guibg=#344f69
-    highlight ConflictMarkerEnd guibg=#2f628e
-    "Keep none: cn or :ConflictMarkerNone
-    "Keep ours: co or :ConflictMarkerOurselves
-    "Keep theirs: ct or :ConflictMarkerThemselves
-    "Keep both cb or :ConflictMarkerBoth
-
-
-    " let g:colorizer_auto_color = 1
-    " autocmd BufNewFile,BufRead * :ColorHighlight
-    " Latex configuration
-    let g:tex_flavor='latex' " Default tex file format
-    let g:tex_conceal='abdmg'
 
     function! CheckBackspace() abort
       let col = col('.') - 1
@@ -330,6 +313,7 @@ EOF
     inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                                   \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
     " Use <c-space> to trigger completion.
+    " TODO: I don't use this, remove?
     if has('nvim')
       inoremap <silent><expr> <c-enter> coc#refresh()
     else
@@ -354,8 +338,6 @@ EOF
     " Coc configs over
 
 
-    "vimwiki
-    " let g:vimwiki_folding='custom'
 
     function! s:goto_tag(tagkind) abort
         let tagname = expand('<cWORD>')
@@ -382,3 +364,4 @@ EOF
 " source: https://www.reddit.com/r/vim/comments/18l5nvp/is_there_a_way_what_spelling_ignore_url_for/
 syn match uris '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
 " source: https://vi.stackexchange.com/a/24534
+" 
