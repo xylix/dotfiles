@@ -263,6 +263,8 @@ EOF
     " inserts human readable time
     nmap <leader>dh i<C-R>=strftime("%d.%m.%Y %I:%M")<CR><Esc>
 
+    nmap <leader>cf editor.action.formatDocument
+
 
 " PluginOptions()
     colorscheme deus
