@@ -14,4 +14,4 @@ sudo cp -r --symbolic-link $DOTFILES/config/etc /etc
 nvim +Lazy
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo "Install rust"
-echo "Install fd. Either apt install fd-find or brew install fd"
+echo "Install fd, fzf, Python, make (base-devel or setuptools)"
