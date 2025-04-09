@@ -38,10 +38,11 @@ let g:loaded_ruby_provider = 0
 let g:loaded_perl_provider = 0
 
 lua <<EOF
-vim.g.did_load_filetypes = 1      -- Don't load filetype.vim
-vim.g.did_load_ftplugin = 1       -- Don't load ftplugin/*.vim
-vim.g.did_load_indent = 1         -- Don't load indent/*.vim
-vim.g.did_load_syntax = 1         -- Don't load syntax/*.vim
+-- FIXME: koitin estää .vim filetype plugarien lataamisen markdown filuissa, se ei toiminut mutta nää rikkoo esim. vimscript filut
+-- vim.g.did_load_filetypes = 1      -- Don't load filetype.vim
+-- vim.g.did_load_ftplugin = 1       -- Don't load ftplugin/*.vim
+-- vim.g.did_load_indent = 1         -- Don't load indent/*.vim
+-- vim.g.did_load_syntax = 1         -- Don't load syntax/*.vim
 
 
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -79,7 +80,13 @@ vim.g.did_load_syntax = 1         -- Don't load syntax/*.vim
     -- Let lazy.nvim manage lua rocks (packages)
     rocks = {
       hererocks = true,
-    }
+    },
+    dev = {
+        path = "~/Code/nvim-plugins",
+        ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
+        patterns = {}, -- For example {"folke"}
+        fallback = true, -- Fallback to git when local plugin doesn't exist
+      },
   })
 
   require("aerial").setup({
@@ -93,11 +100,12 @@ vim.g.did_load_syntax = 1         -- Don't load syntax/*.vim
   -- treesitter setup
   require'nvim-treesitter.configs'.setup {
 
-    ensure_installed = { "python", "bash", "dockerfile", "fish", "json", "json5", "yaml", "make", "toml", "haskell", "vim", "javascript", "typescript"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = { "python", "bash", "dockerfile", "fish", "json", "json5", "yaml", "make", "toml", "haskell", "vim", "javascript", "typescript", "markdown", "markdown_inline"}, -- "all", or a list of languages
     auto_install = true, -- FIXME: It seems auto-install runs multiple times in parallel when vim is opened with multiple buffers of the viletype, for example nvim -p 1.md 2.md. This breaks the tmp file handling that treesitter does
     highlight = {
       enable = true,              -- false will disable the whole extension
       disable = {"latex"},  -- list of language that will be disabled
+      additional_vim_regex_highlighting = false, -- by adding  {"markdown"} here will do extra syntax checks with syntax .lua and .vim files, but they will look bad in markdown notes with unescaped underscores and other technically invalid syntax
     },
   }
   -- Define a formatting command to utilize conform
@@ -173,7 +181,7 @@ EOF
 
     "markdown config
     autocmd BufNewFile,BufFilePre,BufRead *.md setlocal filetype=markdown
-    autocmd FileType markdown setlocal nonumber
+    autocmd FileType markdown setlocal nonumber conceallevel=2
     " autocmd FileType tex setlocal nonumber
 
     " Vimwiki folds need to be configured after the plugin is initialized and

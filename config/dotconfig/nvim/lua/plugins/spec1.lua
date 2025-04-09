@@ -1,6 +1,7 @@
 return {
 	{
 		"ajmwagar/vim-deus",
+		dev = false,
 		priority = 10000,
 		init = function()
 			vim.g.deus_termcolors = 256
@@ -183,5 +184,13 @@ return {
 		keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
 		cmd = { "Browse" },
 		config = true,
+	},
+	{ -- Could use this for file picking too, but primarily added to help with browsing highlight groups with `:FzfLua highlights`
+		"ibhagwan/fzf-lua",
+		-- optional for icon support
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		-- or if using mini.icons/mini.nvim
+		-- dependencies = { "echasnovski/mini.icons" },
+		opts = {},
 	},
 }
