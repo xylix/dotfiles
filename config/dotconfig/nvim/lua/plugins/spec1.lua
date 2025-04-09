@@ -129,7 +129,7 @@ return {
 	{
 		"3rd/image.nvim",
 		ft = { "markdown", "vimwiki" }, -- The funny hijack file patterns feature won't work with this but this reduces latency for other filetypes by ~30 ms
-		cond = { os.getenv("KITTY_WINDOW_ID") ~= "" },
+		enabled = { os.getenv("KITTY_WINDOW_ID") ~= "" },
 		opts = {
 			backend = "kitty",
 			integrations = {
