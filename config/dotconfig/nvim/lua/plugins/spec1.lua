@@ -18,14 +18,6 @@ return {
 		},
 	},
 	{
-		"ctrlpvim/ctrlp.vim",
-		init = function()
-			-- let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-			vim.g.ctrlp_user_command = 'fd --hidden --type f --color=never "" %s'
-			vim.g.ctrlp_use_caching = 0
-		end,
-	}, --Swiss knife for opening & finding files
-	{
 		"rhysd/conflict-marker.vim",
 		lazy = false,
 		init = function()
@@ -185,8 +177,20 @@ return {
 		cmd = { "Browse" },
 		config = true,
 	},
-	{ -- Could use this for file picking too, but primarily added to help with browsing highlight groups with `:FzfLua highlights`
+	-- TODO: once convinced fzf-lua does all the necessary things can remove below reminders of ctrl-p settings
+	--		-- let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+	--		vim.g.ctrlp_user_command = 'fd --hidden --type f --color=never "" %s'
+	--		vim.g.ctrlp_use_caching = 0
+	{
 		"ibhagwan/fzf-lua",
+		config = function()
+			vim.g.fzf_action = {
+				["ctrl-s"] = "split",
+				["ctrl-v"] = "vsplit",
+			}
+			vim.g.fzf_preview_window = "right:60%"
+			vim.keymap.set("n", "<c-p>", ":FzfLua files<cr>")
+		end,
 		-- optional for icon support
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		-- or if using mini.icons/mini.nvim
