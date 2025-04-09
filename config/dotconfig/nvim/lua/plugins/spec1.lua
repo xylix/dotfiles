@@ -39,7 +39,7 @@ return {
 				-- "Keep both cb or :ConflictMarkerBoth
 			end)
 		end,
-	}, -- Conflict detection and custom highlighting, TODO: can this be replcaed with coc-git?
+	}, -- Conflict detection and custom highlighting, TODO: can this be replaced with coc-git?
 	{ "unblevable/quick-scope" },
 	{
 		"junegunn/goyo.vim",
@@ -196,5 +196,14 @@ return {
 		-- or if using mini.icons/mini.nvim
 		-- dependencies = { "echasnovski/mini.icons" },
 		opts = {},
+	},
+	{ -- highlights todos and adds :TodoFzfLua to browse todos
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {
+			highlight = {
+				comments_only = false,
+			},
+		},
 	},
 }

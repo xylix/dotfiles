@@ -344,8 +344,9 @@ EOF
     "Show git blame
     nmap <leader>gb :CocCommand git.showBlameDoc<CR>
     " Coc configs over
-
-
+    
+    " Search and browse TODOs, FIXMEs, etc.
+    nmap <leader>td :TodoFzfLua<CR>
 
     function! s:goto_tag(tagkind) abort
         let tagname = expand('<cWORD>')
@@ -372,4 +373,3 @@ EOF
 " source: https://www.reddit.com/r/vim/comments/18l5nvp/is_there_a_way_what_spelling_ignore_url_for/
 syn match uris '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
 " source: https://vi.stackexchange.com/a/24534
-" 
