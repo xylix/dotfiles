@@ -17,7 +17,7 @@ set PATH $HOME/go/bin $PATH
 # Override fish intro greeting
 set fish_greeting
 
-# arm homebrew config
+# arm homebrew config (could also set in /etc/paths, but that might affect which binaries system applications look for first)
 set PATH /opt/homebrew/bin $PATH
 # intel brew alias on macos with both installed, no longer necessary
 # alias ibrew 'arch -x86_64 /usr/local/bin/brew'
@@ -70,3 +70,6 @@ function ncdu
 end
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/xylix/.ghcup/bin # ghcup-env
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/xylix/.lmstudio/bin
