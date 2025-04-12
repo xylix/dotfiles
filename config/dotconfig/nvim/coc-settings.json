@@ -47,7 +47,11 @@
             ],
             "initializationOptions": {},
             "settings": {}
-        }
+        },
+        "wgsl-analyzer": {
+          "command": "wgsl-analyzer", // alternatively you can specify the absolute path to your binary.
+          "filetypes": ["wgsl"],
+        },
     },
     "svelte.enable-ts-plugin": true,
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/19.1.2/clangd_19.1.2/bin/clangd",
