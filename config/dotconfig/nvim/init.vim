@@ -80,7 +80,7 @@ lua <<EOF
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "deus" } },
     -- automatically check for plugin updates
-    checker = { enabled = true },
+    checker = { enabled = true, notify=false },
     -- Let lazy.nvim manage lua rocks (packages)
     rocks = {
       hererocks = true,
