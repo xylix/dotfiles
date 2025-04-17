@@ -60,4 +60,7 @@
     "pyright.inlayHints.variableTypes": true,
     "sumneko-lua.enableNvimLuaDev": true,
     "Lua.hint.arrayIndex": "Disable",
+    "javascript.referencesCodeLens.enable": false,
+    "typescript.referencesCodeLens.enable": false
+
 }
