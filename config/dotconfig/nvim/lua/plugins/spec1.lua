@@ -171,10 +171,6 @@ return {
 		init = function() vim.g.copilot_enabled = 0 end,
 	}, --"Github copilot
 	-- TODO: consider https://github.com/zbirenbaum/copilot.lua Vaatii vähän setup koska sillä on eri default behaviour mutta ois luaa
-	-- TODO: once convinced fzf-lua does all the necessary things can remove below reminders of ctrl-p settings
-	--		-- let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-	--		vim.g.ctrlp_user_command = 'fd --hidden --type f --color=never "" %s'
-	--		vim.g.ctrlp_use_caching = 0
 	{
 		"ibhagwan/fzf-lua",
 		config = function()
@@ -183,7 +179,7 @@ return {
 				["ctrl-v"] = "vsplit",
 			}
 			vim.g.fzf_preview_window = "right:60%"
-			vim.keymap.set("n", "<c-p>", ":FzfLua files<cr>")
+			-- vim.keymap.set("n", "<c-p>", ":FzfLua files<cr>")
 		end,
 		-- optional for icon support
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -191,6 +187,15 @@ return {
 		-- dependencies = { "echasnovski/mini.icons" },
 		opts = {},
 	},
+	-- once https://github.com/ibhagwan/fzf-lua/issues/1879 is fixed / there is a satisfying solution for fzf-lua for searching open buffers and opening them in existing buffers instead of creating new buffers for them, could migrate away from ctrl-p for good.
+	{
+		"ctrlpvim/ctrlp.vim",
+		init = function()
+			-- let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+			vim.g.ctrlp_user_command = 'fd --hidden --type f --color=never "" %s'
+			vim.g.ctrlp_use_caching = 0
+		end,
+	}, --Swiss knife for opening & finding files
 	{ -- highlights todos and adds :TodoFzfLua to browse todos
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
