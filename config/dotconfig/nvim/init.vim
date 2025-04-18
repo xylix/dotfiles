@@ -169,6 +169,8 @@ EOF
     set foldexpr=nvim_treesitter#foldexpr()
     set fillchars=fold:\
     autocmd BufNewFile,BufFilePre,BufRead * normal zR
+    " attempt to make above work better
+    " autocmd BufNewFile,BufFilePre,BufRead * setlocal foldlevel=95
 
     autocmd BufNewFile,BufFilePre,BufRead *.ts setlocal filetype=typescript
     autocmd BufNewFile,BufFilePre,BufRead *.tsx setlocal filetype=typescript
