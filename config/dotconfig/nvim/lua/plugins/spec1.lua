@@ -171,28 +171,6 @@ return {
 		init = function() vim.g.copilot_enabled = 0 end,
 	}, --"Github copilot
 	-- TODO: consider https://github.com/zbirenbaum/copilot.lua Vaatii vähän setup koska sillä on eri default behaviour mutta ois luaa
-	{
-		"chrishrb/gx.nvim",
-		enabled = false, -- Seems `gx` works for local file links quite well just by disabling gx.nvim, so below handler stuff is not needed at all..
-		-- `gf` for inside-repo links, `gx` for file / url / other links
-		keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
-		cmd = { "Browse" },
-		config = function()
-			require("gx").setup({
-				handlers = {
-					file = function(mode, line, _)
-						local helper = require("gx.helper")
-						local file_link = helper.find(line, mode, '(?:file:///|/)[^<>:"|?*\n\r]+?.[a-zA-Z0-9]+')
-						if file_link then
-							vim.print(file_link)
-							vim.file.open(file_link)
-						end
-						-- asdasd
-					end,
-				},
-			})
-		end,
-	},
 	-- TODO: once convinced fzf-lua does all the necessary things can remove below reminders of ctrl-p settings
 	--		-- let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 	--		vim.g.ctrlp_user_command = 'fd --hidden --type f --color=never "" %s'
