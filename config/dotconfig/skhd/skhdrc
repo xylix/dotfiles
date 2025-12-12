@@ -29,7 +29,7 @@ ctrl - 5 : yabai -m space --focus 5
 ctrl - 6 : yabai -m space --focus 6
 ctrl - 7 : yabai -m space --focus 7
 ctrl - 8 : yabai -m space --focus 8
-ctrl - 9 : yabai -m space --focus 9
+ctrl - 0 : yabai -m space --focus 10
 
 # move windows to desktops
 ctrl + shift - 1 : yabai -m window --space 1
@@ -41,6 +41,7 @@ ctrl + shift - 6 : yabai -m window --space 6
 ctrl + shift - 7 : yabai -m window --space 7
 ctrl + shift - 8 : yabai -m window --space 8
 ctrl + shift - 9 : yabai -m window --space 9
+ctrl + shift - 0 : yabai -m window --space 10
 
 # toggle between focused window being floating or not
 ctrl - space : yabai -m window --toggle float # ctrl-shift-space might avoid some collisions but I think this is nicer
