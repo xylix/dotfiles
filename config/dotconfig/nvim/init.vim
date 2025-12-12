@@ -173,10 +173,11 @@ EOF
     " autocmd BufNewFile,BufFilePre,BufRead * setlocal foldlevel=95
 
     autocmd BufNewFile,BufFilePre,BufRead *.ts setlocal filetype=typescript
-    autocmd BufNewFile,BufFilePre,BufRead *.tsx setlocal filetype=typescript
+    autocmd BufNewFile,BufFilePre,BufRead *.tsx setlocal filetype=typescriptreact
     autocmd BufNewFile,BufFilePre,BufRead *.js  setlocal filetype=javascript
-    autocmd BufNewFile,BufFilePre,BufRead *.jsx  setlocal filetype=javascript
+    autocmd BufNewFile,BufFilePre,BufRead *.jsx  setlocal filetype=javascriptreact
     autocmd FileType typescript,javascript set tabstop=2 shiftwidth=2 softtabstop=0 expandtab smarttab
+    autocmd FileType typescriptreact,javascriptreact set tabstop=2 shiftwidth=2 softtabstop=0 expandtab smarttab
 
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=0 expandtab smarttab colorcolumn=88
@@ -352,7 +353,7 @@ EOF
     "Show git blame
     nmap <leader>gb :CocCommand git.showBlameDoc<CR>
     " Coc configs over
-    
+
     " Search and browse TODOs, FIXMEs, etc.
     nmap <leader>td :TodoFzfLua<CR>
 
@@ -381,3 +382,8 @@ EOF
 " source: https://www.reddit.com/r/vim/comments/18l5nvp/is_there_a_way_what_spelling_ignore_url_for/
 syn match uris '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
 " source: https://vi.stackexchange.com/a/24534
+function! CountWords()
+    let l:wc_output = system('wc ' . shellescape(expand('%:p')))
+        echo l:wc_output
+endfunction
+command! CountWords call CountWords()
