@@ -83,7 +83,7 @@ return {
 		end,
 	},
 	-- Good syntax highlighting
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+	{ "nvim-treesitter/nvim-treesitter", branch="main", lazy=false, build = ":TSUpdate" },
 
 	{ "liuchengxu/vim-which-key" }, --WhichKey keybind helper tool
 

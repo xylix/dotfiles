@@ -102,7 +102,7 @@ lua <<EOF
     end,
   })
   -- treesitter setup
-  require'nvim-treesitter.configs'.setup {
+  require'nvim-treesitter'.setup {
 
     ensure_installed = { "python", "bash", "dockerfile", "fish", "json", "json5", "yaml", "make", "toml", "haskell", "vim", "javascript", "typescript", "markdown", "markdown_inline"}, -- "all", or a list of languages
     auto_install = true, -- FIXME: It seems auto-install runs multiple times in parallel when vim is opened with multiple buffers of the viletype, for example nvim -p 1.md 2.md. This breaks the tmp file handling that treesitter does
