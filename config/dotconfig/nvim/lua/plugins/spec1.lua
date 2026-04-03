@@ -58,9 +58,33 @@ return {
 	{
 		"itchyny/lightline.vim", -- Tab and statusline plugin
 		init = function()
-			vim.g.lightline = { colorscheme = "deus" }
+			vim.g.lightline = {
+				colorscheme = "deus",
+				tabline = {
+					left = { { "tabs" } },
+					right = { {} },
+				},
+				tab = {
+					active = { "tabnum", "filename_with_parent" },
+					inactive = { "tabnum", "filename_with_parent" },
+				},
+				tab_component_function = {
+					filename_with_parent = "LightlineTabFilenameWithParent",
+				},
+			}
 			vim.laststatus = 2
 			vim.showmode = true
+		end,
+		config = function()
+			-- Custom function to show parent folder + filename in tabs
+			vim.cmd([[
+			function! LightlineTabFilenameWithParent(n) abort
+				let bufnr = tabpagebuflist(a:n)[tabpagewinnr(a:n) - 1]
+				let fname = expand('#' . bufnr . ':t')
+				let parent = expand('#' . bufnr . ':p:h:t')
+				return parent ==# '.' || parent ==# '' ? fname : parent . '/' . fname
+			endfunction
+			]])
 		end,
 	},
 
@@ -204,5 +228,17 @@ return {
 				comments_only = false,
 			},
 		},
+	},
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+		},
+		build = "make tiktoken", -- Only on MacOS or Linux
+		opts = {
+			-- See Configuration section for options
+		},
+		-- See Commands section for default commands if you want to lazy load on them
 	},
 }
