@@ -27,7 +27,7 @@ yabai -m config                                 \
     bottom_padding               0             \
     left_padding                 0             \
     right_padding                0             \
-    window_gap                   1             \
+    window_gap                   0             \
     layout                       bsp            \
     mouse_modifier               alt            \
     mouse_action1                move           \
