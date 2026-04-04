@@ -192,6 +192,7 @@ return {
 
 	{
 		"github/copilot.vim",
+		enabled = false,
 		init = function() vim.g.copilot_enabled = 0 end,
 	}, --"Github copilot
 	-- TODO: consider https://github.com/zbirenbaum/copilot.lua Vaatii vähän setup koska sillä on eri default behaviour mutta ois luaa
@@ -231,6 +232,7 @@ return {
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
+		enabled = false,
 		dependencies = {
 			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
 			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
