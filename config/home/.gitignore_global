@@ -10,5 +10,5 @@ playwright-log.txt
 .envrc
 .nvmrc
 .git
-
 **/.claude/settings.local.json
+tmp/
