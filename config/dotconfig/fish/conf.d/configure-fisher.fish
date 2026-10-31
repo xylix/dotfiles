@@ -6,5 +6,5 @@ for file in $fisher_path/conf.d/*.fish
 end
 
 if not functions -q fisher
-    echo "Install fisher with `curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher`"
+    echo "Install fisher with `curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher`"
 end
