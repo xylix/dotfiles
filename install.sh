@@ -10,7 +10,7 @@ link_contents() {   # link_contents SRC_DIR DEST_DIR
     mkdir -p "$dest"
     for path in "$src"/* "$src"/.[!.]* "$src"/..?*; do
         [ -e "$path" ] || continue   # unmatched glob left as literal text
-        [ "$(basename "$path")" = .ssh ] && continue   # handled below
+        case "$(basename "$path")" in .ssh|.claude) continue ;; esac   # handled below
         ln -sn "$path" "$dest/$(basename "$path")"
     done
 }
@@ -21,6 +21,10 @@ link_contents "$DOTFILES/config/dotconfig" "$HOME/.config"
 # ~/.ssh stays a real directory so keys and known_hosts never enter the repo.
 mkdir -m 700 -p "$HOME/.ssh"
 ln -sn "$DOTFILES/config/home/.ssh/config" "$HOME/.ssh/config"
+
+# ~/.claude stays a real directory: Claude Code keeps session state there. Only the global prompt is linked.
+mkdir -p "$HOME/.claude"
+ln -sn "$DOTFILES/config/home/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 
 # System-wide files are real copies: polkitd cannot follow symlinks into $HOME.
 if [ "$(uname)" = Linux ]; then
