@@ -1,15 +1,35 @@
-#/bin/bash
-export DOTFILES=$HOME/dotfiles
-cp -r --symbolic-link $DOTFILES/config/home/ $HOME/.
+#!/usr/bin/env bash
+# Symlink the dotfiles into place. Works on macOS and Linux (plain ln only).
+# Not re-runnable by design: ln refuses to replace an existing target, so the
+# script stops at the first conflict instead of overwriting anything.
+set -euo pipefail
+DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 
-# ipython profile create
-# rm -rf $HOME/.ipython/profile_default/startup
-# ln -s $DOTFILES/config/home/.ipython/profile_default/startup/ $HOME/.ipython/profile_default/startup
+link_contents() {   # link_contents SRC_DIR DEST_DIR
+    local src=$1 dest=$2 path
+    mkdir -p "$dest"
+    for path in "$src"/* "$src"/.[!.]* "$src"/..?*; do
+        [ -e "$path" ] || continue   # unmatched glob left as literal text
+        [ "$(basename "$path")" = .ssh ] && continue   # handled below
+        ln -sn "$path" "$dest/$(basename "$path")"
+    done
+}
 
-cp -r --symbolic-link $DOTFILES/config/dotconfig/ $HOME/.config/.
-sudo cp -r --symbolic-link $DOTFILES/config/etc /etc
-# Install my system wide services
-# sudo cp -r --symbolic-link $DOTFILES/config/systemd/system/* /etc/systemd/system/
+link_contents "$DOTFILES/config/home"      "$HOME"
+link_contents "$DOTFILES/config/dotconfig" "$HOME/.config"
+
+# ~/.ssh stays a real directory so keys and known_hosts never enter the repo.
+mkdir -m 700 -p "$HOME/.ssh"
+ln -sn "$DOTFILES/config/home/.ssh/config" "$HOME/.ssh/config"
+
+# System-wide files are real copies: polkitd cannot follow symlinks into $HOME.
+if [ "$(uname)" = Linux ]; then
+    sudo install -m 644 "$DOTFILES/config/etc/logid.cfg" /etc/logid.cfg
+    sudo install -Dm 644 "$DOTFILES/config/etc/polkit-1/rules.d/00.custom.rules" \
+        /etc/polkit-1/rules.d/00.custom.rules
+    # Install my system wide services
+    # sudo install -m 644 "$DOTFILES"/config/systemd/system/* /etc/systemd/system/
+fi
 
 nvim +Lazy
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
