@@ -7,3 +7,5 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home/
 fi
 
+
+export PATH="$HOME/.elan/bin:$PATH"
