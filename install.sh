@@ -31,6 +31,11 @@ if [ "$(uname)" = Linux ]; then
     # sudo install -m 644 "$DOTFILES"/config/systemd/system/* /etc/systemd/system/
 fi
 
+# macOS user defaults (dock, keyboard, trackpad, Finder, ...). Idempotent.
+if [ "$(uname)" = Darwin ]; then
+    "$DOTFILES/macos-defaults.sh"
+fi
+
 nvim --headless "+Lazy! restore" +qa   # install plugins pinned in lazy-lock.json, no UI
 # coc installs missing g:coc_global_extensions itself; this waits for it to finish.
 nvim --headless -c "source $DOTFILES/config/dotconfig/nvim/coc-headless-install.vim"
