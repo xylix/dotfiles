@@ -135,7 +135,7 @@ return {
 	{ "AndrewRadev/tagalong.vim", ft = { "html", "jsx", "tsx", "svelte" } }, --Change both ends of a pair of html tags when editing tags
 	-- Plug 'zsugabubus/crazy8.nvim'
 	{
-		"norcalli/nvim-colorizer.lua",
+		"catgoose/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup() -- Call Colorizer setup command to set up filetypes
 		end,
