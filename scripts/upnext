@@ -1,0 +1,317 @@
+#!/usr/bin/env -S uv run --script --quiet
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "google-api-python-client>=2.100",
+#     "google-auth-oauthlib>=1.2",
+# ]
+# ///
+"""upnext: a low-distraction look at what is coming up on your Google Calendar.
+
+Shows:
+  * today's remaining (and in-progress) events, and
+  * future events whose own reminder horizon has already been reached
+    (e.g. an event in 3 days with a "notify 7 days before" reminder).
+
+Lookahead is capped at --days (default 7).
+
+First-time setup:
+  1. In the Google Cloud console, create a project, enable the Google Calendar
+     API, and create an OAuth client of type "Desktop app". Add your own Google
+     account as a test user on the consent screen. Download the client JSON.
+  2. Run `upnext --auth path/to/client_secret.json` (or `upnext --auth` and
+     paste the client ID and secret when prompted), then approve in the browser.
+
+Credentials live in $XDG_CONFIG_HOME/upnext (default ~/.config/upnext).
+"""
+
+import argparse
+import json
+import os
+import sys
+from datetime import date, datetime, time, timedelta
+from pathlib import Path
+
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+
+SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+CONFIG_DIR = Path(os.environ.get('XDG_CONFIG_HOME', '~/.config')).expanduser() / 'upnext'
+CLIENT_FILE = CONFIG_DIR / 'client.json'
+TOKEN_FILE = CONFIG_DIR / 'token.json'
+
+
+# --------------------------------------------------------------------------- auth
+
+def write_private(path, text):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text)
+    path.chmod(0o600)
+
+
+def load_client_config(source):
+    """Return an "installed" client config from a downloaded JSON file or prompts."""
+    if source:
+        data = json.loads(Path(source).expanduser().read_text())
+        if 'installed' not in data and 'web' not in data:
+            sys.exit(f'upnext: {source} does not look like a Google OAuth client file')
+        return {'installed': data.get('installed') or data['web']}
+    print('Paste the OAuth client credentials from the Google Cloud console.')
+    client_id = input('Client ID: ').strip()
+    client_secret = input('Client secret: ').strip()
+    if not client_id or not client_secret:
+        sys.exit('upnext: client ID and secret are both required')
+    return {'installed': {
+        'client_id': client_id,
+        'client_secret': client_secret,
+        'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
+        'token_uri': 'https://oauth2.googleapis.com/token',
+        'redirect_uris': ['http://localhost'],
+    }}
+
+
+def authenticate(source):
+    client_config = load_client_config(source)
+    write_private(CLIENT_FILE, json.dumps(client_config, indent=2))
+    flow = InstalledAppFlow.from_client_config(client_config, scopes=SCOPES)
+    print('Opening your browser to authorise read-only calendar access...')
+    print('If the consent screen warns the app is unverified, choose Advanced -> Go to <app> (unsafe).')
+    creds = flow.run_local_server(port=0, open_browser=True)
+    write_private(TOKEN_FILE, creds.to_json())
+    print(f'Saved token to {TOKEN_FILE}')
+
+
+def load_credentials():
+    if not TOKEN_FILE.exists():
+        sys.exit(
+            'upnext: not authenticated yet. Run `upnext --auth path/to/client_secret.json` '
+            '(see `upnext --help` for the one-time Google Cloud setup).'
+        )
+    creds = Credentials.from_authorized_user_file(str(TOKEN_FILE), SCOPES)
+    if not creds.valid:
+        if creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+            write_private(TOKEN_FILE, creds.to_json())
+        else:
+            sys.exit('upnext: stored token is no longer usable. Re-run `upnext --auth`.')
+    return creds
+
+
+# ---------------------------------------------------------------------- calendar
+
+def list_calendars(service):
+    cals = []
+    page_token = None
+    while True:
+        resp = service.calendarList().list(pageToken=page_token).execute()
+        cals.extend(resp.get('items', []))
+        page_token = resp.get('nextPageToken')
+        if not page_token:
+            return cals
+
+
+def list_events(service, cal_id, time_min, time_max):
+    events = []
+    page_token = None
+    while True:
+        resp = service.events().list(
+            calendarId=cal_id,
+            timeMin=time_min.isoformat(),
+            timeMax=time_max.isoformat(),
+            singleEvents=True,
+            orderBy='startTime',
+            pageToken=page_token,
+        ).execute()
+        events.extend(resp.get('items', []))
+        page_token = resp.get('nextPageToken')
+        if not page_token:
+            return events
+
+
+def event_times(event, tz):
+    """Return (start, end, is_all_day) as aware datetimes in the local zone."""
+    start, end = event['start'], event['end']
+    if 'dateTime' in start:
+        s = datetime.fromisoformat(start['dateTime']).astimezone(tz)
+        e = datetime.fromisoformat(end['dateTime']).astimezone(tz)
+        return s, e, False
+    s = datetime.combine(date.fromisoformat(start['date']), time.min, tz)
+    e = datetime.combine(date.fromisoformat(end['date']), time.min, tz)
+    return s, e, True
+
+
+def declined(event):
+    return any(a.get('self') and a.get('responseStatus') == 'declined'
+               for a in event.get('attendees', []))
+
+
+def reminder_minutes(event, calendar):
+    """All reminder offsets (minutes before start) that apply to this event."""
+    rem = event.get('reminders', {})
+    if rem.get('useDefault', False):
+        overrides = calendar.get('defaultReminders', [])
+    else:
+        overrides = rem.get('overrides', [])
+    return [r['minutes'] for r in overrides if 'minutes' in r]
+
+
+# ---------------------------------------------------------------------- display
+
+def humanize(delta):
+    secs = int(delta.total_seconds())
+    if secs < 0:
+        return 'now'
+    days, rem = divmod(secs, 86400)
+    hours, rem = divmod(rem, 3600)
+    minutes = rem // 60
+    if days:
+        return f'{days}d {hours}h' if hours else f'{days}d'
+    if hours:
+        return f'{hours}h {minutes:02d}m'
+    return f'{minutes}m'
+
+
+def humanize_reminder(minutes):
+    if minutes % 1440 == 0 and minutes >= 1440:
+        d = minutes // 1440
+        return f'{d} day{"s" if d != 1 else ""} before'
+    if minutes % 60 == 0 and minutes >= 60:
+        h = minutes // 60
+        return f'{h} hour{"s" if h != 1 else ""} before'
+    return f'{minutes} min before'
+
+
+def fmt_time(dt):
+    return dt.strftime('%H:%M')
+
+
+def fmt_day(dt, today):
+    if dt.date() == today:
+        return 'today'
+    if dt.date() == today + timedelta(days=1):
+        return 'tomorrow'
+    return dt.strftime('%a %-d %b')
+
+
+# ------------------------------------------------------------------------- main
+
+def main():
+    ap = argparse.ArgumentParser(
+        prog='upnext',
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    ap.add_argument('--auth', nargs='?', const='', metavar='CLIENT_JSON',
+                    help='run the one-time OAuth setup, optionally from a downloaded client JSON file')
+    ap.add_argument('-d', '--days', type=int, default=7,
+                    help='maximum lookahead in days (default: 7)')
+    ap.add_argument('-c', '--calendar', action='append', default=[], metavar='NAME',
+                    help='only use calendars whose name contains NAME (repeatable, case-insensitive)')
+    ap.add_argument('-a', '--all', action='store_true',
+                    help='list every event within the lookahead, ignoring reminder horizons')
+    ap.add_argument('--hidden', action='store_true',
+                    help='include calendars that are hidden (unticked) in the Google Calendar UI')
+    ap.add_argument('--show-declined', action='store_true',
+                    help='include events you have declined')
+    ap.add_argument('--show-reminders', action='store_true',
+                    help='annotate each upcoming event with the reminder that surfaced it')
+    args = ap.parse_args()
+
+    if args.auth is not None:
+        authenticate(args.auth or None)
+        return
+
+    tz = datetime.now().astimezone().tzinfo
+    now = datetime.now(tz)
+    today = now.date()
+    end_of_today = datetime.combine(today + timedelta(days=1), time.min, tz)
+    horizon = now + timedelta(days=args.days)
+
+    service = build('calendar', 'v3', credentials=load_credentials(), cache_discovery=False)
+
+    calendars = list_calendars(service)
+    if not args.hidden:
+        calendars = [c for c in calendars if c.get('selected', False)]
+    if args.calendar:
+        wanted = [w.lower() for w in args.calendar]
+        calendars = [c for c in calendars
+                     if any(w in c.get('summary', '').lower() for w in wanted)]
+    if not calendars:
+        sys.exit('upnext: no matching calendars')
+
+    today_events, upcoming = [], []
+    for cal in calendars:
+        for ev in list_events(service, cal['id'], now, horizon):
+            if ev.get('status') == 'cancelled':
+                continue
+            if not args.show_declined and declined(ev):
+                continue
+            start, end, all_day = event_times(ev, tz)
+            if end <= now:
+                continue
+            item = {
+                'start': start, 'end': end, 'all_day': all_day,
+                'title': ev.get('summary', '(no title)'),
+                'location': ev.get('location', ''),
+                'calendar': cal.get('summary', ''),
+            }
+            if start < end_of_today:
+                today_events.append(item)
+                continue
+            mins = reminder_minutes(ev, cal)
+            fired = [m for m in mins if start - timedelta(minutes=m) <= now]
+            if args.all or fired:
+                item['reminder'] = max(fired) if fired else None
+                upcoming.append(item)
+
+    today_events.sort(key=lambda i: (i['start'], i['end']))
+    upcoming.sort(key=lambda i: (i['start'], i['end']))
+
+    def line(item, show_day):
+        when = f"{fmt_day(item['start'], today):<11}" if show_day else ''
+        if item['all_day']:
+            span = 'all day'
+        else:
+            span = f'{fmt_time(item["start"])}-{fmt_time(item["end"])}'
+        rel = ''
+        if item['start'] <= now < item['end']:
+            rel = '  (now)'
+        elif not item['all_day']:
+            rel = f'  (in {humanize(item["start"] - now)})'
+        text = f'  {when}{span:<13} {item["title"]}{rel}'
+        if item['location']:
+            text += f'  @ {item["location"].splitlines()[0]}'
+        if args.show_reminders and item.get('reminder') is not None:
+            text += f'  [{humanize_reminder(item["reminder"])}]'
+        return text
+
+    # Headline: the next thing that has not started yet.
+    pending = [i for i in today_events if i['start'] > now and not i['all_day']]
+    if pending:
+        nxt = pending[0]
+        print(f'Next: {nxt["title"]} at {fmt_time(nxt["start"])} (in {humanize(nxt["start"] - now)})')
+    elif any(i['start'] <= now < i['end'] and not i['all_day'] for i in today_events):
+        print('Next: nothing after the current event today')
+    else:
+        print('Next: nothing more today')
+
+    if today_events:
+        print()
+        print('Today')
+        for item in today_events:
+            print(line(item, show_day=False))
+
+    if upcoming:
+        print()
+        print('Everything within lookahead' if args.all else 'Coming up (reminder horizon reached)')
+        for item in upcoming:
+            print(line(item, show_day=True))
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        sys.exit(130)
