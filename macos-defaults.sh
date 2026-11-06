@@ -46,7 +46,7 @@ done
 
 # Keyboard shortcuts (com.apple.symbolichotkeys IDs):
 #   64       Cmd+Space Spotlight -> off, Alfred takes the key
-#   118/119  Ctrl+1 / Ctrl+2     -> on, jump to desktop 1 / 2 (skhd binds the same keys to yabai)
+#   118/119  Ctrl+1 / Ctrl+2     -> on, jump to desktop 1 / 2
 sym=com.apple.symbolichotkeys
 defaults write $sym AppleSymbolicHotKeys -dict-add 64 '<dict><key>enabled</key><false/></dict>'
 for pair in "118 18" "119 19"; do
